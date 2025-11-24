@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hunter System</title>
+    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main-style.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-content">
+        <h1 class="logo">HUNTER SYSTEM</h1>
+        <button class="menu-btn">☰</button>
+        <div class="nav-links">
+            <a href="#" class="nav-link" id="nav-status">Status</a>
+            <a href="#" class="nav-link" id="nav-tasks">Tasks</a>
+            <a href="#" class="nav-link" id="nav-quests">Quests</a>
+            <a href="#" class="nav-link" id="editProfileBtn">Edit Profile</a>
+            <a href="#" class="nav-link" id="logoutBtn">Logout</a>
+        </div>
+    </div>
+</nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="profile">
+                <div class="avatar">
+                    <div class="avatar-inner">👤</div>
+                    <div class="level-badge">Lv. <span id="player-level">1</span></div>
+                </div>
+                <h3 id="player-name">Shadow Monarch</h3>
+                
+                <div class="stat-card">
+                    <p class="stat-label">Days Active</p>
+                    <p class="stat-value" id="days-active">0</p>
+                </div>
+                
+                <div class="stat-card">
+                    <p class="stat-label">Task Rate</p>
+                    <p class="stat-value" id="task-rate">0%</p>
+                </div>
+
+                <div class="stat-card">
+                    <p class="stat-label">Type</p>
+                    <p class="stat-value" id="player-type">N/A</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="grid">
+                <!-- Tasks Section -->
+                <section class="card">
+                    <div class="card-header">
+                        <span class="card-icon">📜</span>
+                        <h2>Daily Tasks</h2>
+                    </div>
+                    <p class="timer" id="tasks-timer"></p>
+                    <ul id="task-list"></ul>
+                    <button class="btn" id="add-task-btn">Add Random Task</button>
+                </section>
+
+                <!-- Quests Section -->
+                <section class="card">
+                    <div class="card-header">
+                        <span class="card-icon">⚔️</span>
+                        <h2>Weekly Quests</h2>
+                    </div>
+                    <p class="timer" id="quests-timer"></p>
+                    <ul id="quest-list"></ul>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="profile-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeProfileModal">&times;</span>
+            <h2>Edit Profile</h2>
+            <form id="profile-form">
+                <div class="form-group">
+                    <label for="profile-username">Username</label>
+                    <input type="text" id="profile-username" placeholder="Enter username" required>
+                </div>
+                <div class="form-group">
+                    <label for="profile-type">Developer Type</label>
+                    <select id="profile-type" required>
+                        <option value="">Select Type</option>
+                        <option value="Frontend">Frontend Developer</option>
+                        <option value="Backend">Backend Developer</option>
+                        <option value="Full Stack">Full Stack Developer</option>
+                        <option value="DevOps">DevOps Engineer</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Save Profile</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Evidence Submission Modal -->
+    <div id="evidence-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeEvidenceModal">&times;</span>
+            <h2>Submit Evidence</h2>
+            <form id="evidence-form">
+                <div id="evidence-screenshot" class="form-group">
+                    <label for="screenshot-url">Screenshot URL</label>
+                    <input type="url" id="screenshot-url" placeholder="Enter screenshot URL">
+                </div>
+                <div id="evidence-code" class="form-group">
+                    <label for="code-snippet">Code Snippet</label>
+                    <textarea id="code-snippet" rows="4" placeholder="Paste your code here"></textarea>
+                </div>
+                <button type="submit" class="btn">Submit Evidence</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        
+    </script>
+</body>
+</html>

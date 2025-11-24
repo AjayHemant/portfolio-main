@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Networking Fundamentals - Cyber Learner</title>
+    <link rel="stylesheet" href="course-styles.css">
+    <link rel="stylesheet" href="course-4.css">
+</head>
+<body>
+    <div class="course-container">
+        <header class="course-header">
+            <div class="nav-controls">
+                <a href="index.html" class="back-btn">← Back to Courses</a>
+                <div class="course-progress">
+                    <span class="course-number">Course 4</span>
+                    <span class="course-total">of 14</span>
+                </div>
+            </div>
+            <h1 class="course-title">Networking Fundamentals</h1>
+            <p class="course-subtitle">Understand network architecture, protocols, and communication basics</p>
+        </header>
+
+        <main class="course-content">
+            <section class="content-section">
+                <h2>Introduction to Computer Networks</h2>
+                <p>Computer networks are interconnected systems that allow devices to communicate and share resources. Understanding networking is crucial for cybersecurity professionals.</p>
+                
+                <h3>What is a Network?</h3>
+                <ul>
+                    <li><strong>Definition:</strong> A collection of interconnected devices</li>
+                    <li><strong>Purpose:</strong> Share resources and communicate</li>
+                    <li><strong>Components:</strong> Nodes, links, protocols</li>
+                    <li><strong>Types:</strong> LAN, WAN, MAN, PAN</li>
+                    <li><strong>Topology:</strong> Physical and logical arrangement</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Network Types and Topologies</h2>
+                
+                <h3>Network Types by Size</h3>
+                <div class="data-types-grid">
+                    <div class="data-type">
+                        <h4>PAN</h4>
+                        <p>Personal Area Network - Very small range (Bluetooth, USB)</p>
+                    </div>
+                    <div class="data-type">
+                        <h4>LAN</h4>
+                        <p>Local Area Network - Building or campus (Ethernet, Wi-Fi)</p>
+                    </div>
+                    <div class="data-type">
+                        <h4>MAN</h4>
+                        <p>Metropolitan Area Network - City-wide coverage</p>
+                    </div>
+                    <div class="data-type">
+                        <h4>WAN</h4>
+                        <p>Wide Area Network - Large geographical areas (Internet)</p>
+                    </div>
+                </div>
+
+                <h3>Common Network Topologies</h3>
+                <ul>
+                    <li><strong>Bus:</strong> All devices connected to a single cable</li>
+                    <li><strong>Star:</strong> All devices connected to a central hub</li>
+                    <li><strong>Ring:</strong> Devices connected in a circular fashion</li>
+                    <li><strong>Mesh:</strong> Every device connected to every other device</li>
+                    <li><strong>Hybrid:</strong> Combination of multiple topologies</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Network Hardware Components</h2>
+                
+                <h3>Essential Network Devices</h3>
+                <ul>
+                    <li><strong>Router:</strong> Connects different networks and routes traffic</li>
+                    <li><strong>Switch:</strong> Connects devices within the same network</li>
+                    <li><strong>Hub:</strong> Basic connection point (largely obsolete)</li>
+                    <li><strong>Access Point:</strong> Provides wireless network access</li>
+                    <li><strong>Firewall:</strong> Filters network traffic for security</li>
+                    <li><strong>Modem:</strong> Converts digital signals for transmission</li>
+                </ul>
+
+                <h3>Network Interface Cards (NICs)</h3>
+                <p>NICs are hardware components that allow devices to connect to networks:</p>
+                <ul>
+                    <li><strong>Ethernet NIC:</strong> Wired network connections</li>
+                    <li><strong>Wireless NIC:</strong> Wi-Fi connections</li>
+                    <li><strong>MAC Address:</strong> Unique hardware identifier</li>
+                    <li><strong>Speed:</strong> 10/100/1000 Mbps or higher</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>IP Addressing Basics</h2>
+                
+                <h3>IPv4 Addressing</h3>
+                <div class="code-block">
+                    <pre><code># IPv4 Address Structure
+192.168.1.100
+│   │   │  │
+│   │   │  └── Host portion
+│   │   └───── Network portion
+│   └───────── Private IP range
+└───────────── Class C network
+
+# Common Private IP Ranges:
+Class A: 10.0.0.0 to 10.255.255.255
+Class B: 172.16.0.0 to 172.31.255.255
+Class C: 192.168.0.0 to 192.168.255.255</code></pre>
+                </div>
+
+                <h3>IPv6 Addressing</h3>
+                <div class="code-block">
+                    <pre><code># IPv6 Address Structure
+2001:0db8:85a3:0000:0000:8a2e:0370:7334
+│    │    │    │    │    │    │    │
+└────┴────┴────┴────┴────┴────┴────┴──── 128-bit address
+
+# Shortened notation:
+2001:db8:85a3::8a2e:370:7334
+
+# Key features:
+- 128-bit addresses (vs 32-bit IPv4)
+- Hexadecimal notation
+- No NAT required
+- Built-in security features</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Network Protocols Overview</h2>
+                
+                <h3>Protocol Layers</h3>
+                <p>Networks use layered protocols to manage communication:</p>
+                <ul>
+                    <li><strong>Physical Layer:</strong> Electrical signals, cables</li>
+                    <li><strong>Data Link Layer:</strong> Frame formatting, error detection</li>
+                    <li><strong>Network Layer:</strong> Routing, IP addressing</li>
+                    <li><strong>Transport Layer:</strong> Reliable delivery (TCP/UDP)</li>
+                    <li><strong>Application Layer:</strong> User applications (HTTP, FTP)</li>
+                </ul>
+
+                <h3>Common Protocols</h3>
+                <div class="data-types-grid">
+                    <div class="data-type">
+                        <h4>HTTP/HTTPS</h4>
+                        <p>Web traffic (ports 80/443)</p>
+                    </div>
+                    <div class="data-type">
+                        <h4>FTP/SFTP</h4>
+                        <p>File transfer (ports 21/22)</p>
+                    </div>
+                    <div class="data-type">
+                        <h4>SSH</h4>
+                        <p>Secure remote access (port 22)</p>
+                    </div>
+                    <div class="data-type">
+                        <h4>DNS</h4>
+                        <p>Domain name resolution (port 53)</p>
+                    </div>
+                    <div class="data-type">
+                        <h4>DHCP</h4>
+                        <p>Dynamic IP assignment (ports 67/68)</p>
+                    </div>
+                    <div class="data-type">
+                        <h4>SMTP/POP3</h4>
+                        <p>Email services (ports 25/110)</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Data Transmission Methods</h2>
+                
+                <h3>Transmission Types</h3>
+                <ul>
+                    <li><strong>Simplex:</strong> One-way communication (radio broadcast)</li>
+                    <li><strong>Half-Duplex:</strong> Two-way, but not simultaneous (walkie-talkie)</li>
+                    <li><strong>Full-Duplex:</strong> Simultaneous two-way communication (telephone)</li>
+                </ul>
+
+                <h3>Switching Methods</h3>
+                <ul>
+                    <li><strong>Circuit Switching:</strong> Dedicated path for entire communication</li>
+                    <li><strong>Packet Switching:</strong> Data broken into packets, routed independently</li>
+                    <li><strong>Message Switching:</strong> Store-and-forward messaging</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Network Security Basics</h2>
+                
+                <h3>Common Security Threats</h3>
+                <ul>
+                    <li><strong>Eavesdropping:</strong> Unauthorized interception of data</li>
+                    <li><strong>Man-in-the-Middle:</strong> Attacker intercepts communication</li>
+                    <li><strong>Denial of Service:</strong> Overwhelming network resources</li>
+                    <li><strong>Spoofing:</strong> Impersonating legitimate network entities</li>
+                    <li><strong>Packet Sniffing:</strong> Capturing and analyzing network traffic</li>
+                </ul>
+
+                <h3>Basic Security Measures</h3>
+                <ul>
+                    <li><strong>Encryption:</strong> Protecting data in transit</li>
+                    <li><strong>Authentication:</strong> Verifying user identity</li>
+                    <li><strong>Access Control:</strong> Limiting network access</li>
+                    <li><strong>Firewalls:</strong> Filtering network traffic</li>
+                    <li><strong>VPNs:</strong> Secure remote connections</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Network Troubleshooting Tools</h2>
+                
+                <h3>Command Line Tools</h3>
+                <div class="code-block">
+                    <pre><code># Ping - Test connectivity
+ping google.com
+ping 8.8.8.8
+
+# Traceroute - Show path to destination
+tracert google.com (Windows)
+traceroute google.com (Linux/Mac)
+
+# Netstat - Show network connections
+netstat -an
+netstat -rn (routing table)
+
+# Nslookup - DNS queries
+nslookup google.com
+nslookup 8.8.8.8
+
+# Ipconfig/ifconfig - Network configuration
+ipconfig /all (Windows)
+ifconfig (Linux/Mac)</code></pre>
+                </div>
+
+                <h3>Network Monitoring</h3>
+                <ul>
+                    <li><strong>Bandwidth Monitoring:</strong> Track network usage</li>
+                    <li><strong>Latency Testing:</strong> Measure response times</li>
+                    <li><strong>Packet Analysis:</strong> Examine network traffic</li>
+                    <li><strong>Performance Metrics:</strong> Monitor network health</li>
+                </ul>
+            </section>
+
+            <section class="video-section">
+                <h2>📺 Video Tutorial</h2>
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        <div class="video-icon">🎥</div>
+                        <p>YouTube video will be embedded here</p>
+                        <small>Video placeholder - Link to be added</small>
+                    </div>
+                </div>
+            </section>
+
+            <section class="test-section">
+                <h2>📝 Knowledge Test</h2>
+                <p class="test-instruction">Complete this test to unlock the next course. You need 18 out of 20 correct answers to pass.</p>
+                
+                <div class="test-container">
+                    <div class="question" data-question="1">
+                        <h3>Question 1</h3>
+                        <p>What does LAN stand for?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> Local Area Network</label>
+                            <label><input type="radio" name="q1" value="b"> Large Area Network</label>
+                            <label><input type="radio" name="q1" value="c"> Limited Access Network</label>
+                            <label><input type="radio" name="q1" value="d"> Linear Access Network</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="2">
+                        <h3>Question 2</h3>
+                        <p>Which device connects different networks together?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> Switch</label>
+                            <label><input type="radio" name="q2" value="b"> Hub</label>
+                            <label><input type="radio" name="q2" value="c"> Router</label>
+                            <label><input type="radio" name="q2" value="d"> Modem</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="3">
+                        <h3>Question 3</h3>
+                        <p>What is the size of an IPv4 address?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="a"> 16 bits</label>
+                            <label><input type="radio" name="q3" value="b"> 32 bits</label>
+                            <label><input type="radio" name="q3" value="c"> 64 bits</label>
+                            <label><input type="radio" name="q3" value="d"> 128 bits</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="4">
+                        <h3>Question 4</h3>
+                        <p>Which private IP range belongs to Class C?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> 10.0.0.0 to 10.255.255.255</label>
+                            <label><input type="radio" name="q4" value="b"> 172.16.0.0 to 172.31.255.255</label>
+                            <label><input type="radio" name="q4" value="c"> 192.168.0.0 to 192.168.255.255</label>
+                            <label><input type="radio" name="q4" value="d"> 127.0.0.0 to 127.255.255.255</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="5">
+                        <h3>Question 5</h3>
+                        <p>What is the default port for HTTP?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="a"> 21</label>
+                            <label><input type="radio" name="q5" value="b"> 22</label>
+                            <label><input type="radio" name="q5" value="c"> 80</label>
+                            <label><input type="radio" name="q5" value="d"> 443</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="6">
+                        <h3>Question 6</h3>
+                        <p>Which topology connects all devices to a central point?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q6" value="a"> Bus</label>
+                            <label><input type="radio" name="q6" value="b"> Ring</label>
+                            <label><input type="radio" name="q6" value="c"> Star</label>
+                            <label><input type="radio" name="q6" value="d"> Mesh</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="7">
+                        <h3>Question 7</h3>
+                        <p>What does DNS stand for?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q7" value="a"> Domain Name System</label>
+                            <label><input type="radio" name="q7" value="b"> Dynamic Network Service</label>
+                            <label><input type="radio" name="q7" value="c"> Data Network Security</label>
+                            <label><input type="radio" name="q7" value="d"> Digital Name Server</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="8">
+                        <h3>Question 8</h3>
+                        <p>Which command is used to test network connectivity?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q8" value="a"> ping</label>
+                            <label><input type="radio" name="q8" value="b"> connect</label>
+                            <label><input type="radio" name="q8" value="c"> test</label>
+                            <label><input type="radio" name="q8" value="d"> check</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="9">
+                        <h3>Question 9</h3>
+                        <p>What is a MAC address?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q9" value="a"> A software identifier</label>
+                            <label><input type="radio" name="q9" value="b"> A unique hardware identifier</label>
+                            <label><input type="radio" name="q9" value="c"> An IP address type</label>
+                            <label><input type="radio" name="q9" value="d"> A network protocol</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="10">
+                        <h3>Question 10</h3>
+                        <p>Which transmission type allows simultaneous two-way communication?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q10" value="a"> Simplex</label>
+                            <label><input type="radio" name="q10" value="b"> Half-duplex</label>
+                            <label><input type="radio" name="q10" value="c"> Full-duplex</label>
+                            <label><input type="radio" name="q10" value="d"> Multi-duplex</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="11">
+                        <h3>Question 11</h3>
+                        <p>What is the size of an IPv6 address?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q11" value="a"> 32 bits</label>
+                            <label><input type="radio" name="q11" value="b"> 64 bits</label>
+                            <label><input type="radio" name="q11" value="c"> 96 bits</label>
+                            <label><input type="radio" name="q11" value="d"> 128 bits</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="12">
+                        <h3>Question 12</h3>
+                        <p>Which device operates at the Data Link layer?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q12" value="a"> Router</label>
+                            <label><input type="radio" name="q12" value="b"> Switch</label>
+                            <label><input type="radio" name="q12" value="c"> Hub</label>
+                            <label><input type="radio" name="q12" value="d"> Firewall</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="13">
+                        <h3>Question 13</h3>
+                        <p>What does DHCP provide?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q13" value="a"> Domain name resolution</label>
+                            <label><input type="radio" name="q13" value="b"> Dynamic IP address assignment</label>
+                            <label><input type="radio" name="q13" value="c"> File transfer services</label>
+                            <label><input type="radio" name="q13" value="d"> Email services</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="14">
+                        <h3>Question 14</h3>
+                        <p>Which attack involves intercepting communication between two parties?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q14" value="a"> DoS attack</label>
+                            <label><input type="radio" name="q14" value="b"> Man-in-the-middle attack</label>
+                            <label><input type="radio" name="q14" value="c"> Spoofing attack</label>
+                            <label><input type="radio" name="q14" value="d"> Brute force attack</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="15">
+                        <h3>Question 15</h3>
+                        <p>What is the default port for HTTPS?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q15" value="a"> 80</label>
+                            <label><input type="radio" name="q15" value="b"> 443</label>
+                            <label><input type="radio" name="q15" value="c"> 8080</label>
+                            <label><input type="radio" name="q15" value="d"> 8443</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="16">
+                        <h3>Question 16</h3>
+                        <p>Which command shows the routing table?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q16" value="a"> ping</label>
+                            <label><input type="radio" name="q16" value="b"> netstat -rn</label>
+                            <label><input type="radio" name="q16" value="c"> ipconfig</label>
+                            <label><input type="radio" name="q16" value="d"> nslookup</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="17">
+                        <h3>Question 17</h3>
+                        <p>What does WAN stand for?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q17" value="a"> Wide Area Network</label>
+                            <label><input type="radio" name="q17" value="b"> Wireless Access Network</label>
+                            <label><input type="radio" name="q17" value="c"> World Area Network</label>
+                            <label><input type="radio" name="q17" value="d"> Web Access Network</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="18">
+                        <h3>Question 18</h3>
+                        <p>Which switching method breaks data into packets?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q18" value="a"> Circuit switching</label>
+                            <label><input type="radio" name="q18" value="b"> Packet switching</label>
+                            <label><input type="radio" name="q18" value="c"> Message switching</label>
+                            <label><input type="radio" name="q18" value="d"> Frame switching</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="19">
+                        <h3>Question 19</h3>
+                        <p>What is the purpose of a firewall?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q19" value="a"> Amplify network signals</label>
+                            <label><input type="radio" name="q19" value="b"> Filter network traffic</label>
+                            <label><input type="radio" name="q19" value="c"> Convert protocols</label>
+                            <label><input type="radio" name="q19" value="d"> Store network data</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="20">
+                        <h3>Question 20</h3>
+                        <p>Which protocol is used for secure file transfer?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q20" value="a"> FTP</label>
+                            <label><input type="radio" name="q20" value="b"> HTTP</label>
+                            <label><input type="radio" name="q20" value="c"> SFTP</label>
+                            <label><input type="radio" name="q20" value="d"> SMTP</label>
+                        </div>
+                    </div>
+
+                    <div class="test-actions">
+                        <button class="submit-test-btn">Submit Test</button>
+                        <div class="test-result" style="display: none;">
+                            <div class="score-display"></div>
+                            <div class="result-message"></div>
+                            <button class="next-course-btn" style="display: none;">Proceed to Next Course</button>
+                            <button class="retry-btn" style="display: none;">Retry Test</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="course-4.js"></script>
+</body>
+</html>

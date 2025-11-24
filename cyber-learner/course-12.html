@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burp Suite - Cyber Learner</title>
+    <link rel="stylesheet" href="course-styles.css">
+    <link rel="stylesheet" href="course-12.css">
+</head>
+<body>
+    <div class="course-container">
+        <header class="course-header">
+            <div class="nav-controls">
+                <a href="index.html" class="back-btn">← Back to Courses</a>
+                <div class="course-progress">
+                    <span class="course-number">Course 12</span>
+                    <span class="course-total">of 14</span>
+                </div>
+            </div>
+            <h1 class="course-title">Burp Suite</h1>
+            <p class="course-subtitle">Master web application security testing with Burp Suite</p>
+        </header>
+
+        <main class="course-content">
+            <section class="content-section">
+                <h2>Introduction to Burp Suite</h2>
+                <p>Burp Suite is the leading web application security testing platform. It's an integrated platform for performing security testing of web applications, combining manual and automated techniques.</p>
+                
+                <h3>What is Burp Suite?</h3>
+                <ul>
+                    <li><strong>Web Proxy:</strong> Intercept and modify HTTP/HTTPS traffic</li>
+                    <li><strong>Scanner:</strong> Automated vulnerability detection</li>
+                    <li><strong>Intruder:</strong> Automated customized attacks</li>
+                    <li><strong>Repeater:</strong> Manual request manipulation and testing</li>
+                    <li><strong>Sequencer:</strong> Analyze randomness of session tokens</li>
+                </ul>
+
+                <h3>Burp Suite Editions</h3>
+                <div class="data-types-grid">
+                    <div class="data-type community">
+                        <h4>Community Edition</h4>
+                        <ul>
+                            <li>Free version</li>
+                            <li>Basic proxy functionality</li>
+                            <li>Limited scanner features</li>
+                            <li>Manual testing tools</li>
+                        </ul>
+                    </div>
+                    <div class="data-type professional">
+                        <h4>Professional Edition</h4>
+                        <ul>
+                            <li>Full-featured scanner</li>
+                            <li>Advanced tools</li>
+                            <li>Extensive reporting</li>
+                            <li>API integration</li>
+                        </ul>
+                    </div>
+                    <div class="data-type enterprise">
+                        <h4>Enterprise Edition</h4>
+                        <ul>
+                            <li>Continuous scanning</li>
+                            <li>CI/CD integration</li>
+                            <li>Team collaboration</li>
+                            <li>Enterprise reporting</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Burp Suite Interface</h2>
+                <p>Understanding the Burp Suite interface is essential for effective web application testing.</p>
+                
+                <div class="code-block">
+                    <pre><code># Main Burp Suite Components:
+
+Dashboard       - Overview and task management
+Target          - Site map and scope definition
+Proxy           - HTTP/HTTPS traffic interception
+Intruder        - Automated attack tool
+Repeater        - Manual request testing
+Sequencer       - Token analysis
+Decoder         - Encoding/decoding utilities
+Comparer        - Compare site responses
+Extender        - Extensions and plugins
+Project Options - Configuration settings
+User Options    - User preferences
+
+# Key Features:
+- Tabbed interface for multiple tools
+- Context-sensitive right-click menus
+- Integrated help system
+- Customizable layouts
+- Session handling rules</code></pre>
+                </div>
+
+                <h3>Getting Started</h3>
+                <ol>
+                    <li><strong>Start Burp Suite:</strong> Launch the application</li>
+                    <li><strong>Create Project:</strong> Set up temporary or disk-based project</li>
+                    <li><strong>Configure Browser:</strong> Set proxy settings</li>
+                    <li><strong>Install Certificate:</strong> Add Burp's CA certificate</li>
+                    <li><strong>Define Scope:</strong> Set target scope for testing</li>
+                </ol>
+            </section>
+
+            <section class="content-section">
+                <h2>Proxy Configuration</h2>
+                <p>The Proxy tool is the heart of Burp Suite, allowing you to intercept and modify web traffic.</p>
+                
+                <div class="code-block">
+                    <pre><code># Proxy Configuration Steps:
+
+1. Burp Proxy Settings:
+   - Default: 127.0.0.1:8080
+   - Enable "Intercept is on"
+   - Configure SSL/TLS settings
+
+2. Browser Configuration:
+   - Set HTTP proxy: 127.0.0.1:8080
+   - Set HTTPS proxy: 127.0.0.1:8080
+   - Or use browser extensions like FoxyProxy
+
+3. Certificate Installation:
+   - Browse to http://burp
+   - Download CA Certificate
+   - Install in browser's certificate store
+
+4. Testing Setup:
+   - Visit target website
+   - Verify traffic appears in HTTP history
+   - Check intercept functionality
+
+# Proxy Options:
+Intercept Client Requests    - Intercept requests from browser
+Intercept Server Responses   - Intercept responses from server
+Match and Replace           - Automatic modifications
+SSL Pass Through           - Bypass SSL for specific hosts</code></pre>
+                </div>
+
+                <h3>Proxy Features</h3>
+                <ul>
+                    <li><strong>HTTP History:</strong> View all intercepted requests and responses</li>
+                    <li><strong>WebSockets History:</strong> Monitor WebSocket communications</li>
+                    <li><strong>Options:</strong> Configure proxy behavior and rules</li>
+                    <li><strong>Intercept:</strong> Manually inspect and modify traffic</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Target Tool</h2>
+                <p>The Target tool helps organize and scope your testing activities.</p>
+                
+                <div class="code-block">
+                    <pre><code># Target Tool Features:
+
+Site Map:
+- Hierarchical view of discovered content
+- Shows all URLs, parameters, and forms
+- Color-coded by response status
+- Expandable tree structure
+
+Scope:
+- Define which hosts/URLs to test
+- Include/exclude specific paths
+- Use with other tools for focused testing
+- Prevent testing out-of-scope targets
+
+# Setting Up Target Scope:
+1. Browse target application
+2. Right-click on target in Site Map
+3. Select "Add to scope"
+4. Configure include/exclude rules
+5. Enable "Show only in-scope items"
+
+# Site Map Information:
+- Request/Response details
+- Parameters and their values
+- Comments and highlights
+- Issue annotations
+- Engagement tools integration</code></pre>
+                </div>
+
+                <h3>Site Map Analysis</h3>
+                <ul>
+                    <li><strong>Content Discovery:</strong> Identify all application endpoints</li>
+                    <li><strong>Parameter Analysis:</strong> Find input points for testing</li>
+                    <li><strong>Technology Stack:</strong> Identify frameworks and technologies</li>
+                    <li><strong>Attack Surface:</strong> Map potential vulnerability locations</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Scanner Tool</h2>
+                <p>Burp Scanner automatically identifies security vulnerabilities in web applications.</p>
+                
+                <div class="code-block">
+                    <pre><code># Scanner Capabilities:
+
+Vulnerability Types:
+- SQL Injection
+- Cross-Site Scripting (XSS)
+- Cross-Site Request Forgery (CSRF)
+- XML External Entity (XXE)
+- Server-Side Request Forgery (SSRF)
+- Directory Traversal
+- Command Injection
+- Authentication Bypass
+- Session Management Issues
+- Information Disclosure
+
+# Scanning Methods:
+Active Scanning:
+- Sends crafted requests to find vulnerabilities
+- May cause side effects on target application
+- More thorough but potentially disruptive
+
+Passive Scanning:
+- Analyzes existing traffic for issues
+- No additional requests sent
+- Safe but limited coverage
+
+# Scanner Configuration:
+1. Select target items to scan
+2. Choose scan type (active/passive)
+3. Configure scan settings
+4. Monitor scan progress
+5. Review identified issues</code></pre>
+                </div>
+
+                <h3>Scan Results</h3>
+                <div class="data-types-grid">
+                    <div class="data-type high-severity">
+                        <h4>High Severity</h4>
+                        <ul>
+                            <li>SQL Injection</li>
+                            <li>Remote Code Execution</li>
+                            <li>Authentication Bypass</li>
+                            <li>Privilege Escalation</li>
+                        </ul>
+                    </div>
+                    <div class="data-type medium-severity">
+                        <h4>Medium Severity</h4>
+                        <ul>
+                            <li>Cross-Site Scripting</li>
+                            <li>CSRF vulnerabilities</li>
+                            <li>Directory Traversal</li>
+                            <li>Information Disclosure</li>
+                        </ul>
+                    </div>
+                    <div class="data-type low-severity">
+                        <h4>Low Severity</h4>
+                        <ul>
+                            <li>Missing security headers</li>
+                            <li>Weak SSL configuration</li>
+                            <li>Information leakage</li>
+                            <li>Cookie security issues</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Intruder Tool</h2>
+                <p>Intruder is Burp's automated attack tool for customized attacks against web applications.</p>
+                
+                <div class="code-block">
+                    <pre><code># Intruder Attack Types:
+
+Sniper:
+- Single payload set
+- Tests one parameter at a time
+- Good for focused testing
+
+Battering Ram:
+- Single payload set
+- Same payload in all positions
+- Useful for password attacks
+
+Pitchfork:
+- Multiple payload sets
+- Iterates through payloads in parallel
+- Good for username/password combinations
+
+Cluster Bomb:
+- Multiple payload sets
+- Tests all combinations
+- Most comprehensive but slowest
+
+# Intruder Workflow:
+1. Send request to Intruder
+2. Set attack positions (§payload§)
+3. Choose attack type
+4. Configure payload sets
+5. Set processing rules
+6. Start attack
+7. Analyze results</code></pre>
+                </div>
+
+                <h3>Payload Types</h3>
+                <ul>
+                    <li><strong>Simple List:</strong> Predefined wordlists</li>
+                    <li><strong>Runtime File:</strong> Read from external file</li>
+                    <li><strong>Numbers:</strong> Sequential or random numbers</li>
+                    <li><strong>Dates:</strong> Date ranges and formats</li>
+                    <li><strong>Brute Forcer:</strong> Character set combinations</li>
+                    <li><strong>Null Payloads:</strong> Empty payloads for timing attacks</li>
+                </ul>
+
+                <h3>Common Intruder Use Cases</h3>
+                <div class="code-block">
+                    <pre><code># Password Brute Force:
+1. Capture login request
+2. Send to Intruder
+3. Set password field as payload position
+4. Load password wordlist
+5. Configure attack settings
+6. Analyze response lengths/status codes
+
+# Directory Enumeration:
+1. Capture directory request
+2. Set directory name as payload position
+3. Use directory wordlist
+4. Look for 200 OK responses
+5. Identify hidden directories
+
+# Parameter Fuzzing:
+1. Identify input parameters
+2. Set parameters as payload positions
+3. Use fuzzing wordlists
+4. Monitor for errors or unusual responses
+5. Identify potential vulnerabilities</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Repeater Tool</h2>
+                <p>Repeater allows manual manipulation and resubmission of individual HTTP requests.</p>
+                
+                <div class="code-block">
+                    <pre><code># Repeater Features:
+
+Manual Testing:
+- Modify requests before sending
+- View raw request/response data
+- Test different parameter values
+- Analyze application behavior
+
+Request Manipulation:
+- Change HTTP methods
+- Modify headers
+- Alter parameter values
+- Add/remove parameters
+- Test encoding variations
+
+Response Analysis:
+- Compare different responses
+- Identify error messages
+- Analyze response timing
+- Check for information disclosure
+
+# Common Repeater Workflows:
+
+SQL Injection Testing:
+1. Send request to Repeater
+2. Add SQL injection payloads
+3. Analyze error messages
+4. Test different injection techniques
+5. Confirm vulnerability
+
+XSS Testing:
+1. Identify input parameters
+2. Insert XSS payloads
+3. Check if payload is reflected
+4. Test different encoding methods
+5. Verify script execution</code></pre>
+                </div>
+
+                <h3>Repeater Best Practices</h3>
+                <ul>
+                    <li><strong>Systematic Testing:</strong> Test one parameter at a time</li>
+                    <li><strong>Payload Variations:</strong> Try different encoding and formats</li>
+                    <li><strong>Response Comparison:</strong> Compare normal vs. malicious responses</li>
+                    <li><strong>Documentation:</strong> Keep notes of successful payloads</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Sequencer Tool</h2>
+                <p>Sequencer analyzes the randomness and predictability of session tokens and other important data items.</p>
+                
+                <div class="code-block">
+                    <pre><code># Sequencer Analysis:
+
+Token Collection:
+- Capture session tokens automatically
+- Collect large sample sizes (1000+ tokens)
+- Analyze different token types
+- Test various application states
+
+Randomness Tests:
+- FIPS 140-2 statistical tests
+- Entropy analysis
+- Pattern detection
+- Correlation analysis
+- Compression analysis
+
+# Sequencer Workflow:
+1. Identify token generation request
+2. Send to Sequencer
+3. Configure token extraction
+4. Start live capture
+5. Collect sufficient samples
+6. Analyze results
+7. Generate report
+
+# Token Analysis Results:
+Overall Quality: Excellent/Good/Poor
+Effective Entropy: Bits of randomness
+Statistical Tests: Pass/Fail status
+Character-level Analysis: Distribution patterns
+Bit-level Analysis: Randomness patterns</code></pre>
+                </div>
+
+                <h3>Common Token Issues</h3>
+                <ul>
+                    <li><strong>Low Entropy:</strong> Predictable token generation</li>
+                    <li><strong>Time-based Patterns:</strong> Tokens based on timestamps</li>
+                    <li><strong>Sequential Patterns:</strong> Incrementing token values</li>
+                    <li><strong>Weak Algorithms:</strong> Poor random number generation</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Decoder and Comparer</h2>
+                <p>Utility tools for encoding/decoding data and comparing responses.</p>
+                
+                <div class="code-block">
+                    <pre><code># Decoder Functions:
+
+Encoding Types:
+- URL encoding/decoding
+- HTML encoding/decoding
+- Base64 encoding/decoding
+- ASCII hex encoding/decoding
+- Gzip compression/decompression
+- Hash generation (MD5, SHA1, SHA256)
+
+# Decoder Workflow:
+1. Paste encoded data
+2. Select decoding method
+3. View decoded result
+4. Chain multiple operations
+5. Copy result for further use
+
+# Comparer Functions:
+
+Response Comparison:
+- Compare two HTTP responses
+- Highlight differences
+- Word-level and character-level comparison
+- Useful for identifying subtle changes
+
+# Comparer Use Cases:
+- Compare responses with different payloads
+- Identify authentication bypass attempts
+- Analyze error message variations
+- Detect information disclosure differences</code></pre>
+                </div>
+
+                <h3>Practical Examples</h3>
+                <div class="data-types-grid">
+                    <div class="data-type decoder-examples">
+                        <h4>Decoder Examples</h4>
+                        <ul>
+                            <li>Decode JWT tokens</li>
+                            <li>Analyze encoded parameters</li>
+                            <li>Generate password hashes</li>
+                            <li>Decode error messages</li>
+                        </ul>
+                    </div>
+                    <div class="data-type comparer-examples">
+                        <h4>Comparer Examples</h4>
+                        <ul>
+                            <li>Compare login responses</li>
+                            <li>Analyze injection attempts</li>
+                            <li>Identify timing differences</li>
+                            <li>Compare privilege levels</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Extensions and Customization</h2>
+                <p>Burp Suite's functionality can be extended through the BApp Store and custom extensions.</p>
+                
+                <div class="code-block">
+                    <pre><code># Popular Burp Extensions:
+
+Security Testing:
+- Autorize: Authorization testing
+- Active Scan++: Enhanced scanning
+- J2EEScan: Java application testing
+- Retire.js: JavaScript library vulnerabilities
+- Software Vulnerability Scanner: CVE detection
+
+Utility Extensions:
+- Logger++: Advanced logging
+- Turbo Intruder: High-speed attacks
+- Param Miner: Parameter discovery
+- Backslash Powered Scanner: Advanced injection testing
+- Upload Scanner: File upload testing
+
+# Installing Extensions:
+1. Go to Extender tab
+2. Click BApp Store
+3. Browse available extensions
+4. Click Install for desired extensions
+5. Configure extension settings
+
+# Custom Extensions:
+- Written in Java, Python, or Ruby
+- Use Burp's API for integration
+- Can add new tabs and functionality
+- Automate repetitive tasks
+- Integrate with external tools</code></pre>
+                </div>
+
+                <h3>Extension Development</h3>
+                <ul>
+                    <li><strong>Burp API:</strong> Comprehensive programming interface</li>
+                    <li><strong>Multiple Languages:</strong> Java, Python, Ruby support</li>
+                    <li><strong>Custom UI:</strong> Add tabs and interface elements</li>
+                    <li><strong>Event Handling:</strong> React to Burp events and actions</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Practical Testing Scenarios</h2>
+                
+                <h3>SQL Injection Testing</h3>
+                <div class="code-block">
+                    <pre><code># SQL Injection Testing Process:
+
+1. Identify Input Points:
+   - Form parameters
+   - URL parameters
+   - HTTP headers
+   - Cookie values
+
+2. Test for SQL Injection:
+   - Add single quotes (')
+   - Use SQL injection payloads
+   - Analyze error messages
+   - Test different injection techniques
+
+3. Common Payloads:
+   ' OR '1'='1
+   ' UNION SELECT NULL--
+   '; DROP TABLE users--
+   ' AND 1=1--
+   ' AND 1=2--
+
+4. Burp Tools for SQLi:
+   - Scanner: Automated detection
+   - Intruder: Payload testing
+   - Repeater: Manual verification
+   - Extensions: SQLMap integration</code></pre>
+                </div>
+
+                <h3>Cross-Site Scripting (XSS) Testing</h3>
+                <div class="code-block">
+                    <pre><code># XSS Testing Methodology:
+
+1. Identify Reflection Points:
+   - Search parameters
+   - Form inputs
+   - URL parameters
+   - Error messages
+
+2. Test XSS Payloads:
+   &lt;script&gt;alert('XSS')&lt;/script&gt;
+   &lt;img src=x onerror=alert('XSS')&gt;
+   javascript:alert('XSS')
+   &lt;svg onload=alert('XSS')&gt;
+
+3. Bypass Filters:
+   - Encoding variations
+   - Case manipulation
+   - Tag variations
+   - Event handler alternatives
+
+4. Burp XSS Testing:
+   - Scanner: Automated XSS detection
+   - Intruder: Payload fuzzing
+   - Repeater: Manual testing
+   - Extensions: XSS validation</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Best Practices and Tips</h2>
+                
+                <h3>Testing Methodology</h3>
+                <ul>
+                    <li><strong>Scope Definition:</strong> Clearly define testing boundaries</li>
+                    <li><strong>Systematic Approach:</strong> Follow a structured testing methodology</li>
+                    <li><strong>Documentation:</strong> Keep detailed notes and screenshots</li>
+                    <li><strong>Verification:</strong> Confirm all findings manually</li>
+                    <li><strong>Reporting:</strong> Provide clear, actionable reports</li>
+                </ul>
+
+                <h3>Performance Optimization</h3>
+                <ul>
+                    <li><strong>Scope Limiting:</strong> Test only necessary components</li>
+                    <li><strong>Thread Management:</strong> Adjust concurrent requests</li>
+                    <li><strong>Memory Settings:</strong> Allocate sufficient memory</li>
+                    <li><strong>Selective Scanning:</strong> Choose appropriate scan types</li>
+                </ul>
+
+                <h3>Common Pitfalls</h3>
+                <ul>
+                    <li><strong>Over-reliance on Automation:</strong> Always verify automated findings</li>
+                    <li><strong>Scope Creep:</strong> Stay within authorized testing boundaries</li>
+                    <li><strong>False Positives:</strong> Validate all scanner results</li>
+                    <li><strong>Incomplete Testing:</strong> Test all application functionality</li>
+                </ul>
+            </section>
+
+            <section class="video-section">
+                <h2>📺 Video Tutorial</h2>
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        <div class="video-icon">🎥</div>
+                        <p>YouTube video will be embedded here</p>
+                        <small>Video placeholder - Link to be added</small>
+                    </div>
+                </div>
+            </section>
+
+            <section class="test-section">
+                <h2>📝 Knowledge Test</h2>
+                <p class="test-instruction">Complete this test to unlock the next course. You need 18 out of 20 correct answers to pass.</p>
+                
+                <div class="test-container">
+                    <div class="question" data-question="1">
+                        <h3>Question 1</h3>
+                        <p>What is the default proxy port for Burp Suite?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> 8080</label>
+                            <label><input type="radio" name="q1" value="b"> 8000</label>
+                            <label><input type="radio" name="q1" value="c"> 3128</label>
+                            <label><input type="radio" name="q1" value="d"> 8888</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="2">
+                        <h3>Question 2</h3>
+                        <p>Which Burp tool is used for automated vulnerability scanning?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> Intruder</label>
+                            <label><input type="radio" name="q2" value="b"> Scanner</label>
+                            <label><input type="radio" name="q2" value="c"> Repeater</label>
+                            <label><input type="radio" name="q2" value="d"> Sequencer</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="3">
+                        <h3>Question 3</h3>
+                        <p>What is the purpose of the Repeater tool?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="a"> Automated attacks</label>
+                            <label><input type="radio" name="q3" value="b"> Manual request manipulation</label>
+                            <label><input type="radio" name="q3" value="c"> Token analysis</label>
+                            <label><input type="radio" name="q3" value="d"> Vulnerability scanning</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="4">
+                        <h3>Question 4</h3>
+                        <p>Which Intruder attack type tests all combinations of multiple payload sets?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> Sniper</label>
+                            <label><input type="radio" name="q4" value="b"> Battering Ram</label>
+                            <label><input type="radio" name="q4" value="c"> Pitchfork</label>
+                            <label><input type="radio" name="q4" value="d"> Cluster Bomb</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="5">
+                        <h3>Question 5</h3>
+                        <p>What does the Sequencer tool analyze?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="a"> SQL injection vulnerabilities</label>
+                            <label><input type="radio" name="q5" value="b"> Session token randomness</label>
+                            <label><input type="radio" name="q5" value="c"> XSS vulnerabilities</label>
+                            <label><input type="radio" name="q5" value="d"> Directory traversal</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="6">
+                        <h3>Question 6</h3>
+                        <p>How do you install Burp's CA certificate for HTTPS interception?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q6" value="a"> Download from http://burp</label>
+                            <label><input type="radio" name="q6" value="b"> Generate in Burp settings</label>
+                            <label><input type="radio" name="q6" value="c"> Import from file system</label>
+                            <label><input type="radio" name="q6" value="d"> Create manually</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="7">
+                        <h3>Question 7</h3>
+                        <p>What is the difference between active and passive scanning?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q7" value="a"> Speed of scanning</label>
+                            <label><input type="radio" name="q7" value="b"> Active sends requests, passive analyzes existing traffic</label>
+                            <label><input type="radio" name="q7" value="c"> Active is automated, passive is manual</label>
+                            <label><input type="radio" name="q7" value="d"> No difference</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="8">
+                        <h3>Question 8</h3>
+                        <p>Which tool is used to compare HTTP responses?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q8" value="a"> Decoder</label>
+                            <label><input type="radio" name="q8" value="b"> Comparer</label>
+                            <label><input type="radio" name="q8" value="c"> Repeater</label>
+                            <label><input type="radio" name="q8" value="d"> Intruder</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="9">
+                        <h3>Question 9</h3>
+                        <p>What is the Target tool's Site Map used for?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q9" value="a"> Network topology mapping</label>
+                            <label><input type="radio" name="q9" value="b"> Hierarchical view of discovered content</label>
+                            <label><input type="radio" name="q9" value="c"> Geographic location mapping</label>
+                            <label><input type="radio" name="q9" value="d"> Database schema mapping</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="10">
+                        <h3>Question 10</h3>
+                        <p>Which Intruder attack type uses a single payload set for one parameter at a time?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q10" value="a"> Sniper</label>
+                            <label><input type="radio" name="q10" value="b"> Battering Ram</label>
+                            <label><input type="radio" name="q10" value="c"> Pitchfork</label>
+                            <label><input type="radio" name="q10" value="d"> Cluster Bomb</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="11">
+                        <h3>Question 11</h3>
+                        <p>What does the Decoder tool NOT support?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q11" value="a"> Base64 encoding</label>
+                            <label><input type="radio" name="q11" value="b"> URL encoding</label>
+                            <label><input type="radio" name="q11" value="c"> SQL injection testing</label>
+                            <label><input type="radio" name="q11" value="d"> Hash generation</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="12">
+                        <h3>Question 12</h3>
+                        <p>Where can you find and install Burp extensions?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q12" value="a"> Target tab</label>
+                            <label><input type="radio" name="q12" value="b"> Extender tab - BApp Store</label>
+                            <label><input type="radio" name="q12" value="c"> Proxy tab</label>
+                            <label><input type="radio" name="q12" value="d"> Scanner tab</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="13">
+                        <h3>Question 13</h3>
+                        <p>What is the main advantage of Burp Suite Professional over Community Edition?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q13" value="a"> Better user interface</label>
+                            <label><input type="radio" name="q13" value="b"> Full-featured scanner and advanced tools</label>
+                            <label><input type="radio" name="q13" value="c"> Faster performance</label>
+                            <label><input type="radio" name="q13" value="d"> More proxy options</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="14">
+                        <h3>Question 14</h3>
+                        <p>How do you mark payload positions in Intruder?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q14" value="a"> [payload]</label>
+                            <label><input type="radio" name="q14" value="b"> §payload§</label>
+                            <label><input type="radio" name="q14" value="c"> {payload}</label>
+                            <label><input type="radio" name="q14" value="d"> &lt;payload&gt;</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="15">
+                        <h3>Question 15</h3>
+                        <p>What is the purpose of setting scope in the Target tool?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q15" value="a"> Improve performance</label>
+                            <label><input type="radio" name="q15" value="b"> Define which hosts/URLs to test</label>
+                            <label><input type="radio" name="q15" value="c"> Set scanning intensity</label>
+                            <label><input type="radio" name="q15" value="d"> Configure proxy settings</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="16">
+                        <h3>Question 16</h3>
+                        <p>Which statistical standard does Sequencer use for randomness testing?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q16" value="a"> ISO 27001</label>
+                            <label><input type="radio" name="q16" value="b"> FIPS 140-2</label>
+                            <label><input type="radio" name="q16" value="c"> NIST 800-53</label>
+                            <label><input type="radio" name="q16" value="d"> OWASP Top 10</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="17">
+                        <h3>Question 17</h3>
+                        <p>What should you always do before testing a web application?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q17" value="a"> Update Burp Suite</label>
+                            <label><input type="radio" name="q17" value="b"> Get written authorization</label>
+                            <label><input type="radio" name="q17" value="c"> Install all extensions</label>
+                            <label><input type="radio" name="q17" value="d"> Clear browser cache</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="18">
+                        <h3>Question 18</h3>
+                        <p>Which HTTP method is commonly tested for security vulnerabilities?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q18" value="a"> GET only</label>
+                            <label><input type="radio" name="q18" value="b"> POST only</label>
+                            <label><input type="radio" name="q18" value="c"> All HTTP methods</label>
+                            <label><input type="radio" name="q18" value="d"> PUT only</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="19">
+                        <h3>Question 19</h3>
+                        <p>What is a common indicator of SQL injection vulnerability?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q19" value="a"> Fast response times</label>
+                            <label><input type="radio" name="q19" value="b"> Database error messages</label>
+                            <label><input type="radio" name="q19" value="c"> Encrypted responses</label>
+                            <label><input type="radio" name="q19" value="d"> Redirect responses</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="20">
+                        <h3>Question 20</h3>
+                        <p>What is the best practice for handling scanner false positives?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q20" value="a"> Ignore them</label>
+                            <label><input type="radio" name="q20" value="b"> Report all findings</label>
+                            <label><input type="radio" name="q20" value="c"> Manually verify all findings</label>
+                            <label><input type="radio" name="q20" value="d"> Only report high severity issues</label>
+                        </div>
+                    </div>
+
+                    <div class="test-actions">
+                        <button class="submit-test-btn">Submit Test</button>
+                        <div class="test-result" style="display: none;">
+                            <div class="score-display"></div>
+                            <div class="result-message"></div>
+                            <button class="next-course-btn" style="display: none;">Proceed to Next Course</button>
+                            <button class="retry-btn" style="display: none;">Retry Test</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="course-12.js"></script>
+</body>
+</html>

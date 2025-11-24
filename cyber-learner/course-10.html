@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nmap - Cyber Learner</title>
+    <link rel="stylesheet" href="course-styles.css">
+    <link rel="stylesheet" href="course-10.css">
+</head>
+<body>
+    <div class="course-container">
+        <header class="course-header">
+            <div class="nav-controls">
+                <a href="index.html" class="back-btn">← Back to Courses</a>
+                <div class="course-progress">
+                    <span class="course-number">Course 10</span>
+                    <span class="course-total">of 14</span>
+                </div>
+            </div>
+            <h1 class="course-title">Nmap</h1>
+            <p class="course-subtitle">Master network discovery and security auditing with Nmap</p>
+        </header>
+
+        <main class="course-content">
+            <section class="content-section">
+                <h2>Introduction to Nmap</h2>
+                <p>Nmap (Network Mapper) is a powerful open-source tool for network discovery and security auditing. It's essential for penetration testers, network administrators, and security professionals.</p>
+                
+                <h3>What is Nmap?</h3>
+                <ul>
+                    <li><strong>Network Discovery:</strong> Find live hosts on networks</li>
+                    <li><strong>Port Scanning:</strong> Identify open ports and services</li>
+                    <li><strong>OS Detection:</strong> Determine operating systems</li>
+                    <li><strong>Service Enumeration:</strong> Identify service versions</li>
+                    <li><strong>Vulnerability Detection:</strong> Find security weaknesses</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Basic Nmap Usage</h2>
+                <p>Understanding basic Nmap syntax and common scanning techniques.</p>
+                
+                <div class="code-block">
+                    <pre><code># Basic Nmap Syntax:
+nmap [Scan Type] [Options] [Target]
+
+# Simple Host Discovery:
+nmap 192.168.1.1                    # Scan single host
+nmap 192.168.1.1-254                # Scan IP range
+nmap 192.168.1.0/24                 # Scan subnet
+nmap scanme.nmap.org                # Scan hostname
+
+# Multiple Targets:
+nmap 192.168.1.1 192.168.1.5        # Multiple IPs
+nmap -iL targets.txt                # Read from file
+nmap 192.168.1.* --exclude 192.168.1.1  # Exclude hosts
+
+# Common Options:
+-v      # Verbose output
+-vv     # Very verbose
+-n      # No DNS resolution
+-Pn     # Skip host discovery
+-6      # IPv6 scanning</code></pre>
+                </div>
+
+                <h3>Target Specification</h3>
+                <div class="data-types-grid">
+                    <div class="data-type single-host">
+                        <h4>Single Host</h4>
+                        <ul>
+                            <li>nmap 192.168.1.1</li>
+                            <li>nmap example.com</li>
+                            <li>Most basic scan type</li>
+                        </ul>
+                    </div>
+                    <div class="data-type ip-range">
+                        <h4>IP Range</h4>
+                        <ul>
+                            <li>nmap 192.168.1.1-100</li>
+                            <li>nmap 192.168.1-3.1</li>
+                            <li>Scan consecutive IPs</li>
+                        </ul>
+                    </div>
+                    <div class="data-type subnet">
+                        <h4>Subnet/CIDR</h4>
+                        <ul>
+                            <li>nmap 192.168.1.0/24</li>
+                            <li>nmap 10.0.0.0/8</li>
+                            <li>Scan entire networks</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Host Discovery Techniques</h2>
+                <p>Nmap uses various methods to determine if hosts are alive before port scanning.</p>
+                
+                <div class="code-block">
+                    <pre><code># Host Discovery Options:
+
+# Ping Scan (Default):
+nmap -sn 192.168.1.0/24             # Ping sweep only
+nmap -sP 192.168.1.0/24             # Legacy ping scan
+
+# ICMP Discovery:
+nmap -PE 192.168.1.0/24             # ICMP Echo
+nmap -PP 192.168.1.0/24             # ICMP Timestamp
+nmap -PM 192.168.1.0/24             # ICMP Address Mask
+
+# TCP Discovery:
+nmap -PS22,80,443 192.168.1.0/24    # TCP SYN ping
+nmap -PA22,80,443 192.168.1.0/24    # TCP ACK ping
+
+# UDP Discovery:
+nmap -PU53,161,137 192.168.1.0/24   # UDP ping
+
+# ARP Discovery (Local Network):
+nmap -PR 192.168.1.0/24             # ARP ping
+
+# Skip Host Discovery:
+nmap -Pn 192.168.1.1                # Treat all hosts as online</code></pre>
+                </div>
+
+                <h3>Discovery Method Selection</h3>
+                <ul>
+                    <li><strong>Local Network:</strong> ARP ping is most reliable</li>
+                    <li><strong>Internet Hosts:</strong> TCP SYN ping to common ports</li>
+                    <li><strong>Firewalled Hosts:</strong> Multiple discovery methods</li>
+                    <li><strong>Stealth Scanning:</strong> Skip discovery with -Pn</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Port Scanning Techniques</h2>
+                <p>Nmap offers various port scanning methods, each with different characteristics.</p>
+                
+                <div class="data-types-grid">
+                    <div class="data-type tcp-connect">
+                        <h4>TCP Connect Scan (-sT)</h4>
+                        <ul>
+                            <li>Completes full TCP handshake</li>
+                            <li>Most reliable scan type</li>
+                            <li>Easily detected and logged</li>
+                            <li>Default for non-root users</li>
+                        </ul>
+                    </div>
+                    <div class="data-type syn-scan">
+                        <h4>SYN Scan (-sS)</h4>
+                        <ul>
+                            <li>Half-open scanning</li>
+                            <li>Stealthy and fast</li>
+                            <li>Requires root privileges</li>
+                            <li>Default for root users</li>
+                        </ul>
+                    </div>
+                    <div class="data-type udp-scan">
+                        <h4>UDP Scan (-sU)</h4>
+                        <ul>
+                            <li>Scans UDP ports</li>
+                            <li>Slower than TCP scans</li>
+                            <li>Often filtered by firewalls</li>
+                            <li>Important for DNS, DHCP, SNMP</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre><code># Port Scanning Examples:
+
+# TCP Scans:
+nmap -sS 192.168.1.1                # SYN scan (stealth)
+nmap -sT 192.168.1.1                # TCP connect scan
+nmap -sA 192.168.1.1                # ACK scan (firewall detection)
+nmap -sW 192.168.1.1                # Window scan
+nmap -sF 192.168.1.1                # FIN scan
+nmap -sX 192.168.1.1                # Xmas scan
+nmap -sN 192.168.1.1                # Null scan
+
+# UDP Scan:
+nmap -sU 192.168.1.1                # UDP scan
+nmap -sS -sU 192.168.1.1            # TCP + UDP scan
+
+# Port Specification:
+nmap -p 80 192.168.1.1              # Single port
+nmap -p 80,443,22 192.168.1.1       # Multiple ports
+nmap -p 1-1000 192.168.1.1          # Port range
+nmap -p- 192.168.1.1                # All ports (1-65535)
+nmap --top-ports 100 192.168.1.1    # Top 100 ports</code></pre>
+                </div>
+
+                <h3>Advanced Scanning Options</h3>
+                <div class="code-block">
+                    <pre><code># Timing and Performance:
+nmap -T0 192.168.1.1                # Paranoid (slowest)
+nmap -T1 192.168.1.1                # Sneaky
+nmap -T2 192.168.1.1                # Polite
+nmap -T3 192.168.1.1                # Normal (default)
+nmap -T4 192.168.1.1                # Aggressive
+nmap -T5 192.168.1.1                # Insane (fastest)
+
+# Custom Timing:
+nmap --min-rate 1000 192.168.1.1    # Minimum packet rate
+nmap --max-rate 5000 192.168.1.1    # Maximum packet rate
+nmap --min-parallelism 10 192.168.1.1  # Parallel probes
+
+# Firewall Evasion:
+nmap -f 192.168.1.1                 # Fragment packets
+nmap -D RND:10 192.168.1.1          # Decoy scanning
+nmap -S 192.168.1.5 192.168.1.1     # Source IP spoofing
+nmap --source-port 53 192.168.1.1   # Source port manipulation</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Service and Version Detection</h2>
+                <p>Nmap can identify services running on open ports and their versions.</p>
+                
+                <div class="code-block">
+                    <pre><code># Service Detection:
+nmap -sV 192.168.1.1                # Version detection
+nmap -sV --version-intensity 5 192.168.1.1  # Intensity level (0-9)
+nmap -sV --version-all 192.168.1.1  # Try all probes
+
+# Service Detection Examples:
+22/tcp   open  ssh     OpenSSH 7.4 (protocol 2.0)
+80/tcp   open  http    Apache httpd 2.4.6
+443/tcp  open  https   Apache httpd 2.4.6 ((CentOS) OpenSSL/1.0.2k)
+3306/tcp open  mysql   MySQL 5.7.25
+
+# Aggressive Service Detection:
+nmap -A 192.168.1.1                 # OS + Version + Script + Traceroute
+nmap -sV -O --script=default 192.168.1.1  # Equivalent to -A
+
+# Service-Specific Scans:
+nmap -p 80 --script http-* 192.168.1.1     # HTTP scripts
+nmap -p 22 --script ssh-* 192.168.1.1      # SSH scripts
+nmap -p 3306 --script mysql-* 192.168.1.1  # MySQL scripts</code></pre>
+                </div>
+
+                <h3>Version Detection Intensity</h3>
+                <ul>
+                    <li><strong>Level 0:</strong> Light probes only</li>
+                    <li><strong>Level 5:</strong> Default intensity</li>
+                    <li><strong>Level 9:</strong> All available probes</li>
+                    <li><strong>Higher levels:</strong> More accurate but slower</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Operating System Detection</h2>
+                <p>Nmap can identify target operating systems using various fingerprinting techniques.</p>
+                
+                <div class="code-block">
+                    <pre><code># OS Detection:
+nmap -O 192.168.1.1                 # Basic OS detection
+nmap -O --osscan-guess 192.168.1.1  # Aggressive OS guessing
+nmap -O --osscan-limit 192.168.1.1  # Limit to promising targets
+
+# OS Detection Output Example:
+Running: Linux 3.X|4.X
+OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4
+OS details: Linux 3.2 - 4.9
+Network Distance: 1 hop
+
+# Factors Affecting OS Detection:
+- At least one open port required
+- One closed port helpful
+- Firewall interference
+- Network distance
+- Target OS variations
+
+# OS Detection with Service Detection:
+nmap -A 192.168.1.1                 # Complete system scan
+nmap -O -sV 192.168.1.1             # OS + Version detection</code></pre>
+                </div>
+
+                <h3>OS Detection Techniques</h3>
+                <ul>
+                    <li><strong>TCP ISN Sampling:</strong> Initial sequence number patterns</li>
+                    <li><strong>TCP Options:</strong> Supported TCP options</li>
+                    <li><strong>IP ID Sampling:</strong> IP identification field behavior</li>
+                    <li><strong>ICMP Responses:</strong> ICMP error message analysis</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Nmap Scripting Engine (NSE)</h2>
+                <p>NSE extends Nmap's capabilities with hundreds of specialized scripts.</p>
+                
+                <div class="code-block">
+                    <pre><code># Script Categories:
+auth        # Authentication scripts
+broadcast   # Network broadcast discovery
+brute       # Brute force attacks
+default     # Default safe scripts
+discovery   # Network/service discovery
+dos         # Denial of service
+exploit     # Vulnerability exploitation
+external    # External resource queries
+fuzzer      # Fuzzing scripts
+intrusive   # Intrusive scripts
+malware     # Malware detection
+safe        # Safe scripts
+version     # Version detection enhancement
+vuln        # Vulnerability detection
+
+# Running Scripts:
+nmap --script=default 192.168.1.1   # Default scripts
+nmap --script=safe 192.168.1.1      # Safe scripts only
+nmap --script=vuln 192.168.1.1      # Vulnerability scripts
+nmap --script=auth 192.168.1.1      # Authentication scripts
+
+# Specific Scripts:
+nmap --script=http-title 192.168.1.1        # HTTP title
+nmap --script=ssl-cert 192.168.1.1          # SSL certificate
+nmap --script=smb-os-discovery 192.168.1.1  # SMB OS info
+nmap --script=dns-brute example.com         # DNS brute force</code></pre>
+                </div>
+
+                <h3>Popular NSE Scripts</h3>
+                <div class="data-types-grid">
+                    <div class="data-type web-scripts">
+                        <h4>Web Application Scripts</h4>
+                        <ul>
+                            <li>http-enum</li>
+                            <li>http-sql-injection</li>
+                            <li>http-xssed</li>
+                            <li>http-shellshock</li>
+                        </ul>
+                    </div>
+                    <div class="data-type vuln-scripts">
+                        <h4>Vulnerability Scripts</h4>
+                        <ul>
+                            <li>smb-vuln-ms17-010</li>
+                            <li>ssl-heartbleed</li>
+                            <li>ftp-anon</li>
+                            <li>ssh-hostkey</li>
+                        </ul>
+                    </div>
+                    <div class="data-type brute-scripts">
+                        <h4>Brute Force Scripts</h4>
+                        <ul>
+                            <li>ssh-brute</li>
+                            <li>ftp-brute</li>
+                            <li>http-brute</li>
+                            <li>mysql-brute</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Output Formats and Reporting</h2>
+                <p>Nmap supports various output formats for different use cases.</p>
+                
+                <div class="code-block">
+                    <pre><code># Output Formats:
+nmap -oN scan.txt 192.168.1.1       # Normal output
+nmap -oX scan.xml 192.168.1.1       # XML output
+nmap -oG scan.gnmap 192.168.1.1     # Grepable output
+nmap -oA scan 192.168.1.1           # All formats
+
+# Output Examples:
+
+# Normal Output (-oN):
+Nmap scan report for 192.168.1.1
+Host is up (0.00050s latency).
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+
+# XML Output (-oX):
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;nmaprun scanner="nmap" version="7.80"&gt;
+  &lt;host&gt;
+    &lt;address addr="192.168.1.1" addrtype="ipv4"/&gt;
+    &lt;ports&gt;
+      &lt;port protocol="tcp" portid="22"&gt;
+        &lt;state state="open"/&gt;
+      &lt;/port&gt;
+    &lt;/ports&gt;
+  &lt;/host&gt;
+&lt;/nmaprun&gt;
+
+# Grepable Output (-oG):
+Host: 192.168.1.1 ()    Status: Up
+Host: 192.168.1.1 ()    Ports: 22/open/tcp//ssh///, 80/open/tcp//http///</code></pre>
+                </div>
+
+                <h3>Advanced Output Options</h3>
+                <ul>
+                    <li><strong>--append-output:</strong> Append to existing files</li>
+                    <li><strong>--resume:</strong> Resume interrupted scans</li>
+                    <li><strong>--stylesheet:</strong> Custom XML stylesheet</li>
+                    <li><strong>--webxml:</strong> Reference Nmap.org stylesheet</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Practical Nmap Examples</h2>
+                
+                <h3>Network Discovery</h3>
+                <div class="code-block">
+                    <pre><code># Discover live hosts on network:
+nmap -sn 192.168.1.0/24
+
+# Fast network sweep:
+nmap -sn --min-rate 5000 192.168.1.0/24
+
+# Comprehensive host discovery:
+nmap -PE -PP -PS21,22,23,25,53,80,113,31339 -PA80,113,443,10042 192.168.1.0/24</code></pre>
+                </div>
+
+                <h3>Service Enumeration</h3>
+                <div class="code-block">
+                    <pre><code># Quick service scan:
+nmap -sS -O -sV --top-ports 1000 192.168.1.1
+
+# Comprehensive service scan:
+nmap -sS -sU -O -sV -p- 192.168.1.1
+
+# Web server enumeration:
+nmap -p 80,443 --script http-enum,http-headers,http-methods 192.168.1.1</code></pre>
+                </div>
+
+                <h3>Vulnerability Assessment</h3>
+                <div class="code-block">
+                    <pre><code># Basic vulnerability scan:
+nmap --script vuln 192.168.1.1
+
+# Specific vulnerability checks:
+nmap --script smb-vuln-* 192.168.1.1
+nmap --script ssl-* 192.168.1.1
+
+# Safe vulnerability assessment:
+nmap --script "vuln and safe" 192.168.1.1</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Nmap Best Practices</h2>
+                
+                <h3>Ethical Considerations</h3>
+                <ul>
+                    <li><strong>Authorization:</strong> Only scan networks you own or have permission to test</li>
+                    <li><strong>Legal Compliance:</strong> Understand local laws and regulations</li>
+                    <li><strong>Responsible Disclosure:</strong> Report vulnerabilities appropriately</li>
+                    <li><strong>Documentation:</strong> Keep records of authorized testing</li>
+                </ul>
+
+                <h3>Performance Optimization</h3>
+                <ul>
+                    <li><strong>Target Selection:</strong> Scan only necessary hosts and ports</li>
+                    <li><strong>Timing Templates:</strong> Use appropriate timing for network conditions</li>
+                    <li><strong>Parallel Scanning:</strong> Adjust parallelism for better performance</li>
+                    <li><strong>Output Management:</strong> Use appropriate output formats</li>
+                </ul>
+
+                <h3>Stealth Considerations</h3>
+                <ul>
+                    <li><strong>Scan Timing:</strong> Spread scans over time</li>
+                    <li><strong>Source Randomization:</strong> Use decoys and source port manipulation</li>
+                    <li><strong>Fragmentation:</strong> Fragment packets to evade detection</li>
+                    <li><strong>Script Selection:</strong> Avoid intrusive scripts when stealth is important</li>
+                </ul>
+            </section>
+
+            <section class="video-section">
+                <h2>📺 Video Tutorial</h2>
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        <div class="video-icon">🎥</div>
+                        <p>YouTube video will be embedded here</p>
+                        <small>Video placeholder - Link to be added</small>
+                    </div>
+                </div>
+            </section>
+
+            <section class="test-section">
+                <h2>📝 Knowledge Test</h2>
+                <p class="test-instruction">Complete this test to unlock the next course. You need 18 out of 20 correct answers to pass.</p>
+                
+                <div class="test-container">
+                    <div class="question" data-question="1">
+                        <h3>Question 1</h3>
+                        <p>What does Nmap stand for?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> Network Mapper</label>
+                            <label><input type="radio" name="q1" value="b"> Network Monitor</label>
+                            <label><input type="radio" name="q1" value="c"> Network Manager</label>
+                            <label><input type="radio" name="q1" value="d"> Network Modifier</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="2">
+                        <h3>Question 2</h3>
+                        <p>Which scan type is considered "stealthy" and is the default for root users?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> TCP Connect Scan (-sT)</label>
+                            <label><input type="radio" name="q2" value="b"> SYN Scan (-sS)</label>
+                            <label><input type="radio" name="q2" value="c"> UDP Scan (-sU)</label>
+                            <label><input type="radio" name="q2" value="d"> ACK Scan (-sA)</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="3">
+                        <h3>Question 3</h3>
+                        <p>Which option skips host discovery and treats all hosts as online?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="a"> -sn</label>
+                            <label><input type="radio" name="q3" value="b"> -Pn</label>
+                            <label><input type="radio" name="q3" value="c"> -PR</label>
+                            <label><input type="radio" name="q3" value="d"> -PS</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="4">
+                        <h3>Question 4</h3>
+                        <p>What does the -A option do in Nmap?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> Aggressive timing</label>
+                            <label><input type="radio" name="q4" value="b"> All ports scan</label>
+                            <label><input type="radio" name="q4" value="c"> OS detection + Version detection + Script scanning + Traceroute</label>
+                            <label><input type="radio" name="q4" value="d"> Anonymous scanning</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="5">
+                        <h3>Question 5</h3>
+                        <p>Which timing template is the fastest but most detectable?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="a"> -T3</label>
+                            <label><input type="radio" name="q5" value="b"> -T4</label>
+                            <label><input type="radio" name="q5" value="c"> -T5</label>
+                            <label><input type="radio" name="q5" value="d"> -T0</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="6">
+                        <h3>Question 6</h3>
+                        <p>What does NSE stand for?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q6" value="a"> Network Security Engine</label>
+                            <label><input type="radio" name="q6" value="b"> Nmap Scripting Engine</label>
+                            <label><input type="radio" name="q6" value="c"> Network Scanning Engine</label>
+                            <label><input type="radio" name="q6" value="d"> Network Service Engine</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="7">
+                        <h3>Question 7</h3>
+                        <p>Which option enables version detection?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q7" value="a"> -sV</label>
+                            <label><input type="radio" name="q7" value="b"> -O</label>
+                            <label><input type="radio" name="q7" value="c"> -sS</label>
+                            <label><input type="radio" name="q7" value="d"> -sC</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="8">
+                        <h3>Question 8</h3>
+                        <p>How do you scan all 65535 ports?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q8" value="a"> -p 1-65535</label>
+                            <label><input type="radio" name="q8" value="b"> -p-</label>
+                            <label><input type="radio" name="q8" value="c"> Both a and b</label>
+                            <label><input type="radio" name="q8" value="d"> --all-ports</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="9">
+                        <h3>Question 9</h3>
+                        <p>Which output format is best for parsing with scripts?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q9" value="a"> Normal (-oN)</label>
+                            <label><input type="radio" name="q9" value="b"> XML (-oX)</label>
+                            <label><input type="radio" name="q9" value="c"> Grepable (-oG)</label>
+                            <label><input type="radio" name="q9" value="d"> All formats (-oA)</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="10">
+                        <h3>Question 10</h3>
+                        <p>What is required for OS detection to work effectively?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q10" value="a"> At least one open port</label>
+                            <label><input type="radio" name="q10" value="b"> Root privileges</label>
+                            <label><input type="radio" name="q10" value="c"> UDP scanning</label>
+                            <label><input type="radio" name="q10" value="d"> Script scanning</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="11">
+                        <h3>Question 11</h3>
+                        <p>Which scan type is most reliable but easily detected?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q11" value="a"> SYN Scan</label>
+                            <label><input type="radio" name="q11" value="b"> TCP Connect Scan</label>
+                            <label><input type="radio" name="q11" value="c"> FIN Scan</label>
+                            <label><input type="radio" name="q11" value="d"> NULL Scan</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="12">
+                        <h3>Question 12</h3>
+                        <p>What does the -f option do?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q12" value="a"> Fast scanning</label>
+                            <label><input type="radio" name="q12" value="b"> Fragment packets</label>
+                            <label><input type="radio" name="q12" value="c"> Full scan</label>
+                            <label><input type="radio" name="q12" value="d"> Filter results</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="13">
+                        <h3>Question 13</h3>
+                        <p>Which script category contains vulnerability detection scripts?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q13" value="a"> safe</label>
+                            <label><input type="radio" name="q13" value="b"> vuln</label>
+                            <label><input type="radio" name="q13" value="c"> default</label>
+                            <label><input type="radio" name="q13" value="d"> discovery</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="14">
+                        <h3>Question 14</h3>
+                        <p>What is the purpose of decoy scanning (-D)?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q14" value="a"> Increase scan speed</label>
+                            <label><input type="radio" name="q14" value="b"> Hide the real source IP</label>
+                            <label><input type="radio" name="q14" value="c"> Detect firewalls</label>
+                            <label><input type="radio" name="q14" value="d"> Duplicate packets</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="15">
+                        <h3>Question 15</h3>
+                        <p>Which discovery method is most effective on local networks?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q15" value="a"> ICMP ping</label>
+                            <label><input type="radio" name="q15" value="b"> TCP SYN ping</label>
+                            <label><input type="radio" name="q15" value="c"> ARP ping</label>
+                            <label><input type="radio" name="q15" value="d"> UDP ping</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="16">
+                        <h3>Question 16</h3>
+                        <p>What does --top-ports 100 do?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q16" value="a"> Scan ports 1-100</label>
+                            <label><input type="radio" name="q16" value="b"> Scan the 100 most common ports</label>
+                            <label><input type="radio" name="q16" value="c"> Scan 100 random ports</label>
+                            <label><input type="radio" name="q16" value="d"> Limit to 100 packets</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="17">
+                        <h3>Question 17</h3>
+                        <p>Which timing template is considered "normal"?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q17" value="a"> -T2</label>
+                            <label><input type="radio" name="q17" value="b"> -T3</label>
+                            <label><input type="radio" name="q17" value="c"> -T4</label>
+                            <label><input type="radio" name="q17" value="d"> -T1</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="18">
+                        <h3>Question 18</h3>
+                        <p>What is the main advantage of UDP scanning?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q18" value="a"> Faster than TCP</label>
+                            <label><input type="radio" name="q18" value="b"> More stealthy</label>
+                            <label><input type="radio" name="q18" value="c"> Detects UDP services</label>
+                            <label><input type="radio" name="q18" value="d"> Bypasses firewalls</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="19">
+                        <h3>Question 19</h3>
+                        <p>Which option runs default NSE scripts?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q19" value="a"> -sC</label>
+                            <label><input type="radio" name="q19" value="b"> --script=default</label>
+                            <label><input type="radio" name="q19" value="c"> Both a and b</label>
+                            <label><input type="radio" name="q19" value="d"> -A</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="20">
+                        <h3>Question 20</h3>
+                        <p>What should you always have before scanning a network?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q20" value="a"> Fast internet connection</label>
+                            <label><input type="radio" name="q20" value="b"> Root privileges</label>
+                            <label><input type="radio" name="q20" value="c"> Written authorization</label>
+                            <label><input type="radio" name="q20" value="d"> Latest Nmap version</label>
+                        </div>
+                    </div>
+
+                    <div class="test-actions">
+                        <button class="submit-test-btn">Submit Test</button>
+                        <div class="test-result" style="display: none;">
+                            <div class="score-display"></div>
+                            <div class="result-message"></div>
+                            <button class="next-course-btn" style="display: none;">Proceed to Next Course</button>
+                            <button class="retry-btn" style="display: none;">Retry Test</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="course-10.js"></script>
+</body>
+</html>

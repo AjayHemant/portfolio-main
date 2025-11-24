@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWASP Top 10 - Cyber Learner</title>
+    <link rel="stylesheet" href="course-styles.css">
+    <link rel="stylesheet" href="course-13.css">
+</head>
+<body>
+    <div class="course-container">
+        <header class="course-header">
+            <div class="nav-controls">
+                <a href="index.html" class="back-btn">← Back to Courses</a>
+                <div class="course-progress">
+                    <span class="course-number">Course 13</span>
+                    <span class="course-total">of 14</span>
+                </div>
+            </div>
+            <h1 class="course-title">OWASP Top 10</h1>
+            <p class="course-subtitle">Master the most critical web application security risks</p>
+        </header>
+
+        <main class="course-content">
+            <section class="content-section">
+                <h2>Introduction to OWASP Top 10</h2>
+                <p>The OWASP Top 10 is a standard awareness document for developers and web application security. It represents a broad consensus about the most critical security risks to web applications.</p>
+                
+                <h3>What is OWASP?</h3>
+                <ul>
+                    <li><strong>Open Web Application Security Project:</strong> Nonprofit foundation</li>
+                    <li><strong>Mission:</strong> Improve software security worldwide</li>
+                    <li><strong>Community-driven:</strong> Volunteers and security professionals</li>
+                    <li><strong>Free Resources:</strong> Tools, documentation, and standards</li>
+                    <li><strong>Global Impact:</strong> Widely adopted security framework</li>
+                </ul>
+
+                <h3>OWASP Top 10 2021 Overview</h3>
+                <div class="data-types-grid">
+                    <div class="data-type top-risks">
+                        <h4>Top 3 Risks</h4>
+                        <ul>
+                            <li>A01 - Broken Access Control</li>
+                            <li>A02 - Cryptographic Failures</li>
+                            <li>A03 - Injection</li>
+                        </ul>
+                    </div>
+                    <div class="data-type middle-risks">
+                        <h4>Middle Risks</h4>
+                        <ul>
+                            <li>A04 - Insecure Design</li>
+                            <li>A05 - Security Misconfiguration</li>
+                            <li>A06 - Vulnerable Components</li>
+                        </ul>
+                    </div>
+                    <div class="data-type lower-risks">
+                        <h4>Lower Risks</h4>
+                        <ul>
+                            <li>A07 - Identity & Auth Failures</li>
+                            <li>A08 - Software & Data Integrity</li>
+                            <li>A09 - Security Logging Failures</li>
+                            <li>A10 - Server-Side Request Forgery</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>A01 - Broken Access Control</h2>
+                <p>Access control enforces policy such that users cannot act outside of their intended permissions. Failures typically lead to unauthorized information disclosure, modification, or destruction of data.</p>
+                
+                <div class="code-block">
+                    <pre><code># Common Access Control Vulnerabilities:
+
+1. Violation of Principle of Least Privilege:
+   - Users granted more access than needed
+   - Default accounts with excessive permissions
+   - Administrative functions exposed to regular users
+
+2. Bypassing Access Control Checks:
+   - Modifying URL parameters
+   - Changing POST to GET requests
+   - Manipulating metadata or tokens
+
+3. Elevation of Privilege:
+   - Acting as admin without being logged in
+   - Accessing functions as regular user that require admin
+
+4. Metadata Manipulation:
+   - Tampering with JWT tokens
+   - Modifying cookies or hidden fields
+   - Replaying access control tokens
+
+# Examples:
+URL Manipulation:
+https://example.com/user/profile?id=123
+https://example.com/user/profile?id=456  # Access other user's profile
+
+Parameter Tampering:
+POST /transfer HTTP/1.1
+amount=100&from=123&to=456
+# Change 'from' parameter to transfer from another account
+
+Force Browsing:
+https://example.com/admin/panel  # Direct access to admin functions</code></pre>
+                </div>
+
+                <h3>Prevention Strategies</h3>
+                <ul>
+                    <li><strong>Deny by Default:</strong> Implement access control with default deny</li>
+                    <li><strong>Centralized Access Control:</strong> Use consistent mechanisms throughout application</li>
+                    <li><strong>Server-side Validation:</strong> Never rely on client-side access controls</li>
+                    <li><strong>Logging and Monitoring:</strong> Log access control failures and alert administrators</li>
+                    <li><strong>Rate Limiting:</strong> Implement rate limiting for API and login attempts</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>A02 - Cryptographic Failures</h2>
+                <p>Previously known as "Sensitive Data Exposure," this category focuses on failures related to cryptography which often leads to sensitive data exposure or system compromise.</p>
+                
+                <div class="code-block">
+                    <pre><code># Common Cryptographic Failures:
+
+1. Transmitting Data in Clear Text:
+   - HTTP instead of HTTPS
+   - Unencrypted email protocols
+   - Database connections without encryption
+   - File transfers without encryption
+
+2. Using Old or Weak Cryptographic Algorithms:
+   - MD5, SHA1 for passwords
+   - DES, 3DES encryption
+   - RC4 stream cipher
+   - Weak random number generators
+
+3. Default or Weak Cryptographic Keys:
+   - Default encryption keys
+   - Weak key generation
+   - Improper key management
+   - Hard-coded cryptographic keys
+
+4. Missing Encryption:
+   - Passwords stored in plain text
+   - Sensitive data not encrypted at rest
+   - Backup files not encrypted
+   - Log files containing sensitive data
+
+# Examples:
+Weak Password Hashing:
+// Bad
+password = md5(user_password)
+
+// Good
+password = bcrypt(user_password, salt, rounds=12)
+
+Insecure Data Transmission:
+// Bad
+http://example.com/login
+
+// Good
+https://example.com/login
+
+Weak Encryption:
+// Bad
+cipher = DES.new(key, DES.MODE_ECB)
+
+// Good
+cipher = AES.new(key, AES.MODE_GCM)</code></pre>
+                </div>
+
+                <h3>Protection Measures</h3>
+                <ul>
+                    <li><strong>Classify Data:</strong> Identify sensitive data and apply appropriate controls</li>
+                    <li><strong>Encrypt in Transit:</strong> Use TLS for all sensitive data transmission</li>
+                    <li><strong>Encrypt at Rest:</strong> Encrypt sensitive data stored in databases and files</li>
+                    <li><strong>Strong Algorithms:</strong> Use up-to-date and strong encryption algorithms</li>
+                    <li><strong>Proper Key Management:</strong> Implement secure key generation, storage, and rotation</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>A03 - Injection</h2>
+                <p>Injection flaws occur when untrusted data is sent to an interpreter as part of a command or query. The attacker's hostile data can trick the interpreter into executing unintended commands.</p>
+                
+                <div class="code-block">
+                    <pre><code># Types of Injection Attacks:
+
+1. SQL Injection:
+   - Classic SQL injection
+   - Blind SQL injection
+   - Time-based SQL injection
+   - Union-based SQL injection
+
+2. NoSQL Injection:
+   - MongoDB injection
+   - CouchDB injection
+   - Redis injection
+
+3. OS Command Injection:
+   - Shell command injection
+   - Code injection
+   - File inclusion attacks
+
+4. LDAP Injection:
+   - Authentication bypass
+   - Information disclosure
+
+# SQL Injection Examples:
+Vulnerable Code:
+query = "SELECT * FROM users WHERE username='" + username + "' AND password='" + password + "'"
+
+Attack Payload:
+username: admin'--
+password: anything
+
+Resulting Query:
+SELECT * FROM users WHERE username='admin'--' AND password='anything'
+
+# Command Injection Example:
+Vulnerable Code:
+system("ping -c 4 " + user_input)
+
+Attack Payload:
+user_input: 8.8.8.8; cat /etc/passwd
+
+Resulting Command:
+ping -c 4 8.8.8.8; cat /etc/passwd</code></pre>
+                </div>
+
+                <h3>Prevention Techniques</h3>
+                <div class="data-types-grid">
+                    <div class="data-type input-validation">
+                        <h4>Input Validation</h4>
+                        <ul>
+                            <li>Whitelist validation</li>
+                            <li>Input sanitization</li>
+                            <li>Data type validation</li>
+                            <li>Length restrictions</li>
+                        </ul>
+                    </div>
+                    <div class="data-type parameterized-queries">
+                        <h4>Parameterized Queries</h4>
+                        <ul>
+                            <li>Prepared statements</li>
+                            <li>Stored procedures</li>
+                            <li>ORM frameworks</li>
+                            <li>Query builders</li>
+                        </ul>
+                    </div>
+                    <div class="data-type output-encoding">
+                        <h4>Output Encoding</h4>
+                        <ul>
+                            <li>HTML encoding</li>
+                            <li>URL encoding</li>
+                            <li>JavaScript encoding</li>
+                            <li>CSS encoding</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>A04 - Insecure Design</h2>
+                <p>Insecure design is a broad category representing different weaknesses, expressed as "missing or ineffective control design." It focuses on risks related to design and architectural flaws.</p>
+                
+                <div class="code-block">
+                    <pre><code># Insecure Design Examples:
+
+1. Missing Security Controls:
+   - No rate limiting on password reset
+   - Missing multi-factor authentication
+   - No account lockout mechanisms
+   - Insufficient logging and monitoring
+
+2. Weak Security Controls:
+   - Security questions with predictable answers
+   - Weak password policies
+   - Insufficient session timeout
+   - Poor error handling revealing system information
+
+3. Business Logic Flaws:
+   - Price manipulation in e-commerce
+   - Workflow bypass vulnerabilities
+   - Race condition vulnerabilities
+   - Time-of-check to time-of-use (TOCTOU) issues
+
+# Example - Insecure Password Reset:
+1. User requests password reset
+2. System sends reset link via email
+3. Reset link has no expiration time
+4. Reset link can be used multiple times
+5. No rate limiting on reset requests
+
+# Secure Design Alternative:
+1. User requests password reset
+2. System generates time-limited token (15 minutes)
+3. Token can only be used once
+4. Rate limiting prevents abuse
+5. Account lockout after multiple failed attempts
+6. Logging and monitoring of reset attempts</code></pre>
+                </div>
+
+                <h3>Secure Design Principles</h3>
+                <ul>
+                    <li><strong>Defense in Depth:</strong> Multiple layers of security controls</li>
+                    <li><strong>Fail Securely:</strong> System fails to a secure state</li>
+                    <li><strong>Principle of Least Privilege:</strong> Minimum necessary access</li>
+                    <li><strong>Separation of Duties:</strong> Critical operations require multiple approvals</li>
+                    <li><strong>Zero Trust Architecture:</strong> Never trust, always verify</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>A05 - Security Misconfiguration</h2>
+                <p>Security misconfiguration is commonly a result of insecure default configurations, incomplete configurations, open cloud storage, misconfigured HTTP headers, and verbose error messages.</p>
+                
+                <div class="code-block">
+                    <pre><code># Common Misconfigurations:
+
+1. Default Configurations:
+   - Default passwords not changed
+   - Default accounts enabled
+   - Sample applications not removed
+   - Default error pages revealing information
+
+2. Unnecessary Features Enabled:
+   - Unused services running
+   - Unnecessary ports open
+   - Debug mode enabled in production
+   - Directory listing enabled
+
+3. Missing Security Headers:
+   - Missing HSTS headers
+   - No Content Security Policy
+   - Missing X-Frame-Options
+   - No X-Content-Type-Options
+
+4. Improper Error Handling:
+   - Stack traces in error messages
+   - Database errors exposed to users
+   - System information in error pages
+   - Verbose logging in production
+
+# Security Headers Examples:
+HTTP/1.1 200 OK
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Content-Security-Policy: default-src 'self'
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Referrer-Policy: strict-origin-when-cross-origin
+
+# Secure Configuration Checklist:
+- Remove default accounts and passwords
+- Disable unnecessary services and features
+- Configure proper error handling
+- Implement security headers
+- Regular security updates and patches
+- Secure file permissions
+- Network segmentation
+- Regular configuration reviews</code></pre>
+                </div>
+
+                <h3>Configuration Management</h3>
+                <ul>
+                    <li><strong>Hardening Guidelines:</strong> Follow security hardening standards</li>
+                    <li><strong>Configuration Management:</strong> Use automated configuration tools</li>
+                    <li><strong>Regular Reviews:</strong> Periodic security configuration audits</li>
+                    <li><strong>Minimal Installation:</strong> Install only necessary components</li>
+                    <li><strong>Segmentation:</strong> Separate environments and network segments</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>A06 - Vulnerable and Outdated Components</h2>
+                <p>Components run with the same privileges as the application itself, so flaws in any component can result in serious impact. Such flaws may be accidental or intentional.</p>
+                
+                <div class="code-block">
+                    <pre><code># Component Vulnerability Issues:
+
+1. Unknown Component Inventory:
+   - No inventory of client and server-side components
+   - Unknown versions of components
+   - Nested dependencies not tracked
+   - Third-party libraries not monitored
+
+2. Outdated or Vulnerable Components:
+   - Operating system vulnerabilities
+   -Framework vulnerabilities (Struts, Spring, etc.)
+   - Library vulnerabilities (jQuery, Bootstrap, etc.)
+   - Database vulnerabilities
+   - Web server vulnerabilities
+
+3. Unsupported Components:
+   - End-of-life software
+   - No security patches available
+   - Vendor no longer supports product
+   - Community-maintained projects abandoned
+
+# Example Vulnerable Components:
+Apache Struts 2 (CVE-2017-5638):
+- Remote code execution vulnerability
+- Affected many major organizations
+- Exploited in Equifax breach
+
+jQuery < 3.0.0:
+- Cross-site scripting vulnerabilities
+- DOM manipulation issues
+- Prototype pollution attacks
+
+# Component Management Tools:
+Dependency Scanners:
+- OWASP Dependency-Check
+- Snyk
+- WhiteSource
+- Black Duck
+- Sonatype Nexus
+
+Package Managers:
+- npm audit (Node.js)
+- pip-audit (Python)
+- bundle audit (Ruby)
+- composer audit (PHP)</code></pre>
+                </div>
+
+                <h3>Component Security Practices</h3>
+                <ul>
+                    <li><strong>Inventory Management:</strong> Maintain complete component inventory</li>
+                    <li><strong>Vulnerability Monitoring:</strong> Subscribe to security advisories</li>
+                    <li><strong>Regular Updates:</strong> Keep components up to date</li>
+                    <li><strong>Risk Assessment:</strong> Evaluate component security before adoption</li>
+                    <li><strong>Automated Scanning:</strong> Use tools to identify vulnerable components</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>A07 - Identification and Authentication Failures</h2>
+                <p>Previously known as "Broken Authentication," this category includes weaknesses related to user identity confirmation, authentication, and session management.</p>
+                
+                <div class="code-block">
+                    <pre><code># Authentication Vulnerabilities:
+
+1. Weak Password Policies:
+   - No complexity requirements
+   - Common passwords allowed
+   - No password history
+   - Weak password recovery
+
+2. Credential Stuffing:
+   - No protection against automated attacks
+   - No account lockout mechanisms
+   - No CAPTCHA implementation
+   - Weak rate limiting
+
+3. Session Management Issues:
+   - Predictable session IDs
+   - Session fixation vulnerabilities
+   - Sessions not invalidated on logout
+   - Long session timeouts
+
+4. Multi-Factor Authentication Bypass:
+   - MFA not enforced for all users
+   - Weak MFA implementation
+   - MFA bypass vulnerabilities
+   - Recovery codes not properly protected
+
+# Examples:
+Session Fixation:
+1. Attacker gets session ID: JSESSIONID=123456
+2. Attacker tricks user to login with this session ID
+3. User authenticates successfully
+4. Attacker uses the same session ID to access user's account
+
+Credential Stuffing Attack:
+1. Attacker obtains username/password lists from breaches
+2. Automated tools try these credentials on target site
+3. Successful logins grant access to user accounts
+4. No rate limiting allows rapid testing
+
+# Secure Authentication Implementation:
+Password Policy:
+- Minimum 8 characters
+- Mix of uppercase, lowercase, numbers, symbols
+- Check against common password lists
+- Implement password history
+
+Session Management:
+- Generate cryptographically strong session IDs
+- Regenerate session ID after login
+- Implement proper session timeout
+- Secure session storage</code></pre>
+                </div>
+
+                <h3>Authentication Best Practices</h3>
+                <div class="data-types-grid">
+                    <div class="data-type password-security">
+                        <h4>Password Security</h4>
+                        <ul>
+                            <li>Strong password policies</li>
+                            <li>Password complexity requirements</li>
+                            <li>Common password blacklists</li>
+                            <li>Secure password storage (bcrypt)</li>
+                        </ul>
+                    </div>
+                    <div class="data-type mfa-implementation">
+                        <h4>Multi-Factor Authentication</h4>
+                        <ul>
+                            <li>TOTP (Time-based OTP)</li>
+                            <li>SMS verification (with limitations)</li>
+                            <li>Hardware tokens</li>
+                            <li>Biometric authentication</li>
+                        </ul>
+                    </div>
+                    <div class="data-type session-management">
+                        <h4>Session Management</h4>
+                        <ul>
+                            <li>Secure session ID generation</li>
+                            <li>Session regeneration</li>
+                            <li>Proper session timeout</li>
+                            <li>Secure cookie attributes</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>A08 - Software and Data Integrity Failures</h2>
+                <p>This new category focuses on making assumptions related to software updates, critical data, and CI/CD pipelines without verifying integrity.</p>
+                
+                <div class="code-block">
+                    <pre><code># Integrity Failure Examples:
+
+1. Insecure CI/CD Pipelines:
+   - No code signing verification
+   - Insecure artifact repositories
+   - Compromised build environments
+   - No integrity checks on dependencies
+
+2. Auto-Update Mechanisms:
+   - Updates without signature verification
+   - Insecure update channels (HTTP)
+   - No rollback mechanisms
+   - Compromised update servers
+
+3. Insecure Deserialization:
+   - Untrusted data deserialization
+   - No integrity verification
+   - Remote code execution via serialized objects
+   - Tampering with serialized data
+
+4. CDN and Third-Party Content:
+   - No Subresource Integrity (SRI)
+   - Compromised CDN content
+   - Malicious third-party scripts
+   - No content verification
+
+# Subresource Integrity Example:
+&lt;script src="https://cdn.example.com/library.js"
+        integrity="sha384-oqVuAfXRKap7fdgcCY5uykM6+R9GqQ8K/uxy9rx7HNQlGYl1kPzQho1wx4JwY8wC"
+        crossorigin="anonymous"&gt;&lt;/script&gt;
+
+# Secure Deserialization:
+// Insecure
+Object obj = deserialize(untrusted_data);
+
+// Secure
+if (verify_signature(untrusted_data)) {
+    Object obj = deserialize(untrusted_data);
+} else {
+    throw new SecurityException("Invalid signature");
+}</code></pre>
+                </div>
+
+                <h3>Integrity Protection Measures</h3>
+                <ul>
+                    <li><strong>Digital Signatures:</strong> Sign software updates and critical data</li>
+                    <li><strong>Subresource Integrity:</strong> Verify third-party content integrity</li>
+                    <li><strong>Secure CI/CD:</strong> Implement secure build and deployment pipelines</li>
+                    <li><strong>Dependency Verification:</strong> Verify integrity of dependencies</li>
+                    <li><strong>Secure Deserialization:</strong> Validate serialized data before processing</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>A09 - Security Logging and Monitoring Failures</h2>
+                <p>Insufficient logging and monitoring, coupled with missing or ineffective integration with incident response, allows attackers to further attack systems and maintain persistence.</p>
+                
+                <div class="code-block">
+                    <pre><code># Logging and Monitoring Failures:
+
+1. Insufficient Logging:
+   - Login attempts not logged
+   - Failed access attempts ignored
+   - Administrative actions not recorded
+   - Security events not captured
+
+2. Inadequate Log Protection:
+   - Logs stored in plain text
+   - No log integrity protection
+   - Logs accessible to unauthorized users
+   - No log retention policies
+
+3. Missing Monitoring:
+   - No real-time alerting
+   - Security events not monitored
+   - No anomaly detection
+   - Delayed incident response
+
+4. Poor Log Quality:
+   - Missing context information
+   - No correlation between events
+   - Insufficient detail for investigation
+   - No standardized log format
+
+# Essential Security Events to Log:
+Authentication Events:
+- Login attempts (success/failure)
+- Password changes
+- Account lockouts
+- Privilege escalations
+
+Authorization Events:
+- Access to sensitive resources
+- Permission changes
+- Administrative actions
+- Failed authorization attempts
+
+Input Validation Events:
+- Injection attempts
+- Malformed requests
+- Suspicious input patterns
+- Rate limiting triggers
+
+# Log Format Example:
+{
+  "timestamp": "2023-10-15T10:30:00Z",
+  "event_type": "authentication_failure",
+  "user_id": "user123",
+  "source_ip": "192.168.1.100",
+  "user_agent": "Mozilla/5.0...",
+  "details": "Invalid password attempt",
+  "risk_score": 7
+}</code></pre>
+                </div>
+
+                <h3>Effective Logging Strategy</h3>
+                <ul>
+                    <li><strong>Comprehensive Coverage:</strong> Log all security-relevant events</li>
+                    <li><strong>Centralized Logging:</strong> Aggregate logs from all systems</li>
+                    <li><strong>Real-time Monitoring:</strong> Implement automated alerting</li>
+                    <li><strong>Log Protection:</strong> Secure log storage and transmission</li>
+                    <li><strong>Incident Response:</strong> Integrate with incident response procedures</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>A10 - Server-Side Request Forgery (SSRF)</h2>
+                <p>SSRF flaws occur whenever a web application is fetching a remote resource without validating the user-supplied URL. It allows an attacker to coerce the application to send a crafted request to an unexpected destination.</p>
+                
+                <div class="code-block">
+                    <pre><code># SSRF Attack Scenarios:
+
+1. Internal Network Scanning:
+   - Scan internal IP ranges
+   - Discover internal services
+   - Access internal APIs
+   - Bypass network firewalls
+
+2. Cloud Metadata Access:
+   - AWS metadata service (169.254.169.254)
+   - Azure metadata service
+   - Google Cloud metadata
+   - Extract sensitive credentials
+
+3. File System Access:
+   - Read local files (file://)
+   - Access configuration files
+   - Read application source code
+   - Extract sensitive data
+
+4. Protocol Exploitation:
+   - HTTP/HTTPS requests
+   - FTP protocol abuse
+   - LDAP queries
+   - Database connections
+
+# SSRF Examples:
+URL Parameter Manipulation:
+https://example.com/fetch?url=http://internal-server/admin
+
+Cloud Metadata Attack:
+https://example.com/fetch?url=http://169.254.169.254/latest/meta-data/iam/security-credentials/
+
+File System Access:
+https://example.com/fetch?url=file:///etc/passwd
+
+# Vulnerable Code Example:
+def fetch_url(url):
+    response = requests.get(url)  # No validation
+    return response.content
+
+# Secure Implementation:
+def fetch_url(url):
+    # Validate URL scheme
+    if not url.startswith(('http://', 'https://')):
+        raise ValueError("Invalid URL scheme")
+    
+    # Parse and validate URL
+    parsed = urlparse(url)
+    
+    # Block private IP ranges
+    if is_private_ip(parsed.hostname):
+        raise ValueError("Private IP not allowed")
+    
+    # Block metadata services
+    if parsed.hostname == '169.254.169.254':
+        raise ValueError("Metadata service blocked")
+    
+    response = requests.get(url, timeout=5)
+    return response.content</code></pre>
+                </div>
+
+                <h3>SSRF Prevention Techniques</h3>
+                <div class="data-types-grid">
+                    <div class="data-type input-validation">
+                        <h4>Input Validation</h4>
+                        <ul>
+                            <li>URL scheme validation</li>
+                            <li>Domain whitelist</li>
+                            <li>IP address filtering</li>
+                            <li>Port restrictions</li>
+                        </ul>
+                    </div>
+                    <div class="data-type network-controls">
+                        <h4>Network Controls</h4>
+                        <ul>
+                            <li>Network segmentation</li>
+                            <li>Firewall rules</li>
+                            <li>Proxy servers</li>
+                            <li>DNS filtering</li>
+                        </ul>
+                    </div>
+                    <div class="data-type application-controls">
+                        <h4>Application Controls</h4>
+                        <ul>
+                            <li>Response validation</li>
+                            <li>Timeout settings</li>
+                            <li>Error handling</li>
+                            <li>Logging and monitoring</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>OWASP Top 10 Implementation Guide</h2>
+                
+                <h3>Development Lifecycle Integration</h3>
+                <ul>
+                    <li><strong>Requirements Phase:</strong> Include security requirements</li>
+                    <li><strong>Design Phase:</strong> Threat modeling and secure design</li>
+                    <li><strong>Implementation Phase:</strong> Secure coding practices</li>
+                    <li><strong>Testing Phase:</strong> Security testing and code review</li>
+                    <li><strong>Deployment Phase:</strong> Secure configuration and monitoring</li>
+                </ul>
+
+                <h3>Risk Assessment Matrix</h3>
+                <div class="code-block">
+                    <pre><code># Risk Calculation:
+Risk = Likelihood × Impact
+
+Likelihood Factors:
+- Threat agent skill level
+- Motive and opportunity
+- Ease of discovery
+- Ease of exploit
+
+Impact Factors:
+- Technical impact
+- Business impact
+- Confidentiality loss
+- Integrity loss
+- Availability loss
+
+# Priority Matrix:
+High Risk (9): Immediate attention required
+Medium Risk (4-6): Address in next release
+Low Risk (1-3): Address when resources available</code></pre>
+                </div>
+
+                <h3>Continuous Security Improvement</h3>
+                <ul>
+                    <li><strong>Regular Assessments:</strong> Periodic security testing</li>
+                    <li><strong>Metrics and KPIs:</strong> Track security improvements</li>
+                    <li><strong>Training Programs:</strong> Developer security education</li>
+                    <li><strong>Tool Integration:</strong> Automated security testing</li>
+                    <li><strong>Incident Response:</strong> Learn from security incidents</li>
+                </ul>
+            </section>
+
+            <section class="video-section">
+                <h2>📺 Video Tutorial</h2>
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        <div class="video-icon">🎥</div>
+                        <p>YouTube video will be embedded here</p>
+                        <small>Video placeholder - Link to be added</small>
+                    </div>
+                </div>
+            </section>
+
+            <section class="test-section">
+                <h2>📝 Knowledge Test</h2>
+                <p class="test-instruction">Complete this test to unlock the next course. You need 18 out of 20 correct answers to pass.</p>
+                
+                <div class="test-container">
+                    <div class="question" data-question="1">
+                        <h3>Question 1</h3>
+                        <p>What is the #1 risk in the OWASP Top 10 2021?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> Broken Access Control</label>
+                            <label><input type="radio" name="q1" value="b"> Injection</label>
+                            <label><input type="radio" name="q1" value="c"> Cryptographic Failures</label>
+                            <label><input type="radio" name="q1" value="d"> Security Misconfiguration</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="2">
+                        <h3>Question 2</h3>
+                        <p>What was "Sensitive Data Exposure" renamed to in OWASP Top 10 2021?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> Data Integrity Failures</label>
+                            <label><input type="radio" name="q2" value="b"> Cryptographic Failures</label>
+                            <label><input type="radio" name="q2" value="c"> Security Logging Failures</label>
+                            <label><input type="radio" name="q2" value="d"> Insecure Design</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="3">
+                        <p>Which of the following is NOT a type of injection attack?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="a"> SQL Injection</label>
+                            <label><input type="radio" name="q3" value="b"> Command Injection</label>
+                            <label><input type="radio" name="q3" value="c"> Session Injection</label>
+                            <label><input type="radio" name="q3" value="d"> LDAP Injection</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="4">
+                        <h3>Question 4</h3>
+                        <p>What is the main focus of "Insecure Design" in OWASP Top 10 2021?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> Implementation bugs</label>
+                            <label><input type="radio" name="q4" value="b"> Design and architectural flaws</label>
+                            <label><input type="radio" name="q4" value="c"> Configuration errors</label>
+                            <label><input type="radio" name="q4" value="d"> Outdated components</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="5">
+                        <h3>Question 5</h3>
+                        <p>Which HTTP header helps prevent clickjacking attacks?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="a"> X-XSS-Protection</label>
+                            <label><input type="radio" name="q5" value="b"> X-Frame-Options</label>
+                            <label><input type="radio" name="q5" value="c"> X-Content-Type-Options</label>
+                            <label><input type="radio" name="q5" value="d"> Strict-Transport-Security</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="6">
+                        <h3>Question 6</h3>
+                        <p>What does SSRF stand for?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q6" value="a"> Server-Side Request Forgery</label>
+                            <label><input type="radio" name="q6" value="b"> Secure Socket Request Framework</label>
+                            <label><input type="radio" name="q6" value="c"> System Security Response Function</label>
+                            <label><input type="radio" name="q6" value="d"> Server Security Risk Factor</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="7">
+                        <h3>Question 7</h3>
+                        <p>Which is the best method to prevent SQL injection?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q7" value="a"> Input validation only</label>
+                            <label><input type="radio" name="q7" value="b"> Parameterized queries/prepared statements</label>
+                            <label><input type="radio" name="q7" value="c"> Stored procedures only</label>
+                            <label><input type="radio" name="q7" value="d"> Output encoding</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="8">
+                        <h3>Question 8</h3>
+                        <p>What is the recommended minimum password hashing algorithm?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q8" value="a"> MD5</label>
+                            <label><input type="radio" name="q8" value="b"> SHA1</label>
+                            <label><input type="radio" name="q8" value="c"> bcrypt</label>
+                            <label><input type="radio" name="q8" value="d"> SHA256</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="9">
+                        <h3>Question 9</h3>
+                        <p>Which attack exploits the trust between a user's browser and a website?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q9" value="a"> SQL Injection</label>
+                            <label><input type="radio" name="q9" value="b"> Cross-Site Scripting (XSS)</label>
+                            <label><input type="radio" name="q9" value="c"> Cross-Site Request Forgery (CSRF)</label>
+                            <label><input type="radio" name="q9" value="d"> Command Injection</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="10">
+                        <h3>Question 10</h3>
+                        <p>What is Subresource Integrity (SRI) used for?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q10" value="a"> Preventing XSS attacks</label>
+                            <label><input type="radio" name="q10" value="b"> Verifying third-party content integrity</label>
+                            <label><input type="radio" name="q10" value="c"> Encrypting data transmission</label>
+                            <label><input type="radio" name="q10" value="d"> Managing user sessions</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="11">
+                        <h3>Question 11</h3>
+                        <p>Which IP address is commonly targeted in SSRF attacks for cloud metadata?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q11" value="a"> 127.0.0.1</label>
+                            <label><input type="radio" name="q11" value="b"> 169.254.169.254</label>
+                            <label><input type="radio" name="q11" value="c"> 192.168.1.1</label>
+                            <label><input type="radio" name="q11" value="d"> 10.0.0.1</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="12">
+                        <h3>Question 12</h3>
+                        <p>What is the principle of "Defense in Depth"?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q12" value="a"> Using only one strong security control</label>
+                            <label><input type="radio" name="q12" value="b"> Multiple layers of security controls</label>
+                            <label><input type="radio" name="q12" value="c"> Deep packet inspection</label>
+                            <label><input type="radio" name="q12" value="d"> Detailed security logging</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="13">
+                        <h3>Question 13</h3>
+                        <p>Which vulnerability allows attackers to execute arbitrary code through serialized objects?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q13" value="a"> SQL Injection</label>
+                            <label><input type="radio" name="q13" value="b"> Insecure Deserialization</label>
+                            <label><input type="radio" name="q13" value="c"> XSS</label>
+                            <label><input type="radio" name="q13" value="d"> CSRF</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="14">
+                        <h3>Question 14</h3>
+                        <p>What is the main purpose of logging security events?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q14" value="a"> Performance monitoring</label>
+                            <label><input type="radio" name="q14" value="b"> Incident detection and response</label>
+                            <label><input type="radio" name="q14" value="c"> User behavior analysis</label>
+                            <label><input type="radio" name="q14" value="d"> System debugging</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="15">
+                        <h3>Question 15</h3>
+                        <p>Which of the following is a secure session management practice?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q15" value="a"> Using predictable session IDs</label>
+                            <label><input type="radio" name="q15" value="b"> Never expiring sessions</label>
+                            <label><input type="radio" name="q15" value="c"> Regenerating session ID after login</label>
+                            <label><input type="radio" name="q15" value="d"> Storing session data in URLs</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="16">
+                        <h3>Question 16</h3>
+                        <p>What is the recommended approach for handling errors in production?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q16" value="a"> Show detailed error messages to users</label>
+                            <label><input type="radio" name="q16" value="b"> Display stack traces</label>
+                            <label><input type="radio" name="q16" value="c"> Show generic error messages and log details</label>
+                            <label><input type="radio" name="q16" value="d"> Disable error handling</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="17">
+                        <h3>Question 17</h3>
+                        <p>Which attack technique involves using lists of compromised credentials?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q17" value="a"> Brute force</label>
+                            <label><input type="radio" name="q17" value="b"> Credential stuffing</label>
+                            <label><input type="radio" name="q17" value="c"> Dictionary attack</label>
+                            <label><input type="radio" name="q17" value="d"> Rainbow table attack</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="18">
+                        <h3>Question 18</h3>
+                        <p>What is the purpose of Content Security Policy (CSP)?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q18" value="a"> Prevent SQL injection</label>
+                            <label><input type="radio" name="q18" value="b"> Prevent XSS attacks</label>
+                            <label><input type="radio" name="q18" value="c"> Encrypt data transmission</label>
+                            <label><input type="radio" name="q18" value="d"> Manage user authentication</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="19">
+                        <h3>Question 19</h3>
+                        <p>Which principle states that users should have minimum necessary access?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q19" value="a"> Defense in Depth</label>
+                            <label><input type="radio" name="q19" value="b"> Fail Securely</label>
+                            <label><input type="radio" name="q19" value="c"> Principle of Least Privilege</label>
+                            <label><input type="radio" name="q19" value="d"> Separation of Duties</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="20">
+                        <h3>Question 20</h3>
+                        <p>What is the best practice for managing third-party components?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q20" value="a"> Never update components</label>
+                            <label><input type="radio" name="q20" value="b"> Update only when vulnerabilities are found</label>
+                            <label><input type="radio" name="q20" value="c"> Maintain inventory and regularly update</label>
+                            <label><input type="radio" name="q20" value="d"> Only use components from unknown sources</label>
+                        </div>
+                    </div>
+
+                    <div class="test-actions">
+                        <button class="submit-test-btn">Submit Test</button>
+                        <div class="test-result" style="display: none;">
+                            <div class="score-display"></div>
+                            <div class="result-message"></div>
+                            <button class="next-course-btn" style="display: none;">Proceed to Next Course</button>
+                            <button class="retry-btn" style="display: none;">Retry Test</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="course-13.js"></script>
+</body>
+</html>

@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Programming Basics - Cyber Learner</title>
+    <link rel="stylesheet" href="course-styles.css">
+    <link rel="stylesheet" href="course-2.css">
+</head>
+<body>
+    <div class="course-container">
+        <header class="course-header">
+            <div class="nav-controls">
+                <a href="index.html" class="back-btn">← Back to Courses</a>
+                <div class="course-progress">
+                    <span class="course-number">Course 2</span>
+                    <span class="course-total">of 14</span>
+                </div>
+            </div>
+            <h1 class="course-title">Python Programming Basics</h1>
+            <p class="course-subtitle">Learn Python syntax, data structures, and object-oriented programming</p>
+        </header>
+
+        <main class="course-content">
+            <section class="content-section">
+                <h2>Introduction to Python</h2>
+                <p>Python is a high-level, interpreted programming language created by Guido van Rossum in 1991. It's known for its simple syntax, readability, and extensive library ecosystem.</p>
+                
+                <h3>Why Learn Python?</h3>
+                <ul>
+                    <li><strong>Easy to Learn:</strong> Simple and readable syntax</li>
+                    <li><strong>Versatile:</strong> Web development, data science, AI, automation</li>
+                    <li><strong>Large Community:</strong> Extensive libraries and frameworks</li>
+                    <li><strong>Cross-Platform:</strong> Runs on Windows, Linux, macOS</li>
+                    <li><strong>Interpreted:</strong> No compilation needed</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Python Syntax and Basic Operations</h2>
+                <div class="code-block">
+                    <pre><code># Hello World in Python
+print("Hello, World!")
+
+# Variables (no declaration needed)
+name = "Alice"
+age = 25
+height = 5.8
+is_student = True</code></pre>
+                </div>
+                
+                <h3>Python Features:</h3>
+                <ul>
+                    <li><strong>Indentation:</strong> Uses spaces/tabs for code blocks</li>
+                    <li><strong>Dynamic Typing:</strong> No need to declare variable types</li>
+                    <li><strong>Comments:</strong> Use # for single-line comments</li>
+                    <li><strong>No Semicolons:</strong> Line endings are automatic</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Data Types and Variables</h2>
+                
+                <div class="data-types-grid">
+                    <div class="data-type">
+                        <h4>int</h4>
+                        <p>Whole numbers: 42, -17, 0</p>
+                    </div>
+                    <div class="data-type">
+                        <h4>float</h4>
+                        <p>Decimal numbers: 3.14, -0.5</p>
+                    </div>
+                    <div class="data-type">
+                        <h4>str</h4>
+                        <p>Text strings: "Hello", 'World'</p>
+                    </div>
+                    <div class="data-type">
+                        <h4>bool</h4>
+                        <p>True/False values</p>
+                    </div>
+                    <div class="data-type">
+                        <h4>list</h4>
+                        <p>Ordered collections: [1, 2, 3]</p>
+                    </div>
+                    <div class="data-type">
+                        <h4>dict</h4>
+                        <p>Key-value pairs: {"name": "John"}</p>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre><code># Different data types
+integer = 42
+decimal = 3.14159
+text = "Hello Python"
+flag = True
+numbers = [1, 2, 3, 4, 5]
+person = {"name": "Alice", "age": 30}</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Control Structures</h2>
+                
+                <h3>Conditional Statements</h3>
+                <div class="code-block">
+                    <pre><code>age = 18
+
+if age >= 18:
+    print("You are an adult")
+elif age >= 13:
+    print("You are a teenager")
+else:
+    print("You are a child")</code></pre>
+                </div>
+
+                <h3>Loops</h3>
+                <div class="code-block">
+                    <pre><code># For loop
+for i in range(5):
+    print(f"Number: {i}")
+
+# While loop
+count = 0
+while count < 3:
+    print(f"Count: {count}")
+    count += 1
+
+# Loop through list
+fruits = ["apple", "banana", "orange"]
+for fruit in fruits:
+    print(fruit)</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Functions</h2>
+                <p>Functions are reusable blocks of code that perform specific tasks:</p>
+                
+                <div class="code-block">
+                    <pre><code>def greet(name):
+    return f"Hello, {name}!"
+
+def calculate_area(length, width):
+    return length * width
+
+# Function calls
+message = greet("Python")
+area = calculate_area(5, 3)
+print(message)
+print(f"Area: {area}")</code></pre>
+                </div>
+
+                <h3>Function Features:</h3>
+                <ul>
+                    <li><strong>Default Parameters:</strong> def greet(name="World"):</li>
+                    <li><strong>Variable Arguments:</strong> def func(*args, **kwargs):</li>
+                    <li><strong>Lambda Functions:</strong> square = lambda x: x**2</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Data Structures</h2>
+                
+                <h3>Lists</h3>
+                <div class="code-block">
+                    <pre><code># List operations
+numbers = [1, 2, 3, 4, 5]
+numbers.append(6)        # Add element
+numbers.remove(2)        # Remove element
+numbers.insert(0, 0)     # Insert at position
+print(numbers[0])        # Access by index
+print(numbers[-1])       # Last element</code></pre>
+                </div>
+
+                <h3>Dictionaries</h3>
+                <div class="code-block">
+                    <pre><code># Dictionary operations
+student = {
+    "name": "Alice",
+    "age": 20,
+    "grade": "A"
+}
+
+student["city"] = "New York"  # Add new key
+print(student["name"])        # Access value
+print(student.get("age"))     # Safe access
+print(student.keys())         # Get all keys</code></pre>
+                </div>
+
+                <h3>Tuples and Sets</h3>
+                <div class="code-block">
+                    <pre><code># Tuple (immutable)
+coordinates = (10, 20)
+print(coordinates[0])
+
+# Set (unique elements)
+unique_numbers = {1, 2, 3, 3, 4}
+print(unique_numbers)  # {1, 2, 3, 4}</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Object-Oriented Programming</h2>
+                
+                <div class="code-block">
+                    <pre><code>class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    def introduce(self):
+        return f"Hi, I'm {self.name} and I'm {self.age} years old"
+    
+    def have_birthday(self):
+        self.age += 1
+        print(f"Happy birthday! Now {self.age} years old")
+
+# Create objects
+person1 = Person("Alice", 25)
+person2 = Person("Bob", 30)
+
+print(person1.introduce())
+person1.have_birthday()</code></pre>
+                </div>
+
+                <h3>OOP Concepts:</h3>
+                <ul>
+                    <li><strong>Class:</strong> Blueprint for objects</li>
+                    <li><strong>Object:</strong> Instance of a class</li>
+                    <li><strong>Inheritance:</strong> class Student(Person):</li>
+                    <li><strong>Encapsulation:</strong> Private attributes with _</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>File Handling and Error Management</h2>
+                
+                <h3>File Operations</h3>
+                <div class="code-block">
+                    <pre><code># Writing to file
+with open("example.txt", "w") as file:
+    file.write("Hello, Python!")
+
+# Reading from file
+with open("example.txt", "r") as file:
+    content = file.read()
+    print(content)</code></pre>
+                </div>
+
+                <h3>Exception Handling</h3>
+                <div class="code-block">
+                    <pre><code>try:
+    result = 10 / 0
+except ZeroDivisionError:
+    print("Cannot divide by zero!")
+except Exception as e:
+    print(f"An error occurred: {e}")
+finally:
+    print("This always executes")</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Libraries and Modules</h2>
+                
+                <div class="code-block">
+                    <pre><code># Importing modules
+import math
+import random
+from datetime import datetime
+
+# Using imported functions
+print(math.sqrt(16))
+print(random.randint(1, 10))
+print(datetime.now())</code></pre>
+                </div>
+
+                <h3>Popular Python Libraries:</h3>
+                <ul>
+                    <li><strong>NumPy:</strong> Numerical computing</li>
+                    <li><strong>Pandas:</strong> Data manipulation</li>
+                    <li><strong>Requests:</strong> HTTP requests</li>
+                    <li><strong>Flask/Django:</strong> Web frameworks</li>
+                </ul>
+            </section>
+
+            <section class="video-section">
+                <h2>📺 Video Tutorial</h2>
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        <div class="video-icon">🎥</div>
+                        <p>YouTube video will be embedded here</p>
+                        <small>Video placeholder - Link to be added</small>
+                    </div>
+                </div>
+            </section>
+
+            <section class="test-section">
+                <h2>📝 Knowledge Test</h2>
+                <p class="test-instruction">Complete this test to unlock the next course. You need 18 out of 20 correct answers to pass.</p>
+                
+                <div class="test-container">
+                    <div class="question" data-question="1">
+                        <h3>Question 1</h3>
+                        <p>Which of the following is the correct way to create a comment in Python?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> // This is a comment</label>
+                            <label><input type="radio" name="q1" value="b"> # This is a comment</label>
+                            <label><input type="radio" name="q1" value="c"> /* This is a comment */</label>
+                            <label><input type="radio" name="q1" value="d"> -- This is a comment</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="2">
+                        <h3>Question 2</h3>
+                        <p>What is the output of: print(type(5.0))?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> &lt;class 'int'&gt;</label>
+                            <label><input type="radio" name="q2" value="b"> &lt;class 'float'&gt;</label>
+                            <label><input type="radio" name="q2" value="c"> &lt;class 'number'&gt;</label>
+                            <label><input type="radio" name="q2" value="d"> &lt;class 'decimal'&gt;</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="3">
+                        <h3>Question 3</h3>
+                        <p>Which of the following is used to define a function in Python?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="a"> function</label>
+                            <label><input type="radio" name="q3" value="b"> def</label>
+                            <label><input type="radio" name="q3" value="c"> define</label>
+                            <label><input type="radio" name="q3" value="d"> func</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="4">
+                        <h3>Question 4</h3>
+                        <p>What does the len() function return for the string "Python"?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> 5</label>
+                            <label><input type="radio" name="q4" value="b"> 6</label>
+                            <label><input type="radio" name="q4" value="c"> 7</label>
+                            <label><input type="radio" name="q4" value="d"> 8</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="5">
+                        <h3>Question 5</h3>
+                        <p>Which of the following is a mutable data type in Python?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="a"> tuple</label>
+                            <label><input type="radio" name="q5" value="b"> string</label>
+                            <label><input type="radio" name="q5" value="c"> list</label>
+                            <label><input type="radio" name="q5" value="d"> int</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="6">
+                        <h3>Question 6</h3>
+                        <p>What is the correct way to create a dictionary in Python?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q6" value="a"> dict = {key: value}</label>
+                            <label><input type="radio" name="q6" value="b"> dict = [key: value]</label>
+                            <label><input type="radio" name="q6" value="c"> dict = (key: value)</label>
+                            <label><input type="radio" name="q6" value="d"> dict = &lt;key: value&gt;</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="7">
+                        <h3>Question 7</h3>
+                        <p>What is the output of: print(3 ** 2)?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q7" value="a"> 6</label>
+                            <label><input type="radio" name="q7" value="b"> 9</label>
+                            <label><input type="radio" name="q7" value="c"> 32</label>
+                            <label><input type="radio" name="q7" value="d"> Error</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="8">
+                        <h3>Question 8</h3>
+                        <p>Which method is used to add an element to the end of a list?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q8" value="a"> add()</label>
+                            <label><input type="radio" name="q8" value="b"> append()</label>
+                            <label><input type="radio" name="q8" value="c"> insert()</label>
+                            <label><input type="radio" name="q8" value="d"> push()</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="9">
+                        <h3>Question 9</h3>
+                        <p>What is the correct syntax for a for loop in Python?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q9" value="a"> for i in range(10):</label>
+                            <label><input type="radio" name="q9" value="b"> for (i = 0; i < 10; i++):</label>
+                            <label><input type="radio" name="q9" value="c"> for i from 0 to 10:</label>
+                            <label><input type="radio" name="q9" value="d"> for i = 0 to 10:</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="10">
+                        <h3>Question 10</h3>
+                        <p>Which of the following is used to handle exceptions in Python?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q10" value="a"> try-catch</label>
+                            <label><input type="radio" name="q10" value="b"> try-except</label>
+                            <label><input type="radio" name="q10" value="c"> throw-catch</label>
+                            <label><input type="radio" name="q10" value="d"> error-handle</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="11">
+                        <h3>Question 11</h3>
+                        <p>What is the output of: print("Hello"[1])?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q11" value="a"> H</label>
+                            <label><input type="radio" name="q11" value="b"> e</label>
+                            <label><input type="radio" name="q11" value="c"> l</label>
+                            <label><input type="radio" name="q11" value="d"> o</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="12">
+                        <h3>Question 12</h3>
+                        <p>Which keyword is used to create a class in Python?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q12" value="a"> class</label>
+                            <label><input type="radio" name="q12" value="b"> Class</label>
+                            <label><input type="radio" name="q12" value="c"> object</label>
+                            <label><input type="radio" name="q12" value="d"> define</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="13">
+                        <h3>Question 13</h3>
+                        <p>What is the purpose of the __init__ method in a class?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q13" value="a"> To delete an object</label>
+                            <label><input type="radio" name="q13" value="b"> To initialize an object</label>
+                            <label><input type="radio" name="q13" value="c"> To copy an object</label>
+                            <label><input type="radio" name="q13" value="d"> To print an object</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="14">
+                        <h3>Question 14</h3>
+                        <p>Which of the following is the correct way to import a module?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q14" value="a"> import module_name</label>
+                            <label><input type="radio" name="q14" value="b"> include module_name</label>
+                            <label><input type="radio" name="q14" value="c"> require module_name</label>
+                            <label><input type="radio" name="q14" value="d"> load module_name</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="15">
+                        <h3>Question 15</h3>
+                        <p>What is the output of: print(bool(0))?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q15" value="a"> True</label>
+                            <label><input type="radio" name="q15" value="b"> False</label>
+                            <label><input type="radio" name="q15" value="c"> 0</label>
+                            <label><input type="radio" name="q15" value="d"> None</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="16">
+                        <h3>Question 16</h3>
+                        <p>Which operator is used for floor division in Python?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q16" value="a"> /</label>
+                            <label><input type="radio" name="q16" value="b"> //</label>
+                            <label><input type="radio" name="q16" value="c"> %</label>
+                            <label><input type="radio" name="q16" value="d"> **</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="17">
+                        <h3>Question 17</h3>
+                        <p>What is the difference between a list and a tuple?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q17" value="a"> Lists are immutable, tuples are mutable</label>
+                            <label><input type="radio" name="q17" value="b"> Lists are mutable, tuples are immutable</label>
+                            <label><input type="radio" name="q17" value="c"> No difference</label>
+                            <label><input type="radio" name="q17" value="d"> Lists use [], tuples use {}</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="18">
+                        <h3>Question 18</h3>
+                        <p>Which method is used to remove an item from a list by index?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q18" value="a"> delete()</label>
+                            <label><input type="radio" name="q18" value="b"> remove()</label>
+                            <label><input type="radio" name="q18" value="c"> pop()</label>
+                            <label><input type="radio" name="q18" value="d"> clear()</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="19">
+                        <h3>Question 19</h3>
+                        <p>What is the correct way to open a file for reading in Python?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q19" value="a"> open("file.txt", "r")</label>
+                            <label><input type="radio" name="q19" value="b"> open("file.txt", "read")</label>
+                            <label><input type="radio" name="q19" value="c"> file.open("file.txt")</label>
+                            <label><input type="radio" name="q19" value="d"> read("file.txt")</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="20">
+                        <h3>Question 20</h3>
+                        <p>Which of the following is used to convert a string to an integer in Python?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q20" value="a"> str()</label>
+                            <label><input type="radio" name="q20" value="b"> int()</label>
+                            <label><input type="radio" name="q20" value="c"> float()</label>
+                            <label><input type="radio" name="q20" value="d"> convert()</label>
+                        </div>
+                    </div>
+
+                    <div class="test-actions">
+                        <button class="submit-test-btn">Submit Test</button>
+                        <div class="test-result" style="display: none;">
+                            <div class="score-display"></div>
+                            <div class="result-message"></div>
+                            <button class="next-course-btn" style="display: none;">Proceed to Next Course</button>
+                            <button class="retry-btn" style="display: none;">Retry Test</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="course-2.js"></script>
+</body>
+</html>

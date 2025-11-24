@@ -1,0 +1,153 @@
+/* Burp Suite specific theme */
+.course-header {
+  background: linear-gradient(135deg, #4d2d00, #331a00);
+  border: 1px solid rgba(255, 165, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.course-title {
+  background: linear-gradient(45deg, #ffa500, #ff8c00);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(255, 165, 0, 0.3);
+}
+
+.content-section {
+  background: rgba(255, 165, 0, 0.05);
+  border: 1px solid rgba(255, 165, 0, 0.1);
+}
+
+.content-section h2 {
+  color: #ffa500;
+}
+
+.content-section h3 {
+  color: #ff8c00;
+}
+
+.content-section strong {
+  color: #ffa500;
+}
+
+.code-block {
+  background: #331a00;
+  border: 1px solid #ff8c00;
+}
+
+.code-block pre {
+  color: #ffa500;
+}
+
+.data-type {
+  background: rgba(255, 165, 0, 0.1);
+  border: 1px solid rgba(255, 165, 0, 0.3);
+}
+
+.data-type h4 {
+  color: #ffa500;
+}
+
+/* Edition specific styling */
+.community {
+  border-left: 4px solid #00ff00;
+}
+
+.professional {
+  border-left: 4px solid #ffff00;
+}
+
+.enterprise {
+  border-left: 4px solid #ff0000;
+}
+
+/* Severity specific styling */
+.high-severity {
+  border-left: 4px solid #ff0000;
+}
+
+.medium-severity {
+  border-left: 4px solid #ffa500;
+}
+
+.low-severity {
+  border-left: 4px solid #ffff00;
+}
+
+.decoder-examples {
+  border-left: 4px solid #00ccff;
+}
+
+.comparer-examples {
+  border-left: 4px solid #cc00ff;
+}
+
+.back-btn:hover {
+  background: rgba(255, 165, 0, 0.2);
+  border-color: rgba(255, 165, 0, 0.5);
+}
+
+.course-progress .course-number {
+  color: #ffa500;
+}
+
+/* Web security testing effect */
+.course-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent 0px,
+    rgba(255, 165, 0, 0.1) 2px,
+    transparent 4px,
+    rgba(255, 165, 0, 0.05) 6px
+  );
+  pointer-events: none;
+  animation: webScan 3s infinite;
+}
+
+@keyframes webScan {
+  0%,
+  100% {
+    transform: translateX(-100%);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateX(100%);
+    opacity: 0.7;
+  }
+}
+
+.content-section::before {
+  content: "🕷️";
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  opacity: 0.3;
+  color: #ffa500;
+}
+
+.content-section {
+  position: relative;
+}
+
+/* Security testing pulse */
+.course-header {
+  animation: securityPulse 4s ease-in-out infinite;
+}
+
+@keyframes securityPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 165, 0, 0.4);
+  }
+}

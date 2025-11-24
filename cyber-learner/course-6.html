@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocols Overview - Cyber Learner</title>
+    <link rel="stylesheet" href="course-styles.css">
+    <link rel="stylesheet" href="course-6.css">
+</head>
+<body>
+    <div class="course-container">
+        <header class="course-header">
+            <div class="nav-controls">
+                <a href="index.html" class="back-btn">← Back to Courses</a>
+                <div class="course-progress">
+                    <span class="course-number">Course 6</span>
+                    <span class="course-total">of 14</span>
+                </div>
+            </div>
+            <h1 class="course-title">Protocols Overview</h1>
+            <p class="course-subtitle">Explore HTTP, HTTPS, FTP, SSH, and other essential protocols</p>
+        </header>
+
+        <main class="course-content">
+            <section class="content-section">
+                <h2>Introduction to Network Protocols</h2>
+                <p>Network protocols are standardized rules that define how devices communicate over networks. Understanding these protocols is crucial for cybersecurity professionals to identify vulnerabilities and secure communications.</p>
+                
+                <h3>What are Network Protocols?</h3>
+                <ul>
+                    <li><strong>Definition:</strong> Set of rules governing network communication</li>
+                    <li><strong>Purpose:</strong> Ensure reliable and standardized data exchange</li>
+                    <li><strong>Components:</strong> Syntax, semantics, and timing</li>
+                    <li><strong>Standards:</strong> Defined by organizations like IETF, IEEE</li>
+                    <li><strong>Security:</strong> Some protocols include built-in security features</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>HTTP and HTTPS</h2>
+                <p>HyperText Transfer Protocol (HTTP) and its secure version (HTTPS) are fundamental to web communication.</p>
+                
+                <h3>HTTP (HyperText Transfer Protocol)</h3>
+                <div class="data-types-grid">
+                    <div class="data-type http-info">
+                        <h4>HTTP Basics</h4>
+                        <ul>
+                            <li>Port: 80</li>
+                            <li>Stateless protocol</li>
+                            <li>Request-response model</li>
+                            <li>Plain text transmission</li>
+                            <li>No built-in security</li>
+                        </ul>
+                    </div>
+                    <div class="data-type https-info">
+                        <h4>HTTPS (HTTP Secure)</h4>
+                        <ul>
+                            <li>Port: 443</li>
+                            <li>Encrypted with SSL/TLS</li>
+                            <li>Authentication support</li>
+                            <li>Data integrity protection</li>
+                            <li>Required for sensitive data</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>HTTP Methods</h3>
+                <div class="code-block">
+                    <pre><code># Common HTTP Methods:
+
+GET     - Retrieve data from server
+POST    - Send data to server
+PUT     - Update/replace resource
+DELETE  - Remove resource
+HEAD    - Get headers only
+OPTIONS - Get allowed methods
+PATCH   - Partial update
+
+# HTTP Request Example:
+GET /index.html HTTP/1.1
+Host: www.example.com
+User-Agent: Mozilla/5.0
+Accept: text/html
+Connection: keep-alive
+
+# HTTP Response Example:
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 1234
+Server: Apache/2.4.41
+
+&lt;html&gt;...&lt;/html&gt;</code></pre>
+                </div>
+
+                <h3>HTTP Status Codes</h3>
+                <ul>
+                    <li><strong>1xx Informational:</strong> 100 Continue, 101 Switching Protocols</li>
+                    <li><strong>2xx Success:</strong> 200 OK, 201 Created, 204 No Content</li>
+                    <li><strong>3xx Redirection:</strong> 301 Moved Permanently, 302 Found, 304 Not Modified</li>
+                    <li><strong>4xx Client Error:</strong> 400 Bad Request, 401 Unauthorized, 404 Not Found</li>
+                    <li><strong>5xx Server Error:</strong> 500 Internal Server Error, 502 Bad Gateway, 503 Service Unavailable</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>FTP and SFTP</h2>
+                <p>File Transfer Protocol (FTP) and its secure variants are used for transferring files between systems.</p>
+                
+                <h3>FTP (File Transfer Protocol)</h3>
+                <div class="code-block">
+                    <pre><code># FTP Characteristics:
+- Port 21 (control), Port 20 (data)
+- Two separate connections
+- Active vs Passive modes
+- Plain text authentication
+- No encryption by default
+
+# FTP Commands:
+USER username    - Authenticate user
+PASS password    - Provide password
+LIST            - List directory contents
+RETR filename   - Download file
+STOR filename   - Upload file
+PWD             - Print working directory
+CWD directory   - Change directory
+QUIT            - Close connection
+
+# FTP Session Example:
+220 Welcome to FTP server
+USER alice
+331 Password required
+PASS secret123
+230 Login successful
+PWD
+257 "/" is current directory
+LIST
+150 Opening data connection
+226 Transfer complete</code></pre>
+                </div>
+
+                <h3>Secure File Transfer Protocols</h3>
+                <ul>
+                    <li><strong>SFTP:</strong> SSH File Transfer Protocol (port 22)</li>
+                    <li><strong>FTPS:</strong> FTP over SSL/TLS (ports 989/990)</li>
+                    <li><strong>SCP:</strong> Secure Copy Protocol (port 22)</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>SSH (Secure Shell)</h2>
+                <p>SSH provides secure remote access and command execution over encrypted connections.</p>
+                
+                <div class="code-block">
+                    <pre><code># SSH Features:
+- Port 22
+- Strong encryption
+- Public key authentication
+- Port forwarding/tunneling
+- X11 forwarding
+- File transfer capabilities
+
+# SSH Connection:
+ssh username@hostname
+ssh -p 2222 user@server.com    # Custom port
+ssh -i keyfile user@server     # Private key auth
+
+# SSH Key Generation:
+ssh-keygen -t rsa -b 4096
+ssh-keygen -t ed25519
+
+# SSH Configuration (~/.ssh/config):
+Host myserver
+    HostName server.example.com
+    User alice
+    Port 2222
+    IdentityFile ~/.ssh/id_rsa
+
+# SSH Tunneling:
+ssh -L 8080:localhost:80 user@server    # Local port forwarding
+ssh -R 8080:localhost:80 user@server    # Remote port forwarding
+ssh -D 1080 user@server                 # SOCKS proxy</code></pre>
+                </div>
+
+                <h3>SSH Security Best Practices</h3>
+                <ul>
+                    <li><strong>Disable root login:</strong> PermitRootLogin no</li>
+                    <li><strong>Use key-based authentication:</strong> Disable password auth</li>
+                    <li><strong>Change default port:</strong> Use non-standard port</li>
+                    <li><strong>Limit user access:</strong> AllowUsers directive</li>
+                    <li><strong>Enable fail2ban:</strong> Block brute force attempts</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>DNS (Domain Name System)</h2>
+                <p>DNS translates human-readable domain names into IP addresses.</p>
+                
+                <div class="code-block">
+                    <pre><code># DNS Hierarchy:
+Root (.)
+├── Top-Level Domains (.com, .org, .net)
+│   ├── Second-Level Domains (example.com)
+│   │   └── Subdomains (www.example.com)
+
+# DNS Record Types:
+A       - IPv4 address
+AAAA    - IPv6 address
+CNAME   - Canonical name (alias)
+MX      - Mail exchange
+NS      - Name server
+PTR     - Reverse lookup
+TXT     - Text records
+SOA     - Start of authority
+
+# DNS Query Process:
+1. Client queries local DNS resolver
+2. Resolver queries root name server
+3. Root server responds with TLD server
+4. Resolver queries TLD server
+5. TLD server responds with authoritative server
+6. Resolver queries authoritative server
+7. Authoritative server responds with IP
+8. Resolver caches and returns result
+
+# DNS Tools:
+nslookup google.com
+dig google.com
+host google.com
+dig @8.8.8.8 google.com MX</code></pre>
+                </div>
+
+                <h3>DNS Security Concerns</h3>
+                <ul>
+                    <li><strong>DNS Spoofing:</strong> Fake DNS responses</li>
+                    <li><strong>Cache Poisoning:</strong> Corrupt DNS cache</li>
+                    <li><strong>DNS Tunneling:</strong> Data exfiltration via DNS</li>
+                    <li><strong>DDoS Amplification:</strong> Using DNS for attacks</li>
+                    <li><strong>DNSSEC:</strong> DNS Security Extensions for validation</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>DHCP (Dynamic Host Configuration Protocol)</h2>
+                <p>DHCP automatically assigns IP addresses and network configuration to devices.</p>
+                
+                <div class="code-block">
+                    <pre><code># DHCP Process (DORA):
+1. DISCOVER  - Client broadcasts request
+2. OFFER     - Server offers IP address
+3. REQUEST   - Client requests offered IP
+4. ACK       - Server acknowledges assignment
+
+# DHCP Configuration Options:
+- IP address and subnet mask
+- Default gateway
+- DNS servers
+- Domain name
+- Lease time
+- NTP servers
+- TFTP server (for PXE boot)
+
+# DHCP Ports:
+Server: UDP 67
+Client: UDP 68
+
+# DHCP Lease States:
+INIT        - Initial state
+SELECTING   - Waiting for offers
+REQUESTING  - Requesting specific IP
+BOUND       - IP assigned and active
+RENEWING    - Attempting to renew lease
+REBINDING   - Attempting to rebind lease
+INIT-REBOOT - Reboot with previous IP</code></pre>
+                </div>
+
+                <h3>DHCP Security Issues</h3>
+                <ul>
+                    <li><strong>Rogue DHCP Servers:</strong> Unauthorized DHCP servers</li>
+                    <li><strong>DHCP Starvation:</strong> Exhausting IP pool</li>
+                    <li><strong>DHCP Spoofing:</strong> Fake DHCP responses</li>
+                    <li><strong>Man-in-the-Middle:</strong> Malicious gateway assignment</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Email Protocols</h2>
+                <p>Several protocols handle different aspects of email communication.</p>
+                
+                <div class="data-types-grid">
+                    <div class="data-type smtp-info">
+                        <h4>SMTP (Simple Mail Transfer Protocol)</h4>
+                        <ul>
+                            <li>Port: 25 (plain), 587 (submission), 465 (SSL)</li>
+                            <li>Sends outgoing mail</li>
+                            <li>Server-to-server transfer</li>
+                            <li>Text-based protocol</li>
+                        </ul>
+                    </div>
+                    <div class="data-type pop3-info">
+                        <h4>POP3 (Post Office Protocol v3)</h4>
+                        <ul>
+                            <li>Port: 110 (plain), 995 (SSL)</li>
+                            <li>Downloads mail to client</li>
+                            <li>Deletes from server</li>
+                            <li>Single device access</li>
+                        </ul>
+                    </div>
+                    <div class="data-type imap-info">
+                        <h4>IMAP (Internet Message Access Protocol)</h4>
+                        <ul>
+                            <li>Port: 143 (plain), 993 (SSL)</li>
+                            <li>Syncs mail across devices</li>
+                            <li>Server-side storage</li>
+                            <li>Multi-device access</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>SMTP Commands</h3>
+                <div class="code-block">
+                    <pre><code># SMTP Session Example:
+220 mail.example.com ESMTP Ready
+HELO client.example.com
+250 Hello client.example.com
+MAIL FROM:&lt;sender@example.com&gt;
+250 OK
+RCPT TO:&lt;recipient@example.com&gt;
+250 OK
+DATA
+354 Start mail input
+Subject: Test Email
+From: sender@example.com
+To: recipient@example.com
+
+This is a test email.
+.
+250 Message accepted
+QUIT
+221 Goodbye</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Other Important Protocols</h2>
+                
+                <h3>SNMP (Simple Network Management Protocol)</h3>
+                <ul>
+                    <li><strong>Port:</strong> 161 (agent), 162 (trap)</li>
+                    <li><strong>Purpose:</strong> Network device management</li>
+                    <li><strong>Versions:</strong> SNMPv1, SNMPv2c, SNMPv3</li>
+                    <li><strong>Security:</strong> Community strings, encryption (v3)</li>
+                </ul>
+
+                <h3>NTP (Network Time Protocol)</h3>
+                <ul>
+                    <li><strong>Port:</strong> 123 (UDP)</li>
+                    <li><strong>Purpose:</strong> Time synchronization</li>
+                    <li><strong>Accuracy:</strong> Millisecond precision</li>
+                    <li><strong>Hierarchy:</strong> Stratum levels (0-15)</li>
+                </ul>
+
+                <h3>LDAP (Lightweight Directory Access Protocol)</h3>
+                <ul>
+                    <li><strong>Port:</strong> 389 (plain), 636 (SSL)</li>
+                    <li><strong>Purpose:</strong> Directory services</li>
+                    <li><strong>Use cases:</strong> Authentication, user management</li>
+                    <li><strong>Structure:</strong> Hierarchical directory tree</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Protocol Security Analysis</h2>
+                
+                <h3>Secure vs Insecure Protocols</h3>
+                <div class="data-types-grid">
+                    <div class="data-type insecure-protocols">
+                        <h4>Insecure Protocols</h4>
+                        <ul>
+                            <li>HTTP (port 80)</li>
+                            <li>FTP (ports 20/21)</li>
+                            <li>Telnet (port 23)</li>
+                            <li>SMTP (port 25)</li>
+                            <li>POP3 (port 110)</li>
+                            <li>IMAP (port 143)</li>
+                            <li>SNMP v1/v2c</li>
+                        </ul>
+                    </div>
+                    <div class="data-type secure-protocols">
+                        <h4>Secure Alternatives</h4>
+                        <ul>
+                            <li>HTTPS (port 443)</li>
+                            <li>SFTP/FTPS (ports 22/990)</li>
+                            <li>SSH (port 22)</li>
+                            <li>SMTPS (port 465/587)</li>
+                            <li>POP3S (port 995)</li>
+                            <li>IMAPS (port 993)</li>
+                            <li>SNMP v3</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Common Protocol Vulnerabilities</h3>
+                <ul>
+                    <li><strong>Plain text transmission:</strong> Credentials and data exposed</li>
+                    <li><strong>Weak authentication:</strong> Default or weak passwords</li>
+                    <li><strong>Protocol downgrade:</strong> Forcing use of weaker versions</li>
+                    <li><strong>Man-in-the-middle:</strong> Intercepting communications</li>
+                    <li><strong>Replay attacks:</strong> Reusing captured authentication</li>
+                </ul>
+            </section>
+
+            <section class="video-section">
+                <h2>📺 Video Tutorial</h2>
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        <div class="video-icon">🎥</div>
+                        <p>YouTube video will be embedded here</p>
+                        <small>Video placeholder - Link to be added</small>
+                    </div>
+                </div>
+            </section>
+
+            <section class="test-section">
+                <h2>📝 Knowledge Test</h2>
+                <p class="test-instruction">Complete this test to unlock the next course. You need 18 out of 20 correct answers to pass.</p>
+                
+                <div class="test-container">
+                    <div class="question" data-question="1">
+                        <h3>Question 1</h3>
+                        <p>What is the default port for HTTP?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> 80</label>
+                            <label><input type="radio" name="q1" value="b"> 443</label>
+                            <label><input type="radio" name="q1" value="c"> 8080</label>
+                            <label><input type="radio" name="q1" value="d"> 21</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="2">
+                        <h3>Question 2</h3>
+                        <p>Which HTTP method is used to retrieve data?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> POST</label>
+                            <label><input type="radio" name="q2" value="b"> GET</label>
+                            <label><input type="radio" name="q2" value="c"> PUT</label>
+                            <label><input type="radio" name="q2" value="d"> DELETE</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="3">
+                        <h3>Question 3</h3>
+                        <p>What does the HTTP status code 404 mean?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="a"> Server Error</label>
+                            <label><input type="radio" name="q3" value="b"> Not Found</label>
+                            <label><input type="radio" name="q3" value="c"> Unauthorized</label>
+                            <label><input type="radio" name="q3" value="d"> Bad Request</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="4">
+                        <h3>Question 4</h3>
+                        <p>Which port does SSH use by default?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> 21</label>
+                            <label><input type="radio" name="q4" value="b"> 22</label>
+                            <label><input type="radio" name="q4" value="c"> 23</label>
+                            <label><input type="radio" name="q4" value="d"> 25</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="5">
+                        <h3>Question 5</h3>
+                        <p>What does FTP stand for?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="a"> File Transfer Protocol</label>
+                            <label><input type="radio" name="q5" value="b"> Fast Transfer Protocol</label>
+                            <label><input type="radio" name="q5" value="c"> File Transmission Protocol</label>
+                            <label><input type="radio" name="q5" value="d"> Folder Transfer Protocol</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="6">
+                        <h3>Question 6</h3>
+                        <p>Which DNS record type is used for IPv4 addresses?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q6" value="a"> AAAA</label>
+                            <label><input type="radio" name="q6" value="b"> A</label>
+                            <label><input type="radio" name="q6" value="c"> CNAME</label>
+                            <label><input type="radio" name="q6" value="d"> MX</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="7">
+                        <h3>Question 7</h3>
+                        <p>What does DHCP stand for?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q7" value="a"> Dynamic Host Configuration Protocol</label>
+                            <label><input type="radio" name="q7" value="b"> Domain Host Configuration Protocol</label>
+                            <label><input type="radio" name="q7" value="c"> Dynamic Hardware Configuration Protocol</label>
+                            <label><input type="radio" name="q7" value="d"> Digital Host Configuration Protocol</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="8">
+                        <h3>Question 8</h3>
+                        <p>Which protocol is used for sending email?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q8" value="a"> POP3</label>
+                            <label><input type="radio" name="q8" value="b"> IMAP</label>
+                            <label><input type="radio" name="q8" value="c"> SMTP</label>
+                            <label><input type="radio" name="q8" value="d"> HTTP</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="9">
+                        <h3>Question 9</h3>
+                        <p>What is the secure version of HTTP?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q9" value="a"> SHTTP</label>
+                            <label><input type="radio" name="q9" value="b"> HTTPS</label>
+                            <label><input type="radio" name="q9" value="c"> HTTP/S</label>
+                            <label><input type="radio" name="q9" value="d"> HTTPSEC</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="10">
+                        <h3>Question 10</h3>
+                        <p>Which DHCP step comes first in the DORA process?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q10" value="a"> OFFER</label>
+                            <label><input type="radio" name="q10" value="b"> DISCOVER</label>
+                            <label><input type="radio" name="q10" value="c"> REQUEST</label>
+                            <label><input type="radio" name="q10" value="d"> ACK</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="11">
+                        <h3>Question 11</h3>
+                        <p>What is the default port for HTTPS?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q11" value="a"> 80</label>
+                            <label><input type="radio" name="q11" value="b"> 443</label>
+                            <label><input type="radio" name="q11" value="c"> 8080</label>
+                            <label><input type="radio" name="q11" value="d"> 8443</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="12">
+                        <h3>Question 12</h3>
+                        <p>Which protocol provides secure file transfer over SSH?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q12" value="a"> FTP</label>
+                            <label><input type="radio" name="q12" value="b"> TFTP</label>
+                            <label><input type="radio" name="q12" value="c"> SFTP</label>
+                            <label><input type="radio" name="q12" value="d"> FTPS</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="13">
+                        <h3>Question 13</h3>
+                        <p>What does DNS translate?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q13" value="a"> IP addresses to MAC addresses</label>
+                            <label><input type="radio" name="q13" value="b"> Domain names to IP addresses</label>
+                            <label><input type="radio" name="q13" value="c"> Hostnames to port numbers</label>
+                            <label><input type="radio" name="q13" value="d"> URLs to domain names</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="14">
+                        <h3>Question 14</h3>
+                        <p>Which email protocol keeps messages on the server?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q14" value="a"> SMTP</label>
+                            <label><input type="radio" name="q14" value="b"> POP3</label>
+                            <label><input type="radio" name="q14" value="c"> IMAP</label>
+                            <label><input type="radio" name="q14" value="d"> MAPI</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="15">
+                        <h3>Question 15</h3>
+                        <p>What is the purpose of SNMP?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q15" value="a"> Email management</label>
+                            <label><input type="radio" name="q15" value="b"> Network device management</label>
+                            <label><input type="radio" name="q15" value="c"> File transfer</label>
+                            <label><input type="radio" name="q15" value="d"> Web browsing</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="16">
+                        <h3>Question 16</h3>
+                        <p>Which port does DNS use?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q16" value="a"> 53</label>
+                            <label><input type="radio" name="q16" value="b"> 67</label>
+                            <label><input type="radio" name="q16" value="c"> 80</label>
+                            <label><input type="radio" name="q16" value="d"> 443</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="17">
+                        <h3>Question 17</h3>
+                        <p>What does NTP synchronize?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q17" value="a"> Network passwords</label>
+                            <label><input type="radio" name="q17" value="b"> Time across network devices</label>
+                            <label><input type="radio" name="q17" value="c"> Network topology</label>
+                            <label><input type="radio" name="q17" value="d"> Network protocols</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="18">
+                        <h3>Question 18</h3>
+                        <p>Which FTP mode is more firewall-friendly?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q18" value="a"> Active mode</label>
+                            <label><input type="radio" name="q18" value="b"> Passive mode</label>
+                            <label><input type="radio" name="q18" value="c"> Binary mode</label>
+                            <label><input type="radio" name="q18" value="d"> ASCII mode</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="19">
+                        <h3>Question 19</h3>
+                        <p>What does LDAP stand for?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q19" value="a"> Local Directory Access Protocol</label>
+                            <label><input type="radio" name="q19" value="b"> Lightweight Directory Access Protocol</label>
+                            <label><input type="radio" name="q19" value="c"> Limited Directory Access Protocol</label>
+                            <label><input type="radio" name="q19" value="d"> Linked Directory Access Protocol</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="20">
+                        <h3>Question 20</h3>
+                        <p>Which HTTP status code indicates success?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q20" value="a"> 200</label>
+                            <label><input type="radio" name="q20" value="b"> 300</label>
+                            <label><input type="radio" name="q20" value="c"> 400</label>
+                            <label><input type="radio" name="q20" value="d"> 500</label>
+                        </div>
+                    </div>
+
+                    <div class="test-actions">
+                        <button class="submit-test-btn">Submit Test</button>
+                        <div class="test-result" style="display: none;">
+                            <div class="score-display"></div>
+                            <div class="result-message"></div>
+                            <button class="next-course-btn" style="display: none;">Proceed to Next Course</button>
+                            <button class="retry-btn" style="display: none;">Retry Test</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="course-6.js"></script>
+</body>
+</html>

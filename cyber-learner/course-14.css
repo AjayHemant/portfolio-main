@@ -1,0 +1,173 @@
+/* Ethical Hacking Methodology specific theme */
+.course-header {
+  background: linear-gradient(135deg, #0d2818, #051a0f);
+  border: 1px solid rgba(0, 255, 127, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.course-title {
+  background: linear-gradient(45deg, #00ff7f, #00cc66);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(0, 255, 127, 0.3);
+}
+
+.content-section {
+  background: rgba(0, 255, 127, 0.05);
+  border: 1px solid rgba(0, 255, 127, 0.1);
+}
+
+.content-section h2 {
+  color: #00ff7f;
+}
+
+.content-section h3 {
+  color: #00cc66;
+}
+
+.content-section strong {
+  color: #00ff7f;
+}
+
+.code-block {
+  background: #051a0f;
+  border: 1px solid #00cc66;
+}
+
+.code-block pre {
+  color: #00ff7f;
+}
+
+.data-type {
+  background: rgba(0, 255, 127, 0.1);
+  border: 1px solid rgba(0, 255, 127, 0.3);
+}
+
+.data-type h4 {
+  color: #00ff7f;
+}
+
+/* Hacker type specific styling */
+.white-hat {
+  border-left: 4px solid #00ff00;
+}
+
+.black-hat {
+  border-left: 4px solid #ff0000;
+}
+
+.gray-hat {
+  border-left: 4px solid #808080;
+}
+
+/* Tool category styling */
+.osint-tools {
+  border-left: 4px solid #4169e1;
+}
+
+.network-tools {
+  border-left: 4px solid #ff6347;
+}
+
+.web-tools {
+  border-left: 4px solid #ffa500;
+}
+
+/* Certification level styling */
+.entry-level {
+  border-left: 4px solid #90ee90;
+}
+
+.intermediate {
+  border-left: 4px solid #ffa500;
+}
+
+.advanced {
+  border-left: 4px solid #ff4500;
+}
+
+.back-btn:hover {
+  background: rgba(0, 255, 127, 0.2);
+  border-color: rgba(0, 255, 127, 0.5);
+}
+
+.course-progress .course-number {
+  color: #00ff7f;
+}
+
+/* Ethical hacking matrix effect */
+.course-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    rgba(0, 255, 127, 0.1) 2px,
+    transparent 4px,
+    rgba(0, 255, 127, 0.05) 6px
+  );
+  pointer-events: none;
+  animation: matrixRain 3s linear infinite;
+}
+
+@keyframes matrixRain {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.content-section::before {
+  content: "🎯";
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  opacity: 0.3;
+  color: #00ff7f;
+}
+
+.content-section {
+  position: relative;
+}
+
+/* Ethical hacker pulse */
+.course-header {
+  animation: ethicalPulse 4s ease-in-out infinite;
+}
+
+@keyframes ethicalPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(0, 255, 127, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 255, 127, 0.4);
+  }
+}
+
+/* Special styling for final course */
+.complete-course-btn {
+  background: linear-gradient(45deg, #00ff7f, #00cc66);
+  color: #000;
+  font-weight: bold;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.complete-course-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 255, 127, 0.3);
+}

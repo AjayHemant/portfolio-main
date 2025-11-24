@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethical Hacking Methodology - Cyber Learner</title>
+    <link rel="stylesheet" href="course-styles.css">
+    <link rel="stylesheet" href="course-14.css">
+</head>
+<body>
+    <div class="course-container">
+        <header class="course-header">
+            <div class="nav-controls">
+                <a href="index.html" class="back-btn">← Back to Courses</a>
+                <div class="course-progress">
+                    <span class="course-number">Course 14</span>
+                    <span class="course-total">of 14</span>
+                </div>
+            </div>
+            <h1 class="course-title">Ethical Hacking Methodology</h1>
+            <p class="course-subtitle">Master the systematic approach to ethical hacking and penetration testing</p>
+        </header>
+
+        <main class="course-content">
+            <section class="content-section">
+                <h2>Introduction to Ethical Hacking</h2>
+                <p>Ethical hacking is the practice of intentionally probing systems and networks for vulnerabilities in a legal and authorized manner. It helps organizations identify and fix security weaknesses before malicious attackers can exploit them.</p>
+                
+                <h3>What is Ethical Hacking?</h3>
+                <ul>
+                    <li><strong>Authorized Testing:</strong> Conducted with explicit permission</li>
+                    <li><strong>Legal Framework:</strong> Operates within legal boundaries</li>
+                    <li><strong>Constructive Purpose:</strong> Aims to improve security posture</li>
+                    <li><strong>Professional Standards:</strong> Follows industry best practices</li>
+                    <li><strong>Responsible Disclosure:</strong> Reports findings appropriately</li>
+                </ul>
+
+                <h3>Types of Hackers</h3>
+                <div class="data-types-grid">
+                    <div class="data-type white-hat">
+                        <h4>White Hat Hackers</h4>
+                        <ul>
+                            <li>Ethical hackers</li>
+                            <li>Work with authorization</li>
+                            <li>Help improve security</li>
+                            <li>Follow legal guidelines</li>
+                        </ul>
+                    </div>
+                    <div class="data-type black-hat">
+                        <h4>Black Hat Hackers</h4>
+                        <ul>
+                            <li>Malicious hackers</li>
+                            <li>Illegal activities</li>
+                            <li>Personal gain motive</li>
+                            <li>Cause damage</li>
+                        </ul>
+                    </div>
+                    <div class="data-type gray-hat">
+                        <h4>Gray Hat Hackers</h4>
+                        <ul>
+                            <li>Between white and black</li>
+                            <li>May break laws</li>
+                            <li>Good intentions</li>
+                            <li>Questionable methods</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Ethical Hacking Methodology</h2>
+                <p>A systematic approach ensures comprehensive testing while maintaining ethical and legal standards.</p>
+                
+                <div class="code-block">
+                    <pre><code># Ethical Hacking Phases:
+
+1. Reconnaissance (Information Gathering)
+   - Passive reconnaissance
+   - Active reconnaissance
+   - Social engineering reconnaissance
+   - Physical reconnaissance
+
+2. Scanning and Enumeration
+   - Network scanning
+   - Port scanning
+   - Service enumeration
+   - Vulnerability scanning
+
+3. Gaining Access (Exploitation)
+   - Vulnerability exploitation
+   - Password attacks
+   - Social engineering attacks
+   - Physical attacks
+
+4. Maintaining Access
+   - Backdoor installation
+   - Privilege escalation
+   - Covering tracks
+   - Data exfiltration
+
+5. Covering Tracks
+   - Log manipulation
+   - File deletion
+   - Timestamp modification
+   - Evidence removal
+
+6. Reporting
+   - Executive summary
+   - Technical findings
+   - Risk assessment
+   - Remediation recommendations</code></pre>
+                </div>
+
+                <h3>Methodology Frameworks</h3>
+                <ul>
+                    <li><strong>OWASP Testing Guide:</strong> Web application security testing</li>
+                    <li><strong>NIST SP 800-115:</strong> Technical guide to information security testing</li>
+                    <li><strong>PTES:</strong> Penetration Testing Execution Standard</li>
+                    <li><strong>OSSTMM:</strong> Open Source Security Testing Methodology Manual</li>
+                    <li><strong>ISSAF:</strong> Information Systems Security Assessment Framework</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Phase 1: Reconnaissance</h2>
+                <p>Reconnaissance is the information gathering phase where attackers collect as much information as possible about the target.</p>
+                
+                <div class="code-block">
+                    <pre><code># Passive Reconnaissance:
+- No direct interaction with target
+- Uses publicly available information
+- Difficult to detect
+- Lower risk of discovery
+
+# Passive Reconnaissance Techniques:
+1. Search Engines:
+   - Google dorking
+   - Bing, Yahoo searches
+   - Specialized search engines
+
+2. Social Media Intelligence:
+   - LinkedIn profiles
+   - Facebook information
+   - Twitter posts
+   - Professional networks
+
+3. Public Records:
+   - WHOIS databases
+   - DNS records
+   - Certificate transparency logs
+   - SEC filings
+
+4. Website Analysis:
+   - Robots.txt files
+   - Sitemap.xml
+   - Source code analysis
+   - Metadata extraction
+
+# Google Dorking Examples:
+site:example.com filetype:pdf
+intitle:"index of" site:example.com
+inurl:admin site:example.com
+"password" filetype:xls site:example.com
+cache:example.com</code></pre>
+                </div>
+
+                <h3>Active Reconnaissance</h3>
+                <div class="code-block">
+                    <pre><code># Active Reconnaissance:
+- Direct interaction with target
+- Higher chance of detection
+- More detailed information
+- Requires careful approach
+
+# Active Reconnaissance Techniques:
+1. Network Scanning:
+   - Port scanning with Nmap
+   - Service version detection
+   - OS fingerprinting
+   - Network topology mapping
+
+2. DNS Enumeration:
+   - Zone transfers
+   - Subdomain enumeration
+   - DNS brute forcing
+   - Reverse DNS lookups
+
+3. Web Application Scanning:
+   - Directory enumeration
+   - Technology identification
+   - Vulnerability scanning
+   - Content discovery
+
+4. Social Engineering:
+   - Phone calls
+   - Email phishing
+   - Physical reconnaissance
+   - Dumpster diving
+
+# DNS Enumeration Commands:
+nslookup example.com
+dig example.com ANY
+dnsrecon -d example.com
+fierce -dns example.com</code></pre>
+                </div>
+
+                <h3>Information Gathering Tools</h3>
+                <div class="data-types-grid">
+                    <div class="data-type osint-tools">
+                        <h4>OSINT Tools</h4>
+                        <ul>
+                            <li>theHarvester</li>
+                            <li>Maltego</li>
+                            <li>Shodan</li>
+                            <li>Recon-ng</li>
+                        </ul>
+                    </div>
+                    <div class="data-type network-tools">
+                        <h4>Network Tools</h4>
+                        <ul>
+                            <li>Nmap</li>
+                            <li>Masscan</li>
+                            <li>Zmap</li>
+                            <li>Netcat</li>
+                        </ul>
+                    </div>
+                    <div class="data-type web-tools">
+                        <h4>Web Tools</h4>
+                        <ul>
+                            <li>Dirb/Dirbuster</li>
+                            <li>Gobuster</li>
+                            <li>Nikto</li>
+                            <li>Whatweb</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Phase 2: Scanning and Enumeration</h2>
+                <p>This phase involves actively probing the target to identify live systems, open ports, running services, and potential vulnerabilities.</p>
+                
+                <div class="code-block">
+                    <pre><code># Network Scanning Process:
+
+1. Host Discovery:
+   - Ping sweeps
+   - ARP scanning
+   - TCP/UDP ping
+   - ICMP scanning
+
+2. Port Scanning:
+   - TCP connect scans
+   - SYN stealth scans
+   - UDP scans
+   - Comprehensive port scans
+
+3. Service Enumeration:
+   - Banner grabbing
+   - Service version detection
+   - Service-specific enumeration
+   - Default credential testing
+
+4. Vulnerability Scanning:
+   - Automated vulnerability scanners
+   - Manual vulnerability assessment
+   - Configuration reviews
+   - Patch level analysis
+
+# Nmap Scanning Examples:
+# Host Discovery
+nmap -sn 192.168.1.0/24
+
+# Port Scanning
+nmap -sS -p- 192.168.1.100
+
+# Service Detection
+nmap -sV -sC 192.168.1.100
+
+# Vulnerability Scanning
+nmap --script vuln 192.168.1.100</code></pre>
+                </div>
+
+                <h3>Service Enumeration Techniques</h3>
+                <div class="code-block">
+                    <pre><code># Common Service Enumeration:
+
+# HTTP/HTTPS (Port 80/443):
+- Directory enumeration
+- Technology identification
+- SSL certificate analysis
+- HTTP methods testing
+
+# SSH (Port 22):
+- Version identification
+- Supported authentication methods
+- Key exchange algorithms
+- Weak configuration detection
+
+# FTP (Port 21):
+- Anonymous access testing
+- Banner grabbing
+- Directory listing
+- File permissions
+
+# SMB (Port 445):
+- Share enumeration
+- User enumeration
+- Null session testing
+- Version identification
+
+# DNS (Port 53):
+- Zone transfer attempts
+- DNS record enumeration
+- Cache snooping
+- Subdomain brute forcing
+
+# SNMP (Port 161):
+- Community string testing
+- MIB walking
+- System information gathering
+- Network device enumeration</code></pre>
+                </div>
+
+                <h3>Vulnerability Assessment</h3>
+                <ul>
+                    <li><strong>Automated Scanners:</strong> Nessus, OpenVAS, Qualys</li>
+                    <li><strong>Manual Testing:</strong> Custom scripts and manual verification</li>
+                    <li><strong>Configuration Review:</strong> Security configuration assessment</li>
+                    <li><strong>Patch Management:</strong> Missing security updates identification</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Phase 3: Gaining Access (Exploitation)</h2>
+                <p>The exploitation phase involves attempting to gain unauthorized access to systems using identified vulnerabilities.</p>
+                
+                <div class="code-block">
+                    <pre><code># Exploitation Categories:
+
+1. Network-based Attacks:
+   - Buffer overflow exploits
+   - Protocol-specific attacks
+   - Man-in-the-middle attacks
+   - Denial of service attacks
+
+2. Web Application Attacks:
+   - SQL injection
+   - Cross-site scripting (XSS)
+   - Cross-site request forgery (CSRF)
+   - File inclusion vulnerabilities
+
+3. Client-side Attacks:
+   - Malicious email attachments
+   - Drive-by downloads
+   - Social engineering
+   - Physical attacks
+
+4. Password Attacks:
+   - Brute force attacks
+   - Dictionary attacks
+   - Rainbow table attacks
+   - Credential stuffing
+
+# Exploitation Tools:
+Metasploit Framework:
+- Comprehensive exploitation platform
+- Automated exploit development
+- Payload generation
+- Post-exploitation modules
+
+Custom Exploits:
+- Proof-of-concept development
+- Exploit modification
+- Zero-day exploitation
+- Custom payload creation</code></pre>
+                </div>
+
+                <h3>Exploitation Best Practices</h3>
+                <ul>
+                    <li><strong>Proof of Concept:</strong> Demonstrate vulnerability without causing damage</li>
+                    <li><strong>Minimal Impact:</strong> Use least intrusive methods possible</li>
+                    <li><strong>Documentation:</strong> Record all exploitation attempts</li>
+                    <li><strong>Authorization:</strong> Stay within scope of engagement</li>
+                    <li><strong>Backup Plans:</strong> Have rollback procedures ready</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Phase 4: Maintaining Access</h2>
+                <p>After gaining initial access, attackers typically try to maintain persistent access to the compromised system.</p>
+                
+                <div class="code-block">
+                    <pre><code># Persistence Techniques:
+
+1. Backdoors:
+   - Web shells
+   - Binary backdoors
+   - Service modifications
+   - Startup script modifications
+
+2. Privilege Escalation:
+   - Local privilege escalation
+   - Kernel exploits
+   - Service account abuse
+   - Token manipulation
+
+3. Lateral Movement:
+   - Network pivoting
+   - Credential harvesting
+   - Pass-the-hash attacks
+   - Remote access tools
+
+4. Data Exfiltration:
+   - Sensitive data identification
+   - Data compression and encryption
+   - Covert channels
+   - Staged exfiltration
+
+# Common Persistence Methods:
+Windows:
+- Registry modifications
+- Scheduled tasks
+- Service installation
+- DLL hijacking
+
+Linux:
+- Cron jobs
+- Init scripts
+- SSH key installation
+- Library preloading
+
+# Privilege Escalation Examples:
+Windows:
+- UAC bypass techniques
+- Token impersonation
+- Service account exploitation
+- Kernel exploits
+
+Linux:
+- SUID binary exploitation
+- Sudo misconfigurations
+- Kernel vulnerabilities
+- Cron job abuse</code></pre>
+                </div>
+
+                <h3>Post-Exploitation Activities</h3>
+                <ul>
+                    <li><strong>System Enumeration:</strong> Gather system information</li>
+                    <li><strong>Network Discovery:</strong> Map internal networks</li>
+                    <li><strong>Credential Harvesting:</strong> Extract stored credentials</li>
+                    <li><strong>Data Collection:</strong> Identify sensitive information</li>
+                    <li><strong>Persistence Establishment:</strong> Maintain access for testing</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Phase 5: Covering Tracks</h2>
+                <p>Covering tracks involves removing evidence of the penetration test activities to simulate real-world attack scenarios.</p>
+                
+                <div class="code-block">
+                    <pre><code># Track Covering Techniques:
+
+1. Log Manipulation:
+   - Event log clearing
+   - Log entry modification
+   - Log file deletion
+   - Syslog manipulation
+
+2. File System Cleanup:
+   - Temporary file removal
+   - Tool deletion
+   - History clearing
+   - Timestamp modification
+
+3. Network Traces:
+   - Connection log clearing
+   - Firewall log manipulation
+   - Network monitoring evasion
+   - Traffic obfuscation
+
+4. Registry Cleanup (Windows):
+   - Registry key deletion
+   - Value modification
+   - History clearing
+   - Recent document removal
+
+# Log Clearing Commands:
+Windows:
+wevtutil cl System
+wevtutil cl Security
+wevtutil cl Application
+
+Linux:
+echo > /var/log/auth.log
+echo > /var/log/syslog
+history -c
+
+# Timestamp Modification:
+Windows:
+timestomp -m "01/01/2020 12:00:00" file.exe
+
+Linux:
+touch -t 202001011200 file.txt</code></pre>
+                </div>
+
+                <h3>Anti-Forensics Techniques</h3>
+                <ul>
+                    <li><strong>Data Wiping:</strong> Secure deletion of sensitive files</li>
+                    <li><strong>Steganography:</strong> Hiding data in innocent-looking files</li>
+                    <li><strong>Encryption:</strong> Protecting extracted data</li>
+                    <li><strong>Obfuscation:</strong> Making malicious code harder to analyze</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Phase 6: Reporting</h2>
+                <p>The reporting phase is crucial for communicating findings and providing actionable recommendations to stakeholders.</p>
+                
+                <div class="code-block">
+                    <pre><code># Report Structure:
+
+1. Executive Summary:
+   - High-level overview
+   - Business impact assessment
+   - Key findings summary
+   - Strategic recommendations
+
+2. Technical Summary:
+   - Methodology overview
+   - Scope definition
+   - Testing timeline
+   - Tools and techniques used
+
+3. Detailed Findings:
+   - Vulnerability descriptions
+   - Risk ratings
+   - Proof of concept
+   - Affected systems
+
+4. Risk Assessment:
+   - Risk matrix
+   - Business impact analysis
+   - Likelihood assessment
+   - Overall risk rating
+
+5. Recommendations:
+   - Immediate actions
+   - Short-term fixes
+   - Long-term improvements
+   - Strategic initiatives
+
+6. Appendices:
+   - Technical details
+   - Screenshots
+   - Tool outputs
+   - References
+
+# Risk Rating Matrix:
+Critical: Immediate threat to business operations
+High: Significant security risk requiring prompt attention
+Medium: Moderate risk that should be addressed
+Low: Minor security concern
+Informational: No immediate security impact</code></pre>
+                </div>
+
+                <h3>Effective Reporting Guidelines</h3>
+                <ul>
+                    <li><strong>Clear Communication:</strong> Use language appropriate for audience</li>
+                    <li><strong>Actionable Recommendations:</strong> Provide specific remediation steps</li>
+                    <li><strong>Risk Prioritization:</strong> Help organizations focus on critical issues</li>
+                    <li><strong>Evidence Documentation:</strong> Include proof of vulnerabilities</li>
+                    <li><strong>Timeline Considerations:</strong> Provide realistic remediation timelines</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Legal and Ethical Considerations</h2>
+                
+                <h3>Legal Framework</h3>
+                <ul>
+                    <li><strong>Written Authorization:</strong> Always obtain explicit written permission</li>
+                    <li><strong>Scope Definition:</strong> Clearly define testing boundaries</li>
+                    <li><strong>Legal Compliance:</strong> Follow applicable laws and regulations</li>
+                    <li><strong>Data Protection:</strong> Respect privacy and data protection laws</li>
+                    <li><strong>Liability Limitations:</strong> Understand legal responsibilities</li>
+                </ul>
+
+                <h3>Ethical Guidelines</h3>
+                <div class="code-block">
+                    <pre><code># Ethical Hacking Principles:
+
+1. Authorization:
+   - Never test without explicit permission
+   - Respect scope limitations
+   - Follow rules of engagement
+   - Maintain professional boundaries
+
+2. Confidentiality:
+   - Protect client information
+   - Secure testing data
+   - Limit information sharing
+   - Maintain non-disclosure agreements
+
+3. Integrity:
+   - Provide honest assessments
+   - Report all findings
+   - Avoid conflicts of interest
+   - Maintain professional standards
+
+4. Responsibility:
+   - Minimize system impact
+   - Avoid data destruction
+   - Respect system availability
+   - Consider business operations
+
+5. Professional Development:
+   - Continuous learning
+   - Stay current with threats
+   - Maintain certifications
+   - Share knowledge responsibly</code></pre>
+                </div>
+
+                <h3>Professional Certifications</h3>
+                <div class="data-types-grid">
+                    <div class="data-type entry-level">
+                        <h4>Entry Level</h4>
+                        <ul>
+                            <li>CompTIA Security+</li>
+                            <li>CompTIA PenTest+</li>
+                            <li>EC-Council CEH</li>
+                            <li>SANS GIAC GSEC</li>
+                        </ul>
+                    </div>
+                    <div class="data-type intermediate">
+                        <h4>Intermediate</h4>
+                        <ul>
+                            <li>OSCP (Offensive Security)</li>
+                            <li>SANS GIAC GPEN</li>
+                            <li>eLearnSecurity ePT</li>
+                            <li>Mile2 CPTE</li>
+                        </ul>
+                    </div>
+                    <div class="data-type advanced">
+                        <h4>Advanced</h4>
+                        <ul>
+                            <li>OSEE (Offensive Security)</li>
+                            <li>SANS GIAC GXPN</li>
+                            <li>CREST CRT</li>
+                            <li>LPT (EC-Council)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Career Path and Opportunities</h2>
+                
+                <h3>Career Roles</h3>
+                <ul>
+                    <li><strong>Penetration Tester:</strong> Conduct authorized security assessments</li>
+                    <li><strong>Security Consultant:</strong> Provide security advisory services</li>
+                    <li><strong>Red Team Member:</strong> Simulate advanced persistent threats</li>
+                    <li><strong>Bug Bounty Hunter:</strong> Find vulnerabilities in exchange for rewards</li>
+                    <li><strong>Security Researcher:</strong> Discover and analyze new vulnerabilities</li>
+                </ul>
+
+                <h3>Skill Development</h3>
+                <ul>
+                    <li><strong>Technical Skills:</strong> Programming, networking, system administration</li>
+                    <li><strong>Security Knowledge:</strong> Vulnerabilities, exploits, defense mechanisms</li>
+                    <li><strong>Communication Skills:</strong> Report writing, client interaction</li>
+                    <li><strong>Business Acumen:</strong> Understanding business impact and risk</li>
+                    <li><strong>Continuous Learning:</strong> Staying current with evolving threats</li>
+                </ul>
+
+                <h3>Industry Outlook</h3>
+                <ul>
+                    <li><strong>Growing Demand:</strong> Increasing need for cybersecurity professionals</li>
+                    <li><strong>Competitive Salaries:</strong> High compensation for skilled professionals</li>
+                    <li><strong>Diverse Opportunities:</strong> Various industries and specializations</li>
+                    <li><strong>Remote Work:</strong> Many positions offer flexible work arrangements</li>
+                    <li><strong>Global Market:</strong> Opportunities worldwide</li>
+                </ul>
+            </section>
+
+            <section class="video-section">
+                <h2>📺 Video Tutorial</h2>
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        <div class="video-icon">🎥</div>
+                        <p>YouTube video will be embedded here</p>
+                        <small>Video placeholder - Link to be added</small>
+                    </div>
+                </div>
+            </section>
+
+            <section class="test-section">
+                <h2>📝 Final Knowledge Test</h2>
+                <p class="test-instruction">Complete this final test to complete the course. You need 18 out of 20 correct answers to pass.</p>
+                
+                <div class="test-container">
+                    <div class="question" data-question="1">
+                        <h3>Question 1</h3>
+                        <p>What is the first phase of ethical hacking methodology?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> Reconnaissance</label>
+                            <label><input type="radio" name="q1" value="b"> Scanning</label>
+                            <label><input type="radio" name="q1" value="c"> Exploitation</label>
+                            <label><input type="radio" name="q1" value="d"> Reporting</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="2">
+                        <h3>Question 2</h3>
+                        <p>What type of hacker works with authorization to improve security?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> Black Hat</label>
+                            <label><input type="radio" name="q2" value="b"> White Hat</label>
+                            <label><input type="radio" name="q2" value="c"> Gray Hat</label>
+                            <label><input type="radio" name="q2" value="d"> Script Kiddie</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="3">
+                        <h3>Question 3</h3>
+                        <p>Which reconnaissance technique involves no direct interaction with the target?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="a"> Active reconnaissance</label>
+                            <label><input type="radio" name="q3" value="b"> Passive reconnaissance</label>
+                            <label><input type="radio" name="q3" value="c"> Social engineering</label>
+                            <label><input type="radio" name="q3" value="d"> Network scanning</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="4">
+                        <h3>Question 4</h3>
+                        <p>What is Google dorking used for?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> Network scanning</label>
+                            <label><input type="radio" name="q4" value="b"> Password cracking</label>
+                            <label><input type="radio" name="q4" value="c"> Advanced search techniques</label>
+                            <label><input type="radio" name="q4" value="d"> Vulnerability exploitation</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="5">
+                        <h3>Question 5</h3>
+                        <p>Which phase involves identifying live systems and open ports?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="a"> Reconnaissance</label>
+                            <label><input type="radio" name="q5" value="b"> Scanning and Enumeration</label>
+                            <label><input type="radio" name="q5" value="c"> Gaining Access</label>
+                            <label><input type="radio" name="q5" value="d"> Maintaining Access</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="6">
+                        <h3>Question 6</h3>
+                        <p>What is the primary purpose of banner grabbing?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q6" value="a"> Network mapping</label>
+                            <label><input type="radio" name="q6" value="b"> Service version identification</label>
+                            <label><input type="radio" name="q6" value="c"> Password cracking</label>
+                            <label><input type="radio" name="q6" value="d"> Log analysis</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="7">
+                        <h3>Question 7</h3>
+                        <p>Which tool is commonly used for comprehensive exploitation?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q7" value="a"> Nmap</label>
+                            <label><input type="radio" name="q7" value="b"> Wireshark</label>
+                            <label><input type="radio" name="q7" value="c"> Metasploit</label>
+                            <label><input type="radio" name="q7" value="d"> Burp Suite</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="8">
+                        <h3>Question 8</h3>
+                        <p>What should always be obtained before conducting a penetration test?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q8" value="a"> Network diagram</label>
+                            <label><input type="radio" name="q8" value="b"> Written authorization</label>
+                            <label><input type="radio" name="q8" value="c"> System passwords</label>
+                            <label><input type="radio" name="q8" value="d"> Administrative access</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="9">
+                        <h3>Question 9</h3>
+                        <p>What is the purpose of privilege escalation?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q9" value="a"> Gain higher-level access</label>
+                            <label><input type="radio" name="q9" value="b"> Hide attack traces</label>
+                            <label><input type="radio" name="q9" value="c"> Scan for vulnerabilities</label>
+                            <label><input type="radio" name="q9" value="d"> Generate reports</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="10">
+                        <h3>Question 10</h3>
+                        <p>Which technique is used to maintain persistent access?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q10" value="a"> Port scanning</label>
+                            <label><input type="radio" name="q10" value="b"> Backdoor installation</label>
+                            <label><input type="radio" name="q10" value="c"> Vulnerability scanning</label>
+                            <label><input type="radio" name="q10" value="d"> Social engineering</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="11">
+                        <h3>Question 11</h3>
+                        <p>What is the primary goal of covering tracks?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q11" value="a"> Improve system performance</label>
+                            <label><input type="radio" name="q11" value="b"> Remove evidence of testing activities</label>
+                            <label><input type="radio" name="q11" value="c"> Install security patches</label>
+                            <label><input type="radio" name="q11" value="d"> Create system backups</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="12">
+                        <h3>Question 12</h3>
+                        <p>Which section should be included in every penetration testing report?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q12" value="a"> Source code listings</label>
+                            <label><input type="radio" name="q12" value="b"> Executive summary</label>
+                            <label><input type="radio" name="q12" value="c"> Network diagrams</label>
+                            <label><input type="radio" name="q12" value="d"> Employee interviews</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="13">
+                        <h3>Question 13</h3>
+                        <p>What does OSINT stand for?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q13" value="a"> Open Source Intelligence</label>
+                            <label><input type="radio" name="q13" value="b"> Operating System Intelligence</label>
+                            <label><input type="radio" name="q13" value="c"> Offensive Security Intelligence</label>
+                            <label><input type="radio" name="q13" value="d"> Online Security Intelligence</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="14">
+                        <h3>Question 14</h3>
+                        <p>Which methodology framework is specifically for web application testing?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q14" value="a"> PTES</label>
+                            <label><input type="radio" name="q14" value="b"> OWASP Testing Guide</label>
+                            <label><input type="radio" name="q14" value="c"> NIST SP 800-115</label>
+                            <label><input type="radio" name="q14" value="d"> OSSTMM</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="15">
+                        <h3>Question 15</h3>
+                        <p>What is lateral movement in penetration testing?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q15" value="a"> Moving between network segments</label>
+                            <label><input type="radio" name="q15" value="b"> Changing attack vectors</label>
+                            <label><input type="radio" name="q15" value="c"> Modifying exploit code</label>
+                            <label><input type="radio" name="q15" value="d"> Updating testing tools</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="16">
+                        <h3>Question 16</h3>
+                        <p>Which risk rating indicates the most severe security issue?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q16" value="a"> High</label>
+                            <label><input type="radio" name="q16" value="b"> Critical</label>
+                            <label><input type="radio" name="q16" value="c"> Medium</label>
+                            <label><input type="radio" name="q16" value="d"> Low</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="17">
+                        <h3>Question 17</h3>
+                        <p>What is the main difference between vulnerability assessment and penetration testing?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q17" value="a"> Tools used</label>
+                            <label><input type="radio" name="q17" value="b"> Penetration testing includes exploitation</label>
+                            <label><input type="radio" name="q17" value="c"> Time required</label>
+                            <label><input type="radio" name="q17" value="d"> Cost involved</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="18">
+                        <h3>Question 18</h3>
+                        <p>Which certification is considered entry-level for ethical hacking?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q18" value="a"> OSCP</label>
+                            <label><input type="radio" name="q18" value="b"> CISSP</label>
+                            <label><input type="radio" name="q18" value="c"> CEH</label>
+                            <label><input type="radio" name="q18" value="d"> CISM</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="19">
+                        <h3>Question 19</h3>
+                        <p>What should be the primary consideration when conducting ethical hacking?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q19" value="a"> Speed of testing</label>
+                            <label><input type="radio" name="q19" value="b"> Number of vulnerabilities found</label>
+                            <label><input type="radio" name="q19" value="c"> Minimizing system impact</label>
+                            <label><input type="radio" name="q19" value="d"> Using advanced tools</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="20">
+                        <h3>Question 20</h3>
+                        <p>What is the ultimate goal of ethical hacking?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q20" value="a"> Demonstrate hacking skills</label>
+                            <label><input type="radio" name="q20" value="b"> Improve organizational security posture</label>
+                            <label><input type="radio" name="q20" value="c"> Find as many vulnerabilities as possible</label>
+                            <label><input type="radio" name="q20" value="d"> Test security tools</label>
+                        </div>
+                    </div>
+
+                    <div class="test-actions">
+                        <button class="submit-test-btn">Submit Final Test</button>
+                        <div class="test-result" style="display: none;">
+                            <div class="score-display"></div>
+                            <div class="result-message"></div>
+                            <button class="complete-course-btn" style="display: none;">Complete Course</button>
+                            <button class="retry-btn" style="display: none;">Retry Test</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="course-14.js"></script>
+</body>
+</html>

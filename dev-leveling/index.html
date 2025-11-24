@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solo Leveling - Authentication</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index-style.css">
+</head>
+<body>
+  <div class="auth-container">
+    <div class="auth-logo glow">SYSTEM</div>
+    <form class="auth-form" id="authForm">
+      <input type="email" class="auth-input" id="email" placeholder="E-mail" required>
+      <input type="password" class="auth-input" id="password" placeholder="Password" required>
+      <button type="submit" class="auth-button" id="loginBtn">LOGIN</button>
+      <button type="button" class="auth-button" id="signupBtn">SIGN UP</button>
+      <button type="button" class="auth-button" id="googleAuth">GOOGLE AUTH</button>
+    </form>
+    <div class="error-message" id="errorMessage"></div>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+  
+  <script src="index-script.js"></script>
+</body>
+</html>

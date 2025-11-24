@@ -1,0 +1,106 @@
+/* Networking Fundamentals specific theme */
+.course-header {
+  background: linear-gradient(135deg, #1a3d4d, #0d2d3d);
+  border: 1px solid rgba(135, 206, 235, 0.3);
+}
+
+.course-title {
+  background: linear-gradient(45deg, #87ceeb, #4682b4);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(135, 206, 235, 0.3);
+}
+
+.content-section {
+  background: rgba(135, 206, 235, 0.05);
+  border: 1px solid rgba(135, 206, 235, 0.1);
+}
+
+.content-section h2 {
+  color: #87ceeb;
+}
+
+.content-section h3 {
+  color: #4682b4;
+}
+
+.content-section strong {
+  color: #87ceeb;
+}
+
+.code-block {
+  background: #0d2d3d;
+  border: 1px solid #4682b4;
+}
+
+.code-block pre {
+  color: #87ceeb;
+}
+
+.data-type {
+  background: rgba(135, 206, 235, 0.1);
+  border: 1px solid rgba(135, 206, 235, 0.3);
+}
+
+.data-type h4 {
+  color: #87ceeb;
+}
+
+.back-btn:hover {
+  background: rgba(135, 206, 235, 0.2);
+  border-color: rgba(135, 206, 235, 0.5);
+}
+
+.course-progress .course-number {
+  color: #87ceeb;
+}
+
+/* Network-themed decorative elements */
+.course-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 20px,
+    rgba(135, 206, 235, 0.05) 20px,
+    rgba(135, 206, 235, 0.05) 40px
+  );
+  pointer-events: none;
+  animation: networkPulse 8s ease-in-out infinite;
+}
+
+@keyframes networkPulse {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.course-header {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add network connection visualization */
+.content-section::before {
+  content: "🌐";
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  opacity: 0.3;
+  color: #87ceeb;
+}
+
+.content-section {
+  position: relative;
+}

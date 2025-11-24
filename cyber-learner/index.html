@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Learner - Master Ethical Hacking</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background-animation">
+        <div class="code-lines"></div>
+        <div class="glitch-lines"></div>
+    </div>
+
+    <!-- Progress Tracker -->
+    <div class="progress-tracker">
+        <div class="progress-badge">
+            <div class="progress-icon">🎯</div>
+            <div class="progress-info">
+                <div class="current-level">Level 1</div>
+                <div class="progress-text">Course 1 of 14</div>
+            </div>
+        </div>
+        <div class="overall-progress">
+            <div class="progress-bar" style="width: 7%"></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <h1 class="title">Cyber Learner</h1>
+        <p class="subtitle">Master ethical hacking one step at a time</p>
+        <div class="progression-note">
+            <span class="note-icon">ℹ️</span>
+            Complete courses in order to unlock the next challenge
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Level 1: Programming Essentials -->
+        <section class="level-section">
+            <h2 class="level-title">
+                <span class="level-number">01</span>
+                Programming Essentials
+            </h2>
+            <div class="progression-path">
+                <div class="topic-card c-programming available" data-course="1">
+                    <div class="card-status">
+                        <span class="status-indicator current">▶</span>
+                        <span class="course-number">1</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>C Programming Basics</h3>
+                        <p>Master the fundamentals of C programming language and memory management</p>
+                        <button class="start-btn">Start Course</button>
+                    </div>
+                </div>
+                
+                <div class="progression-line"></div>
+                
+                <div class="topic-card python-basics locked" data-course="2">
+                    <div class="card-status">
+                        <span class="status-indicator">🔒</span>
+                        <span class="course-number">2</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Python Programming Basics</h3>
+                        <p>Learn Python syntax, data structures, and object-oriented programming</p>
+                        <button class="start-btn" disabled>Complete Course 1</button>
+                    </div>
+                </div>
+                
+                <div class="progression-line"></div>
+                
+                <div class="topic-card python-hacking locked" data-course="3">
+                    <div class="card-status">
+                        <span class="status-indicator">🔒</span>
+                        <span class="course-number">3</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Python Hacking Modules</h3>
+                        <p>Explore security-focused Python libraries and automation tools</p>
+                        <button class="start-btn" disabled>Complete Course 2</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Level 2: Networking Foundations -->
+        <section class="level-section">
+            <h2 class="level-title">
+                <span class="level-number">02</span>
+                Networking Foundations
+            </h2>
+            <div class="progression-path">
+                <div class="topic-card networking-fundamentals locked" data-course="4">
+                    <div class="card-status">
+                        <span class="status-indicator">🔒</span>
+                        <span class="course-number">4</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Networking Fundamentals</h3>
+                        <p>Understand network architecture, protocols, and communication basics</p>
+                        <button class="start-btn" disabled>Complete Course 3</button>
+                    </div>
+                </div>
+                
+                <div class="progression-line"></div>
+                
+                <div class="topic-card osi-tcp locked" data-course="5">
+                    <div class="card-status">
+                        <span class="status-indicator">🔒</span>
+                        <span class="course-number">5</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>OSI and TCP/IP Models</h3>
+                        <p>Deep dive into network layer models and protocol stacks</p>
+                        <button class="start-btn" disabled>Complete Course 4</button>
+                    </div>
+                </div>
+                
+                <div class="progression-line"></div>
+                
+                <div class="topic-card protocols locked" data-course="6">
+                    <div class="card-status">
+                        <span class="status-indicator">🔒</span>
+                        <span class="course-number">6</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Protocols Overview</h3>
+                        <p>Explore HTTP, HTTPS, FTP, SSH, and other essential protocols</p>
+                        <button class="start-btn" disabled>Complete Course 5</button>
+                    </div>
+                </div>
+                
+                <div class="progression-line"></div>
+                
+                <div class="topic-card subnetting locked" data-course="7">
+                    <div class="card-status">
+                        <span class="status-indicator">🔒</span>
+                        <span class="course-number">7</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Subnetting & IP Math</h3>
+                        <p>Master IP addressing, CIDR notation, and network calculations</p>
+                        <button class="start-btn" disabled>Complete Course 6</button>
+                    </div>
+                </div>
+                
+                <div class="progression-line"></div>
+                
+                <div class="topic-card packet-analysis locked" data-course="8">
+                    <div class="card-status">
+                        <span class="status-indicator">🔒</span>
+                        <span class="course-number">8</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Packet Analysis</h3>
+                        <p>Learn to capture, analyze, and interpret network traffic</p>
+                        <button class="start-btn" disabled>Complete Course 7</button>
+                    </div>
+                </div>
+                
+                <div class="progression-line"></div>
+                
+                <div class="topic-card network-attacks locked" data-course="9">
+                    <div class="card-status">
+                        <span class="status-indicator">🔒</span>
+                        <span class="course-number">9</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Common Network Attacks</h3>
+                        <p>Understand attack vectors and defensive countermeasures</p>
+                        <button class="start-btn" disabled>Complete Course 8</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Level 3: Hacking Tools -->
+        <section class="level-section">
+            <h2 class="level-title">
+                <span class="level-number">03</span>
+                Hacking Tools
+            </h2>
+            <div class="progression-path">
+                <div class="topic-card nmap locked" data-course="10">
+                    <div class="card-status">
+                        <span class="status-indicator">🔒</span>
+                        <span class="course-number">10</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Nmap</h3>
+                        <p>Master network discovery and security auditing with Nmap</p>
+                        <button class="start-btn" disabled>Complete Course 9</button>
+                    </div>
+                </div>
+                
+                <div class="progression-line"></div>
+                
+                <div class="topic-card wireshark locked" data-course="11">
+                    <div class="card-status">
+                        <span class="status-indicator">🔒</span>
+                        <span class="course-number">11</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Wireshark</h3>
+                        <p>Advanced packet analysis and network troubleshooting techniques</p>
+                        <button class="start-btn" disabled>Complete Course 10</button>
+                    </div>
+                </div>
+                
+                <div class="progression-line"></div>
+                
+                <div class="topic-card burp-suite locked" data-course="12">
+                    <div class="card-status">
+                        <span class="status-indicator">🔒</span>
+                        <span class="course-number">12</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Burp Suite</h3>
+                        <p>Web application security testing and vulnerability assessment</p>
+                        <button class="start-btn" disabled>Complete Course 11</button>
+                    </div>
+                </div>
+                
+                <div class="progression-line"></div>
+                
+                <div class="topic-card netcat locked" data-course="13">
+                    <div class="card-status">
+                        <span class="status-indicator">🔒</span>
+                        <span class="course-number">13</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Netcat</h3>
+                        <p>Network debugging and exploration with the Swiss Army knife</p>
+                        <button class="start-btn" disabled>Complete Course 12</button>
+                    </div>
+                </div>
+                
+                <div class="progression-line"></div>
+                
+                <div class="topic-card custom-tools locked" data-course="14">
+                    <div class="card-status">
+                        <span class="status-indicator">🔒</span>
+                        <span class="course-number">14</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Building Custom Tools</h3>
+                        <p>Create your own security tools and automation scripts</p>
+                        <button class="start-btn" disabled>Complete Course 13</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Coming Soon Section -->
+        <section class="level-section coming-soon">
+            <h2 class="level-title">
+                <span class="level-number">04</span>
+                Advanced Topics
+                <span class="coming-soon-badge">Coming Soon</span>
+            </h2>
+            <div class="progression-path">
+                <div class="topic-card locked future">
+                    <div class="card-status">
+                        <span class="status-indicator">⏳</span>
+                        <span class="course-number">15</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Web Exploitation</h3>
+                        <p>Advanced web application penetration testing</p>
+                        <button class="start-btn" disabled>Coming Soon</button>
+                    </div>
+                </div>
+                
+                <div class="progression-line future"></div>
+                
+                <div class="topic-card locked future">
+                    <div class="card-status">
+                        <span class="status-indicator">⏳</span>
+                        <span class="course-number">16</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>OSINT</h3>
+                        <p>Open Source Intelligence gathering techniques</p>
+                        <button class="start-btn" disabled>Coming Soon</button>
+                    </div>
+                </div>
+                
+                <div class="progression-line future"></div>
+                
+                <div class="topic-card locked future">
+                    <div class="card-status">
+                        <span class="status-indicator">⏳</span>
+                        <span class="course-number">17</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Red Teaming</h3>
+                        <p>Advanced adversarial simulation and tactics</p>
+                        <button class="start-btn" disabled>Coming Soon</button>
+                    </div>
+                </div>
+                
+                <div class="progression-line future"></div>
+                
+                <div class="topic-card locked future">
+                    <div class="card-status">
+                        <span class="status-indicator">⏳</span>
+                        <span class="course-number">18</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Malware Analysis</h3>
+                        <p>Reverse engineering and malware dissection</p>
+                        <button class="start-btn" disabled>Coming Soon</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

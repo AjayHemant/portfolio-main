@@ -1,0 +1,130 @@
+/* Packet Analysis specific theme */
+.course-header {
+  background: linear-gradient(135deg, #4d3d1a, #2d1f0d);
+  border: 1px solid rgba(218, 165, 32, 0.3);
+}
+
+.course-title {
+  background: linear-gradient(45deg, #daa520, #b8860b);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(218, 165, 32, 0.3);
+}
+
+.content-section {
+  background: rgba(218, 165, 32, 0.05);
+  border: 1px solid rgba(218, 165, 32, 0.1);
+}
+
+.content-section h2 {
+  color: #daa520;
+}
+
+.content-section h3 {
+  color: #b8860b;
+}
+
+.content-section strong {
+  color: #daa520;
+}
+
+.code-block {
+  background: #2d1f0d;
+  border: 1px solid #b8860b;
+  font-family: "Courier New", monospace;
+}
+
+.code-block pre {
+  color: #daa520;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.data-type {
+  background: rgba(218, 165, 32, 0.1);
+  border: 1px solid rgba(218, 165, 32, 0.3);
+}
+
+.data-type h4 {
+  color: #daa520;
+}
+
+/* Packet analysis specific styling */
+.promiscuous-mode {
+  border-left: 4px solid #ff6b6b;
+}
+
+.port-mirroring {
+  border-left: 4px solid #2ed573;
+}
+
+.network-tap {
+  border-left: 4px solid #3742fa;
+}
+
+.wireless-capture {
+  border-left: 4px solid #a55eea;
+}
+
+.back-btn:hover {
+  background: rgba(218, 165, 32, 0.2);
+  border-color: rgba(218, 165, 32, 0.5);
+}
+
+.course-progress .course-number {
+  color: #daa520;
+}
+
+/* Packet flow animation */
+.course-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 8px,
+    rgba(218, 165, 32, 0.05) 8px,
+    rgba(218, 165, 32, 0.05) 16px
+  );
+  pointer-events: none;
+  animation: packetFlow 10s linear infinite;
+}
+
+@keyframes packetFlow {
+  0% {
+    transform: translateX(-16px) translateY(-16px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+.course-header {
+  position: relative;
+  overflow: hidden;
+}
+
+.content-section::before {
+  content: "📊";
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  opacity: 0.3;
+  color: #daa520;
+}
+
+.content-section {
+  position: relative;
+}
+
+/* ASCII art styling for packet structures */
+.code-block pre {
+  white-space: pre;
+  overflow-x: auto;
+}

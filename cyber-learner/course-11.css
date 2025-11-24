@@ -1,0 +1,157 @@
+/* Metasploit specific theme */
+.course-header {
+  background: linear-gradient(135deg, #2d0a0a, #1a0000);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.course-title {
+  background: linear-gradient(45deg, #ff0000, #cc0000);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+}
+
+.content-section {
+  background: rgba(255, 0, 0, 0.05);
+  border: 1px solid rgba(255, 0, 0, 0.1);
+}
+
+.content-section h2 {
+  color: #ff0000;
+}
+
+.content-section h3 {
+  color: #cc0000;
+}
+
+.content-section strong {
+  color: #ff0000;
+}
+
+.code-block {
+  background: #1a0000;
+  border: 1px solid #cc0000;
+}
+
+.code-block pre {
+  color: #ff0000;
+}
+
+.data-type {
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+.data-type h4 {
+  color: #ff0000;
+}
+
+/* Edition specific styling */
+.community {
+  border-left: 4px solid #00ff00;
+}
+
+.pro {
+  border-left: 4px solid #ffff00;
+}
+
+.express {
+  border-left: 4px solid #ff8800;
+}
+
+/* Module type styling */
+.windows-exploits {
+  border-left: 4px solid #0066cc;
+}
+
+.linux-exploits {
+  border-left: 4px solid #ff6600;
+}
+
+.web-exploits {
+  border-left: 4px solid #9900cc;
+}
+
+.system-info {
+  border-left: 4px solid #00ccff;
+}
+
+.credentials {
+  border-left: 4px solid #ffcc00;
+}
+
+.network-info {
+  border-left: 4px solid #cc00ff;
+}
+
+.back-btn:hover {
+  background: rgba(255, 0, 0, 0.2);
+  border-color: rgba(255, 0, 0, 0.5);
+}
+
+.course-progress .course-number {
+  color: #ff0000;
+}
+
+/* Hacker terminal effect */
+.course-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    rgba(255, 0, 0, 0.1) 2px,
+    transparent 4px,
+    rgba(255, 0, 0, 0.05) 6px
+  );
+  pointer-events: none;
+  animation: matrixSweep 4s infinite;
+}
+
+@keyframes matrixSweep {
+  0%,
+  100% {
+    transform: translateX(-100%);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateX(100%);
+    opacity: 0.7;
+  }
+}
+
+.content-section::before {
+  content: "💀";
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  opacity: 0.3;
+  color: #ff0000;
+}
+
+.content-section {
+  position: relative;
+}
+
+/* Danger pulsing effect */
+.course-header {
+  animation: dangerPulse 3s ease-in-out infinite;
+}
+
+@keyframes dangerPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.4);
+  }
+}

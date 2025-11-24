@@ -1,0 +1,105 @@
+/* Python Hacking Modules specific theme */
+.course-header {
+  background: linear-gradient(135deg, #1a3d4d, #0d1f2d);
+  border: 1px solid rgba(0, 191, 255, 0.3);
+}
+
+.course-title {
+  background: linear-gradient(45deg, #00bfff, #0099cc);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(0, 191, 255, 0.3);
+}
+
+.content-section {
+  background: rgba(0, 191, 255, 0.05);
+  border: 1px solid rgba(0, 191, 255, 0.1);
+}
+
+.content-section h2 {
+  color: #00bfff;
+}
+
+.content-section h3 {
+  color: #0099cc;
+}
+
+.content-section strong {
+  color: #00bfff;
+}
+
+.code-block {
+  background: #0d1f2d;
+  border: 1px solid #0099cc;
+}
+
+.code-block pre {
+  color: #00bfff;
+}
+
+.data-type {
+  background: rgba(0, 191, 255, 0.1);
+  border: 1px solid rgba(0, 191, 255, 0.3);
+}
+
+.data-type h4 {
+  color: #00bfff;
+}
+
+.back-btn:hover {
+  background: rgba(0, 191, 255, 0.2);
+  border-color: rgba(0, 191, 255, 0.5);
+}
+
+.course-progress .course-number {
+  color: #00bfff;
+}
+
+/* Hacking-themed decorative elements */
+.course-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 8px,
+    rgba(0, 191, 255, 0.05) 8px,
+    rgba(0, 191, 255, 0.05) 16px
+  );
+  pointer-events: none;
+  animation: matrixScroll 20s linear infinite;
+}
+
+@keyframes matrixScroll {
+  0% {
+    transform: translateX(-16px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.course-header {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add hacker-style terminal effect */
+.content-section::before {
+  content: "⚡";
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  opacity: 0.3;
+  color: #00bfff;
+}
+
+.content-section {
+  position: relative;
+}

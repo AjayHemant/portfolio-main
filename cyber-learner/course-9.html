@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Common Network Attacks - Cyber Learner</title>
+    <link rel="stylesheet" href="course-styles.css">
+    <link rel="stylesheet" href="course-9.css">
+</head>
+<body>
+    <div class="course-container">
+        <header class="course-header">
+            <div class="nav-controls">
+                <a href="index.html" class="back-btn">← Back to Courses</a>
+                <div class="course-progress">
+                    <span class="course-number">Course 9</span>
+                    <span class="course-total">of 14</span>
+                </div>
+            </div>
+            <h1 class="course-title">Common Network Attacks</h1>
+            <p class="course-subtitle">Understand attack vectors and defensive countermeasures</p>
+        </header>
+
+        <main class="course-content">
+            <section class="content-section">
+                <h2>Introduction to Network Attacks</h2>
+                <p>Understanding common network attacks is crucial for cybersecurity professionals. This knowledge helps in implementing proper defenses and recognizing attack patterns in network traffic.</p>
+                
+                <h3>Attack Categories</h3>
+                <ul>
+                    <li><strong>Reconnaissance:</strong> Information gathering attacks</li>
+                    <li><strong>Access Attacks:</strong> Gaining unauthorized access</li>
+                    <li><strong>Denial of Service:</strong> Disrupting network services</li>
+                    <li><strong>Data Attacks:</strong> Stealing or manipulating data</li>
+                    <li><strong>Man-in-the-Middle:</strong> Intercepting communications</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Reconnaissance Attacks</h2>
+                <p>Reconnaissance is the first phase of most attacks, involving information gathering about targets.</p>
+                
+                <h3>Network Scanning</h3>
+                <div class="code-block">
+                    <pre><code># Port Scanning Techniques:
+
+# TCP Connect Scan
+nmap -sT target.com
+- Completes full TCP handshake
+- Easily detected by firewalls
+- Most reliable scan type
+
+# SYN Scan (Stealth Scan)
+nmap -sS target.com
+- Sends SYN packets only
+- Doesn't complete handshake
+- Harder to detect
+
+# UDP Scan
+nmap -sU target.com
+- Scans UDP ports
+- Slower than TCP scans
+- Often filtered by firewalls
+
+# Common Port Scan Patterns:
+Sequential: 1, 2, 3, 4, 5...
+Random: 443, 22, 1433, 80, 3389...
+Top Ports: 80, 443, 22, 21, 25...</code></pre>
+                </div>
+
+                <h3>OS Fingerprinting</h3>
+                <div class="code-block">
+                    <pre><code># Operating System Detection Methods:
+
+# Active Fingerprinting:
+nmap -O target.com
+- Sends crafted packets
+- Analyzes responses
+- Compares to signature database
+
+# Passive Fingerprinting:
+- Analyzes existing traffic
+- TTL values
+- Window sizes
+- TCP options
+- Packet fragmentation
+
+# Common OS Signatures:
+Windows: TTL=128, Window=65535
+Linux: TTL=64, Window=5840
+macOS: TTL=64, Window=65535</code></pre>
+                </div>
+
+                <h3>Service Enumeration</h3>
+                <ul>
+                    <li><strong>Banner Grabbing:</strong> Identifying service versions</li>
+                    <li><strong>SNMP Enumeration:</strong> Gathering system information</li>
+                    <li><strong>DNS Enumeration:</strong> Discovering subdomains and records</li>
+                    <li><strong>SMB Enumeration:</strong> Windows share information</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Denial of Service (DoS) Attacks</h2>
+                <p>DoS attacks aim to make network resources unavailable to legitimate users.</p>
+                
+                <div class="data-types-grid">
+                    <div class="data-type volumetric-attacks">
+                        <h4>Volumetric Attacks</h4>
+                        <ul>
+                            <li>UDP Flood</li>
+                            <li>ICMP Flood</li>
+                            <li>DNS Amplification</li>
+                            <li>NTP Amplification</li>
+                            <li>Consume bandwidth</li>
+                        </ul>
+                    </div>
+                    <div class="data-type protocol-attacks">
+                        <h4>Protocol Attacks</h4>
+                        <ul>
+                            <li>SYN Flood</li>
+                            <li>Ping of Death</li>
+                            <li>Smurf Attack</li>
+                            <li>Fragmentation Attacks</li>
+                            <li>Exploit protocol weaknesses</li>
+                        </ul>
+                    </div>
+                    <div class="data-type application-attacks">
+                        <h4>Application Layer Attacks</h4>
+                        <ul>
+                            <li>HTTP Flood</li>
+                            <li>Slowloris</li>
+                            <li>RUDY Attack</li>
+                            <li>DNS Query Flood</li>
+                            <li>Target specific applications</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>SYN Flood Attack</h3>
+                <div class="code-block">
+                    <pre><code># SYN Flood Attack Process:
+1. Attacker sends multiple SYN packets
+2. Server responds with SYN-ACK
+3. Attacker never sends final ACK
+4. Server keeps half-open connections
+5. Connection table fills up
+6. Legitimate connections rejected
+
+# Attack Characteristics:
+- High volume of SYN packets
+- No corresponding ACK packets
+- Source IPs often spoofed
+- Targets TCP-based services
+
+# Detection Indicators:
+- Unusual SYN/ACK ratio
+- High number of half-open connections
+- Connection timeouts
+- Service unavailability</code></pre>
+                </div>
+
+                <h3>DDoS (Distributed DoS)</h3>
+                <ul>
+                    <li><strong>Botnets:</strong> Networks of compromised computers</li>
+                    <li><strong>Amplification:</strong> Using third-party services to amplify attacks</li>
+                    <li><strong>Multi-vector:</strong> Combining different attack types</li>
+                    <li><strong>Harder to mitigate:</strong> Traffic from multiple sources</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Man-in-the-Middle (MITM) Attacks</h2>
+                <p>MITM attacks involve intercepting communications between two parties.</p>
+                
+                <h3>ARP Spoofing</h3>
+                <div class="code-block">
+                    <pre><code># ARP Spoofing Process:
+1. Attacker sends fake ARP responses
+2. Associates attacker's MAC with victim's IP
+3. Traffic intended for victim goes to attacker
+4. Attacker can intercept, modify, or forward traffic
+
+# Attack Tools:
+ettercap -T -M arp:remote /192.168.1.1// /192.168.1.100//
+arpspoof -i eth0 -t 192.168.1.100 192.168.1.1
+
+# Detection Methods:
+- Monitor ARP table changes
+- Detect duplicate IP addresses
+- Use static ARP entries
+- Implement ARP inspection</code></pre>
+                </div>
+
+                <h3>DNS Spoofing</h3>
+                <div class="code-block">
+                    <pre><code># DNS Spoofing Techniques:
+
+# DNS Cache Poisoning:
+- Inject false DNS records into cache
+- Redirect users to malicious sites
+- Exploit DNS resolver vulnerabilities
+
+# DNS Hijacking:
+- Compromise DNS server
+- Modify DNS records
+- Redirect entire domains
+
+# Local DNS Spoofing:
+- Modify local hosts file
+- Use rogue DHCP server
+- Provide false DNS servers</code></pre>
+                </div>
+
+                <h3>SSL/TLS Attacks</h3>
+                <ul>
+                    <li><strong>SSL Stripping:</strong> Downgrade HTTPS to HTTP</li>
+                    <li><strong>Certificate Spoofing:</strong> Use fake certificates</li>
+                    <li><strong>Session Hijacking:</strong> Steal session cookies</li>
+                    <li><strong>Weak Cipher Exploitation:</strong> Attack weak encryption</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Password Attacks</h2>
+                <p>Password attacks target authentication mechanisms to gain unauthorized access.</p>
+                
+                <div class="data-types-grid">
+                    <div class="data-type brute-force">
+                        <h4>Brute Force</h4>
+                        <ul>
+                            <li>Try all possible combinations</li>
+                            <li>Time-intensive but thorough</li>
+                            <li>Effective against weak passwords</li>
+                            <li>Can be distributed</li>
+                        </ul>
+                    </div>
+                    <div class="data-type dictionary">
+                        <h4>Dictionary Attack</h4>
+                        <ul>
+                            <li>Use common password lists</li>
+                            <li>Faster than brute force</li>
+                            <li>Based on human behavior</li>
+                            <li>Include variations and mutations</li>
+                        </ul>
+                    </div>
+                    <div class="data-type rainbow-table">
+                        <h4>Rainbow Tables</h4>
+                        <ul>
+                            <li>Pre-computed hash tables</li>
+                            <li>Trade space for time</li>
+                            <li>Effective against unsalted hashes</li>
+                            <li>Defeated by salt values</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Password Attack Tools</h3>
+                <div class="code-block">
+                    <pre><code># Common Password Attack Tools:
+
+# Hydra (Network Login Cracker):
+hydra -l admin -P passwords.txt ssh://target.com
+hydra -L users.txt -P passwords.txt http-post-form://target.com
+
+# John the Ripper (Hash Cracker):
+john --wordlist=passwords.txt hashes.txt
+john --rules --wordlist=passwords.txt hashes.txt
+
+# Hashcat (GPU-accelerated):
+hashcat -m 0 -a 0 hashes.txt passwords.txt
+hashcat -m 1000 -a 3 hashes.txt ?a?a?a?a?a?a
+
+# Medusa (Parallel Login Bruter):
+medusa -h target.com -u admin -P passwords.txt -M ssh</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Network Sniffing Attacks</h2>
+                <p>Network sniffing involves capturing and analyzing network traffic to extract sensitive information.</p>
+                
+                <h3>Passive Sniffing</h3>
+                <ul>
+                    <li><strong>Hub-based Networks:</strong> All traffic visible to all ports</li>
+                    <li><strong>Wireless Networks:</strong> Radio waves can be intercepted</li>
+                    <li><strong>Promiscuous Mode:</strong> Capture all network traffic</li>
+                    <li><strong>Undetectable:</strong> No active network participation</li>
+                </ul>
+
+                <h3>Active Sniffing</h3>
+                <div class="code-block">
+                    <pre><code># Active Sniffing Techniques:
+
+# MAC Flooding:
+- Overflow switch MAC address table
+- Force switch into hub mode
+- All traffic becomes visible
+
+# ARP Spoofing:
+- Redirect traffic through attacker
+- Position as man-in-the-middle
+- Intercept switched network traffic
+
+# DHCP Spoofing:
+- Provide false network configuration
+- Redirect traffic through attacker
+- Capture credentials and data</code></pre>
+                </div>
+
+                <h3>Sniffing Countermeasures</h3>
+                <ul>
+                    <li><strong>Encryption:</strong> Use HTTPS, SSH, VPNs</li>
+                    <li><strong>Switch Security:</strong> Port security, DHCP snooping</li>
+                    <li><strong>Network Segmentation:</strong> VLANs, subnets</li>
+                    <li><strong>Monitoring:</strong> Detect suspicious ARP activity</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Social Engineering Attacks</h2>
+                <p>Social engineering exploits human psychology rather than technical vulnerabilities.</p>
+                
+                <h3>Common Techniques</h3>
+                <ul>
+                    <li><strong>Phishing:</strong> Fraudulent emails requesting information</li>
+                    <li><strong>Pretexting:</strong> Creating false scenarios to gain trust</li>
+                    <li><strong>Baiting:</strong> Offering something to trigger curiosity</li>
+                    <li><strong>Tailgating:</strong> Following authorized personnel into secure areas</li>
+                    <li><strong>Quid Pro Quo:</strong> Offering services in exchange for information</li>
+                </ul>
+
+                <h3>Technical Social Engineering</h3>
+                <div class="code-block">
+                    <pre><code># Technical Social Engineering Methods:
+
+# Email Spoofing:
+- Forge sender addresses
+- Impersonate trusted entities
+- Bypass email filters
+
+# Website Cloning:
+- Create fake login pages
+- Harvest credentials
+- Redirect to legitimate sites
+
+# USB Drops:
+- Leave infected USB devices
+- Rely on human curiosity
+- Autorun malicious payloads
+
+# Fake Wi-Fi Hotspots:
+- Create rogue access points
+- Capture user credentials
+- Monitor network traffic</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Attack Detection and Prevention</h2>
+                
+                <h3>Detection Strategies</h3>
+                <ul>
+                    <li><strong>Network Monitoring:</strong> Continuous traffic analysis</li>
+                    <li><strong>Intrusion Detection Systems:</strong> Automated threat detection</li>
+                    <li><strong>Log Analysis:</strong> Review system and network logs</li>
+                    <li><strong>Behavioral Analysis:</strong> Detect anomalous patterns</li>
+                    <li><strong>Threat Intelligence:</strong> Use external threat data</li>
+                </ul>
+
+                <h3>Prevention Measures</h3>
+                <div class="data-types-grid">
+                    <div class="data-type network-security">
+                        <h4>Network Security</h4>
+                        <ul>
+                            <li>Firewalls and ACLs</li>
+                            <li>Network segmentation</li>
+                            <li>VPN implementation</li>
+                            <li>Intrusion prevention systems</li>
+                        </ul>
+                    </div>
+                    <div class="data-type access-control">
+                        <h4>Access Control</h4>
+                        <ul>
+                            <li>Strong authentication</li>
+                            <li>Multi-factor authentication</li>
+                            <li>Principle of least privilege</li>
+                            <li>Regular access reviews</li>
+                        </ul>
+                    </div>
+                    <div class="data-type security-awareness">
+                        <h4>Security Awareness</h4>
+                        <ul>
+                            <li>Employee training</li>
+                            <li>Phishing simulations</li>
+                            <li>Security policies</li>
+                            <li>Incident reporting</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Incident Response</h3>
+                <div class="code-block">
+                    <pre><code># Incident Response Process:
+
+1. Preparation:
+   - Develop response procedures
+   - Train response team
+   - Prepare tools and resources
+
+2. Identification:
+   - Detect security incidents
+   - Analyze alerts and logs
+   - Determine scope and impact
+
+3. Containment:
+   - Isolate affected systems
+   - Prevent further damage
+   - Preserve evidence
+
+4. Eradication:
+   - Remove threats
+   - Patch vulnerabilities
+   - Update security controls
+
+5. Recovery:
+   - Restore normal operations
+   - Monitor for reoccurrence
+   - Validate system integrity
+
+6. Lessons Learned:
+   - Document incident
+   - Update procedures
+   - Improve defenses</code></pre>
+                </div>
+            </section>
+
+            <section class="video-section">
+                <h2>📺 Video Tutorial</h2>
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        <div class="video-icon">🎥</div>
+                        <p>YouTube video will be embedded here</p>
+                        <small>Video placeholder - Link to be added</small>
+                    </div>
+                </div>
+            </section>
+
+            <section class="test-section">
+                <h2>📝 Knowledge Test</h2>
+                <p class="test-instruction">Complete this test to unlock the next course. You need 18 out of 20 correct answers to pass.</p>
+                
+                <div class="test-container">
+                    <div class="question" data-question="1">
+                        <h3>Question 1</h3>
+                        <p>What is the first phase of most network attacks?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> Exploitation</label>
+                            <label><input type="radio" name="q1" value="b"> Reconnaissance</label>
+                            <label><input type="radio" name="q1" value="c"> Access</label>
+                            <label><input type="radio" name="q1" value="d"> Persistence</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="2">
+                        <h3>Question 2</h3>
+                        <p>Which scan type is considered "stealthy" because it doesn't complete the TCP handshake?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> TCP Connect Scan</label>
+                            <label><input type="radio" name="q2" value="b"> SYN Scan</label>
+                            <label><input type="radio" name="q2" value="c"> UDP Scan</label>
+                            <label><input type="radio" name="q2" value="d"> FIN Scan</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="3">
+                        <h3>Question 3</h3>
+                        <p>What does DoS stand for?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="a"> Disk Operating System</label>
+                            <label><input type="radio" name="q3" value="b"> Denial of Service</label>
+                            <label><input type="radio" name="q3" value="c"> Domain of Security</label>
+                            <label><input type="radio" name="q3" value="d"> Data over Security</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="4">
+                        <h3>Question 4</h3>
+                        <p>In a SYN flood attack, what happens to the server's connection table?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> It gets encrypted</label>
+                            <label><input type="radio" name="q4" value="b"> It fills up with half-open connections</label>
+                            <label><input type="radio" name="q4" value="c"> It gets deleted</label>
+                            <label><input type="radio" name="q4" value="d"> It becomes read-only</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="5">
+                        <h3>Question 5</h3>
+                        <p>What does MITM stand for?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="a"> Multiple Internet Traffic Monitor</label>
+                            <label><input type="radio" name="q5" value="b"> Man-in-the-Middle</label>
+                            <label><input type="radio" name="q5" value="c"> Managed Internet Traffic Method</label>
+                            <label><input type="radio" name="q5" value="d"> Maximum Internet Transfer Mode</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="6">
+                        <h3>Question 6</h3>
+                        <p>Which protocol is commonly targeted in ARP spoofing attacks?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q6" value="a"> HTTP</label>
+                            <label><input type="radio" name="q6" value="b"> FTP</label>
+                            <label><input type="radio" name="q6" value="c"> ARP</label>
+                            <label><input type="radio" name="q6" value="d"> DNS</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="7">
+                        <h3>Question 7</h3>
+                        <p>What is the main difference between active and passive sniffing?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q7" value="a"> Speed of capture</label>
+                            <label><input type="radio" name="q7" value="b"> Active sniffing requires network interaction</label>
+                            <label><input type="radio" name="q7" value="c"> Passive sniffing is illegal</label>
+                            <label><input type="radio" name="q7" value="d"> Active sniffing is more secure</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="8">
+                        <h3>Question 8</h3>
+                        <p>Which password attack uses pre-computed hash tables?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q8" value="a"> Brute force</label>
+                            <label><input type="radio" name="q8" value="b"> Dictionary attack</label>
+                            <label><input type="radio" name="q8" value="c"> Rainbow table attack</label>
+                            <label><input type="radio" name="q8" value="d"> Social engineering</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="9">
+                        <h3>Question 9</h3>
+                        <p>What is phishing?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q9" value="a"> A network scanning technique</label>
+                            <label><input type="radio" name="q9" value="b"> A type of malware</label>
+                            <label><input type="radio" name="q9" value="c"> Fraudulent emails requesting information</label>
+                            <label><input type="radio" name="q9" value="d"> A password cracking method</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="10">
+                        <h3>Question 10</h3>
+                        <p>Which attack amplifies traffic using third-party services?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q10" value="a"> SYN flood</label>
+                            <label><input type="radio" name="q10" value="b"> DNS amplification</label>
+                            <label><input type="radio" name="q10" value="c"> ARP spoofing</label>
+                            <label><input type="radio" name="q10" value="d"> Port scanning</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="11">
+                        <h3>Question 11</h3>
+                        <p>What is banner grabbing used for?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q11" value="a"> Downloading files</label>
+                            <label><input type="radio" name="q11" value="b"> Identifying service versions</label>
+                            <label><input type="radio" name="q11" value="c"> Encrypting data</label>
+                            <label><input type="radio" name="q11" value="d"> Creating user accounts</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="12">
+                        <h3>Question 12</h3>
+                        <p>Which tool is commonly used for network login attacks?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q12" value="a"> Nmap</label>
+                            <label><input type="radio" name="q12" value="b"> Wireshark</label>
+                            <label><input type="radio" name="q12" value="c"> Hydra</label>
+                            <label><input type="radio" name="q12" value="d"> Netcat</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="13">
+                        <h3>Question 13</h3>
+                        <p>What is the purpose of MAC flooding?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q13" value="a"> Increase network speed</label>
+                            <label><input type="radio" name="q13" value="b"> Overflow switch MAC address table</label>
+                            <label><input type="radio" name="q13" value="c"> Encrypt MAC addresses</label>
+                            <label><input type="radio" name="q13" value="d"> Create virtual MACs</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="14">
+                        <h3>Question 14</h3>
+                        <p>Which social engineering technique involves following authorized personnel?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q14" value="a"> Phishing</label>
+                            <label><input type="radio" name="q14" value="b"> Pretexting</label>
+                            <label><input type="radio" name="q14" value="c"> Tailgating</label>
+                            <label><input type="radio" name="q14" value="d"> Baiting</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="15">
+                        <h3>Question 15</h3>
+                        <p>What is SSL stripping?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q15" value="a"> Removing SSL certificates</label>
+                            <label><input type="radio" name="q15" value="b"> Downgrading HTTPS to HTTP</label>
+                            <label><input type="radio" name="q15" value="c"> Encrypting SSL traffic</label>
+                            <label><input type="radio" name="q15" value="d"> Creating fake SSL certificates</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="16">
+                        <h3>Question 16</h3>
+                        <p>Which attack targets the DNS cache?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q16" value="a"> DNS amplification</label>
+                            <label><input type="radio" name="q16" value="b"> DNS poisoning</label>
+                            <label><input type="radio" name="q16" value="c"> DNS flooding</label>
+                            <label><input type="radio" name="q16" value="d"> DNS tunneling</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="17">
+                        <h3>Question 17</h3>
+                        <p>What is the main goal of a volumetric DDoS attack?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q17" value="a"> Steal data</label>
+                            <label><input type="radio" name="q17" value="b"> Consume bandwidth</label>
+                            <label><input type="radio" name="q17" value="c"> Install malware</label>
+                            <label><input type="radio" name="q17" value="d"> Crack passwords</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="18">
+                        <h3>Question 18</h3>
+                        <p>Which countermeasure is most effective against password attacks?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q18" value="a"> Longer passwords</label>
+                            <label><input type="radio" name="q18" value="b"> Multi-factor authentication</label>
+                            <label><input type="radio" name="q18" value="c"> Password complexity</label>
+                            <label><input type="radio" name="q18" value="d"> Regular password changes</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="19">
+                        <h3>Question 19</h3>
+                        <p>What is the first step in incident response?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q19" value="a"> Containment</label>
+                            <label><input type="radio" name="q19" value="b"> Preparation</label>
+                            <label><input type="radio" name="q19" value="c"> Identification</label>
+                            <label><input type="radio" name="q19" value="d"> Recovery</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="20">
+                        <h3>Question 20</h3>
+                        <p>Which type of attack exploits human psychology?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q20" value="a"> Buffer overflow</label>
+                            <label><input type="radio" name="q20" value="b"> SQL injection</label>
+                            <label><input type="radio" name="q20" value="c"> Social engineering</label>
+                            <label><input type="radio" name="q20" value="d"> Cross-site scripting</label>
+                        </div>
+                    </div>
+
+                    <div class="test-actions">
+                        <button class="submit-test-btn">Submit Test</button>
+                        <div class="test-result" style="display: none;">
+                            <div class="score-display"></div>
+                            <div class="result-message"></div>
+                            <button class="next-course-btn" style="display: none;">Proceed to Next Course</button>
+                            <button class="retry-btn" style="display: none;">Retry Test</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="course-9.js"></script>
+</body>
+</html>

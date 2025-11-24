@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subnetting & IP Math - Cyber Learner</title>
+    <link rel="stylesheet" href="course-styles.css">
+    <link rel="stylesheet" href="course-7.css">
+</head>
+<body>
+    <div class="course-container">
+        <header class="course-header">
+            <div class="nav-controls">
+                <a href="index.html" class="back-btn">← Back to Courses</a>
+                <div class="course-progress">
+                    <span class="course-number">Course 7</span>
+                    <span class="course-total">of 14</span>
+                </div>
+            </div>
+            <h1 class="course-title">Subnetting & IP Math</h1>
+            <p class="course-subtitle">Master IP addressing, CIDR notation, and network calculations</p>
+        </header>
+
+        <main class="course-content">
+            <section class="content-section">
+                <h2>Introduction to Subnetting</h2>
+                <p>Subnetting is the process of dividing a network into smaller sub-networks. It's essential for efficient IP address management, network security, and performance optimization.</p>
+                
+                <h3>Why Subnet Networks?</h3>
+                <ul>
+                    <li><strong>Efficient IP Usage:</strong> Reduce IP address waste</li>
+                    <li><strong>Network Security:</strong> Isolate network segments</li>
+                    <li><strong>Performance:</strong> Reduce broadcast domains</li>
+                    <li><strong>Organization:</strong> Logical network structure</li>
+                    <li><strong>Scalability:</strong> Easier network management</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>IP Address Structure</h2>
+                <p>Understanding IP address structure is fundamental to subnetting.</p>
+                
+                <div class="code-block">
+                    <pre><code># IPv4 Address Structure (32 bits):
+192.168.1.100
+11000000.10101000.00000001.01100100
+
+# Address Components:
+Network Portion + Host Portion = 32 bits
+
+# Default Subnet Masks:
+Class A: 255.0.0.0     (/8)  - 8 network bits, 24 host bits
+Class B: 255.255.0.0   (/16) - 16 network bits, 16 host bits  
+Class C: 255.255.255.0 (/24) - 24 network bits, 8 host bits
+
+# Private IP Ranges:
+Class A: 10.0.0.0/8        (10.0.0.0 - 10.255.255.255)
+Class B: 172.16.0.0/12     (172.16.0.0 - 172.31.255.255)
+Class C: 192.168.0.0/16    (192.168.0.0 - 192.168.255.255)</code></pre>
+                </div>
+
+                <h3>Binary to Decimal Conversion</h3>
+                <div class="data-types-grid">
+                    <div class="data-type binary-conversion">
+                        <h4>Binary Powers of 2</h4>
+                        <ul>
+                            <li>2⁷ = 128</li>
+                            <li>2⁶ = 64</li>
+                            <li>2⁵ = 32</li>
+                            <li>2⁴ = 16</li>
+                            <li>2³ = 8</li>
+                            <li>2² = 4</li>
+                            <li>2¹ = 2</li>
+                            <li>2⁰ = 1</li>
+                        </ul>
+                    </div>
+                    <div class="data-type decimal-conversion">
+                        <h4>Example: 192 in Binary</h4>
+                        <ul>
+                            <li>128 + 64 = 192</li>
+                            <li>11000000</li>
+                            <li>1×128 + 1×64 + 0×32 + 0×16 + 0×8 + 0×4 + 0×2 + 0×1</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>CIDR Notation</h2>
+                <p>Classless Inter-Domain Routing (CIDR) provides a flexible way to specify network prefixes.</p>
+                
+                <div class="code-block">
+                    <pre><code># CIDR Notation Examples:
+192.168.1.0/24
+│           │
+│           └── Prefix length (24 bits for network)
+└────────────── Network address
+
+# Common CIDR Prefixes:
+/8  = 255.0.0.0       = 16,777,214 hosts
+/16 = 255.255.0.0     = 65,534 hosts
+/24 = 255.255.255.0   = 254 hosts
+/25 = 255.255.255.128 = 126 hosts
+/26 = 255.255.255.192 = 62 hosts
+/27 = 255.255.255.224 = 30 hosts
+/28 = 255.255.255.240 = 14 hosts
+/29 = 255.255.255.248 = 6 hosts
+/30 = 255.255.255.252 = 2 hosts
+
+# Subnet Mask Calculation:
+/24 = 11111111.11111111.11111111.00000000
+    = 255.255.255.0
+
+/26 = 11111111.11111111.11111111.11000000
+    = 255.255.255.192</code></pre>
+                </div>
+
+                <h3>Quick Reference Table</h3>
+                <div class="data-types-grid">
+                    <div class="data-type subnet-table">
+                        <h4>Subnet Masks</h4>
+                        <ul>
+                            <li>/24 → 255.255.255.0</li>
+                            <li>/25 → 255.255.255.128</li>
+                            <li>/26 → 255.255.255.192</li>
+                            <li>/27 → 255.255.255.224</li>
+                            <li>/28 → 255.255.255.240</li>
+                            <li>/29 → 255.255.255.248</li>
+                            <li>/30 → 255.255.255.252</li>
+                        </ul>
+                    </div>
+                    <div class="data-type host-table">
+                        <h4>Usable Hosts</h4>
+                        <ul>
+                            <li>/24 → 254 hosts</li>
+                            <li>/25 → 126 hosts</li>
+                            <li>/26 → 62 hosts</li>
+                            <li>/27 → 30 hosts</li>
+                            <li>/28 → 14 hosts</li>
+                            <li>/29 → 6 hosts</li>
+                            <li>/30 → 2 hosts</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Subnetting Process</h2>
+                <p>Step-by-step approach to subnet a network.</p>
+                
+                <h3>Example: Subnet 192.168.1.0/24 into 4 subnets</h3>
+                <div class="code-block">
+                    <pre><code># Step 1: Determine required subnet bits
+4 subnets = 2² subnets
+Need 2 additional bits for subnetting
+New prefix: /24 + 2 = /26
+
+# Step 2: Calculate new subnet mask
+/26 = 255.255.255.192
+
+# Step 3: Calculate subnet increment
+256 - 192 = 64 (increment)
+
+# Step 4: List subnets
+Subnet 1: 192.168.1.0/26   (192.168.1.0 - 192.168.1.63)
+Subnet 2: 192.168.1.64/26  (192.168.1.64 - 192.168.1.127)
+Subnet 3: 192.168.1.128/26 (192.168.1.128 - 192.168.1.191)
+Subnet 4: 192.168.1.192/26 (192.168.1.192 - 192.168.1.255)
+
+# Step 5: Identify key addresses for each subnet
+Subnet 1 (192.168.1.0/26):
+- Network Address: 192.168.1.0
+- First Host: 192.168.1.1
+- Last Host: 192.168.1.62
+- Broadcast: 192.168.1.63</code></pre>
+                </div>
+
+                <h3>Subnetting Formula</h3>
+                <ul>
+                    <li><strong>Number of Subnets:</strong> 2ⁿ (where n = borrowed bits)</li>
+                    <li><strong>Hosts per Subnet:</strong> 2ʰ - 2 (where h = host bits)</li>
+                    <li><strong>Subnet Increment:</strong> 256 - subnet mask value</li>
+                    <li><strong>Network Address:</strong> First address in range</li>
+                    <li><strong>Broadcast Address:</strong> Last address in range</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Variable Length Subnet Masking (VLSM)</h2>
+                <p>VLSM allows different subnet sizes within the same network, optimizing IP address usage.</p>
+                
+                <div class="code-block">
+                    <pre><code># VLSM Example: 192.168.1.0/24
+Requirements:
+- Subnet A: 100 hosts
+- Subnet B: 50 hosts  
+- Subnet C: 25 hosts
+- Subnet D: 10 hosts
+
+# Step 1: Order by size (largest first)
+Subnet A: 100 hosts → need /25 (126 hosts)
+Subnet B: 50 hosts  → need /26 (62 hosts)
+Subnet C: 25 hosts  → need /27 (30 hosts)
+Subnet D: 10 hosts  → need /28 (14 hosts)
+
+# Step 2: Assign subnets
+Subnet A: 192.168.1.0/25   (192.168.1.0 - 192.168.1.127)
+Subnet B: 192.168.1.128/26 (192.168.1.128 - 192.168.1.191)
+Subnet C: 192.168.1.192/27 (192.168.1.192 - 192.168.1.223)
+Subnet D: 192.168.1.224/28 (192.168.1.224 - 192.168.1.239)
+
+# Remaining: 192.168.1.240/28 - 192.168.1.255/28 (available)</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Supernetting (Route Summarization)</h2>
+                <p>Supernetting combines multiple networks into a single routing entry.</p>
+                
+                <div class="code-block">
+                    <pre><code># Supernetting Example:
+Combine these networks:
+192.168.0.0/24
+192.168.1.0/24
+192.168.2.0/24
+192.168.3.0/24
+
+# Step 1: Convert to binary
+192.168.0.0 = 11000000.10101000.00000000.00000000
+192.168.1.0 = 11000000.10101000.00000001.00000000
+192.168.2.0 = 11000000.10101000.00000010.00000000
+192.168.3.0 = 11000000.10101000.00000011.00000000
+
+# Step 2: Find common bits
+Common: 11000000.10101000.000000xx.xxxxxxxx
+        └─────────────────────────┘
+                22 bits
+
+# Step 3: Summary route
+192.168.0.0/22 covers all four networks</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>IPv6 Addressing</h2>
+                <p>IPv6 uses 128-bit addresses with different subnetting concepts.</p>
+                
+                <div class="code-block">
+                    <pre><code># IPv6 Address Structure:
+2001:0db8:85a3:0000:0000:8a2e:0370:7334
+│    │    │    │    │    │    │    │
+└────┴────┴────┴────┴────┴────┴────┴──── 128 bits total
+
+# IPv6 Address Types:
+Global Unicast: 2000::/3 (Internet routable)
+Link-Local:     fe80::/10 (Local network only)
+Multicast:      ff00::/8 (One-to-many)
+Loopback:       ::1/128 (Local host)
+
+# IPv6 Subnetting:
+Typical allocation: /48 to /64
+/48 - Organization
+/56 - Site
+/64 - Subnet (standard)
+
+# Example IPv6 Subnet:
+2001:db8:1234::/48 (Organization)
+├── 2001:db8:1234:0001::/64 (Subnet 1)
+├── 2001:db8:1234:0002::/64 (Subnet 2)
+└── 2001:db8:1234:0003::/64 (Subnet 3)</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Practical Subnetting Examples</h2>
+                
+                <h3>Example 1: Office Network</h3>
+                <div class="code-block">
+                    <pre><code># Scenario: 192.168.10.0/24 for office with 4 departments
+# Each department needs 50 hosts
+
+# Solution: Use /26 subnets (62 hosts each)
+Department A: 192.168.10.0/26   (192.168.10.1 - 192.168.10.62)
+Department B: 192.168.10.64/26  (192.168.10.65 - 192.168.10.126)
+Department C: 192.168.10.128/26 (192.168.10.129 - 192.168.10.190)
+Department D: 192.168.10.192/26 (192.168.10.193 - 192.168.10.254)</code></pre>
+                </div>
+
+                <h3>Example 2: Point-to-Point Links</h3>
+                <div class="code-block">
+                    <pre><code># Scenario: WAN links between routers
+# Need multiple /30 subnets (2 hosts each)
+
+# From 192.168.100.0/24:
+Link 1: 192.168.100.0/30  (.1 and .2 usable)
+Link 2: 192.168.100.4/30  (.5 and .6 usable)
+Link 3: 192.168.100.8/30  (.9 and .10 usable)
+Link 4: 192.168.100.12/30 (.13 and .14 usable)</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Subnetting Tools and Techniques</h2>
+                
+                <h3>Mental Math Shortcuts</h3>
+                <ul>
+                    <li><strong>Magic Number:</strong> 256 - subnet mask = increment</li>
+                    <li><strong>Host Count:</strong> 2^(host bits) - 2</li>
+                    <li><strong>Subnet Count:</strong> 2^(borrowed bits)</li>
+                    <li><strong>Binary Shortcuts:</strong> Memorize powers of 2</li>
+                </ul>
+
+                <h3>Common Subnet Scenarios</h3>
+                <div class="data-types-grid">
+                    <div class="data-type scenario-1">
+                        <h4>Small Office (30 hosts)</h4>
+                        <p>Use /27 (30 usable hosts)<br>
+                        Example: 192.168.1.0/27</p>
+                    </div>
+                    <div class="data-type scenario-2">
+                        <h4>Medium Office (100 hosts)</h4>
+                        <p>Use /25 (126 usable hosts)<br>
+                        Example: 192.168.1.0/25</p>
+                    </div>
+                    <div class="data-type scenario-3">
+                        <h4>Point-to-Point Link</h4>
+                        <p>Use /30 (2 usable hosts)<br>
+                        Example: 10.1.1.0/30</p>
+                    </div>
+                    <div class="data-type scenario-4">
+                        <h4>Loopback Interface</h4>
+                        <p>Use /32 (1 host)<br>
+                        Example: 10.1.1.1/32</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="video-section">
+                <h2>📺 Video Tutorial</h2>
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        <div class="video-icon">🎥</div>
+                        <p>YouTube video will be embedded here</p>
+                        <small>Video placeholder - Link to be added</small>
+                    </div>
+                </div>
+            </section>
+
+            <section class="test-section">
+                <h2>📝 Knowledge Test</h2>
+                <p class="test-instruction">Complete this test to unlock the next course. You need 18 out of 20 correct answers to pass.</p>
+                
+                <div class="test-container">
+                    <div class="question" data-question="1">
+                        <h3>Question 1</h3>
+                        <p>What does /24 represent in CIDR notation?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> 24 network bits</label>
+                            <label><input type="radio" name="q1" value="b"> 24 host bits</label>
+                            <label><input type="radio" name="q1" value="c"> 24 subnets</label>
+                            <label><input type="radio" name="q1" value="d"> 24 hosts</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="2">
+                        <h3>Question 2</h3>
+                        <p>How many usable hosts are in a /26 subnet?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> 64</label>
+                            <label><input type="radio" name="q2" value="b"> 62</label>
+                            <label><input type="radio" name="q2" value="c"> 32</label>
+                            <label><input type="radio" name="q2" value="d"> 30</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="3">
+                        <h3>Question 3</h3>
+                        <p>What is the subnet mask for /27?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="a"> 255.255.255.192</label>
+                            <label><input type="radio" name="q3" value="b"> 255.255.255.224</label>
+                            <label><input type="radio" name="q3" value="c"> 255.255.255.240</label>
+                            <label><input type="radio" name="q3" value="d"> 255.255.255.248</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="4">
+                        <h3>Question 4</h3>
+                        <p>Which address is the broadcast address for 192.168.1.0/26?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> 192.168.1.63</label>
+                            <label><input type="radio" name="q4" value="b"> 192.168.1.64</label>
+                            <label><input type="radio" name="q4" value="c"> 192.168.1.127</label>
+                            <label><input type="radio" name="q4" value="d"> 192.168.1.255</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="5">
+                        <h3>Question 5</h3>
+                        <p>What is 192 in binary?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="a"> 11000000</label>
+                            <label><input type="radio" name="q5" value="b"> 10000000</label>
+                            <label><input type="radio" name="q5" value="c"> 11100000</label>
+                            <label><input type="radio" name="q5" value="d"> 10100000</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="6">
+                        <h3>Question 6</h3>
+                        <p>How many subnets can you create by borrowing 3 bits?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q6" value="a"> 6</label>
+                            <label><input type="radio" name="q6" value="b"> 8</label>
+                            <label><input type="radio" name="q6" value="c"> 16</label>
+                            <label><input type="radio" name="q6" value="d"> 32</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="7">
+                        <h3>Question 7</h3>
+                        <p>What does VLSM stand for?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q7" value="a"> Variable Length Subnet Masking</label>
+                            <label><input type="radio" name="q7" value="b"> Virtual Local Subnet Management</label>
+                            <label><input type="radio" name="q7" value="c"> Very Large Subnet Method</label>
+                            <label><input type="radio" name="q7" value="d"> Variable Link Subnet Mode</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="8">
+                        <h3>Question 8</h3>
+                        <p>Which subnet would you use for a point-to-point link?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q8" value="a"> /28</label>
+                            <label><input type="radio" name="q8" value="b"> /29</label>
+                            <label><input type="radio" name="q8" value="c"> /30</label>
+                            <label><input type="radio" name="q8" value="d"> /31</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="9">
+                        <h3>Question 9</h3>
+                        <p>What is the first usable host address in 10.1.1.64/26?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q9" value="a"> 10.1.1.64</label>
+                            <label><input type="radio" name="q9" value="b"> 10.1.1.65</label>
+                            <label><input type="radio" name="q9" value="c"> 10.1.1.66</label>
+                            <label><input type="radio" name="q9" value="d"> 10.1.1.67</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="10">
+                        <h3>Question 10</h3>
+                        <p>How many bits are in an IPv6 address?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q10" value="a"> 32</label>
+                            <label><input type="radio" name="q10" value="b"> 64</label>
+                            <label><input type="radio" name="q10" value="c"> 96</label>
+                            <label><input type="radio" name="q10" value="d"> 128</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="11">
+                        <h3>Question 11</h3>
+                        <p>What is the magic number for calculating subnets?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q11" value="a"> 255 - subnet mask</label>
+                            <label><input type="radio" name="q11" value="b"> 256 - subnet mask</label>
+                            <label><input type="radio" name="q11" value="c"> 128 - subnet mask</label>
+                            <label><input type="radio" name="q11" value="d"> 512 - subnet mask</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="12">
+                        <h3>Question 12</h3>
+                        <p>Which private IP range belongs to Class A?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q12" value="a"> 192.168.0.0/16</label>
+                            <label><input type="radio" name="q12" value="b"> 172.16.0.0/12</label>
+                            <label><input type="radio" name="q12" value="c"> 10.0.0.0/8</label>
+                            <label><input type="radio" name="q12" value="d"> 127.0.0.0/8</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="13">
+                        <h3>Question 13</h3>
+                        <p>What is supernetting also known as?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q13" value="a"> Route aggregation</label>
+                            <label><input type="radio" name="q13" value="b"> Route summarization</label>
+                            <label><input type="radio" name="q13" value="c"> Both A and B</label>
+                            <label><input type="radio" name="q13" value="d"> Route multiplication</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="14">
+                        <h3>Question 14</h3>
+                        <p>How many host bits are in a /25 network?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q14" value="a"> 6</label>
+                            <label><input type="radio" name="q14" value="b"> 7</label>
+                            <label><input type="radio" name="q14" value="c"> 8</label>
+                            <label><input type="radio" name="q14" value="d"> 9</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="15">
+                        <h3>Question 15</h3>
+                        <p>What is the standard IPv6 subnet size?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q15" value="a"> /48</label>
+                            <label><input type="radio" name="q15" value="b"> /56</label>
+                            <label><input type="radio" name="q15" value="c"> /64</label>
+                            <label><input type="radio" name="q15" value="d"> /128</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="16">
+                        <h3>Question 16</h3>
+                        <p>Which address cannot be assigned to a host?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q16" value="a"> First address in subnet</label>
+                            <label><input type="radio" name="q16" value="b"> Last address in subnet</label>
+                            <label><input type="radio" name="q16" value="c"> Both A and B</label>
+                            <label><input type="radio" name="q16" value="d"> Middle address in subnet</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="17">
+                        <h3>Question 17</h3>
+                        <p>What is 2^5?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q17" value="a"> 16</label>
+                            <label><input type="radio" name="q17" value="b"> 32</label>
+                            <label><input type="radio" name="q17" value="c"> 64</label>
+                            <label><input type="radio" name="q17" value="d"> 128</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="18">
+                        <h3>Question 18</h3>
+                        <p>In VLSM, which subnet should be allocated first?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q18" value="a"> Smallest subnet</label>
+                            <label><input type="radio" name="q18" value="b"> Largest subnet</label>
+                            <label><input type="radio" name="q18" value="c"> Random order</label>
+                            <label><input type="radio" name="q18" value="d"> Alphabetical order</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="19">
+                        <h3>Question 19</h3>
+                        <p>What is the increment for a /29 subnet?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q19" value="a"> 4</label>
+                            <label><input type="radio" name="q19" value="b"> 8</label>
+                            <label><input type="radio" name="q19" value="c"> 16</label>
+                            <label><input type="radio" name="q19" value="d"> 32</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="20">
+                        <h3>Question 20</h3>
+                        <p>Which tool is commonly used for subnet calculations?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q20" value="a"> Subnet calculator</label>
+                            <label><input type="radio" name="q20" value="b"> Binary conversion</label>
+                            <label><input type="radio" name="q20" value="c"> Powers of 2</label>
+                            <label><input type="radio" name="q20" value="d"> All of the above</label>
+                        </div>
+                    </div>
+
+                    <div class="test-actions">
+                        <button class="submit-test-btn">Submit Test</button>
+                        <div class="test-result" style="display: none;">
+                            <div class="score-display"></div>
+                            <div class="result-message"></div>
+                            <button class="next-course-btn" style="display: none;">Proceed to Next Course</button>
+                            <button class="retry-btn" style="display: none;">Retry Test</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="course-7.js"></script>
+</body>
+</html>

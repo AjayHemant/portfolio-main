@@ -1,0 +1,153 @@
+/* OSI and TCP/IP Models specific theme */
+.course-header {
+  background: linear-gradient(135deg, #3d1a4d, #2d0d3d);
+  border: 1px solid rgba(221, 160, 221, 0.3);
+}
+
+.course-title {
+  background: linear-gradient(45deg, #dda0dd, #ba55d3);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(221, 160, 221, 0.3);
+}
+
+.content-section {
+  background: rgba(221, 160, 221, 0.05);
+  border: 1px solid rgba(221, 160, 221, 0.1);
+}
+
+.content-section h2 {
+  color: #dda0dd;
+}
+
+.content-section h3 {
+  color: #ba55d3;
+}
+
+.content-section strong {
+  color: #dda0dd;
+}
+
+.code-block {
+  background: #2d0d3d;
+  border: 1px solid #ba55d3;
+}
+
+.code-block pre {
+  color: #dda0dd;
+}
+
+.data-type {
+  background: rgba(221, 160, 221, 0.1);
+  border: 1px solid rgba(221, 160, 221, 0.3);
+}
+
+.data-type h4 {
+  color: #dda0dd;
+}
+
+/* OSI Layer specific colors */
+.layer-7 {
+  border-left: 4px solid #ff6b6b;
+}
+.layer-6 {
+  border-left: 4px solid #ffa500;
+}
+.layer-5 {
+  border-left: 4px solid #ffff00;
+}
+.layer-4 {
+  border-left: 4px solid #00ff00;
+}
+.layer-3 {
+  border-left: 4px solid #00bfff;
+}
+.layer-2 {
+  border-left: 4px solid #0000ff;
+}
+.layer-1 {
+  border-left: 4px solid #8b00ff;
+}
+
+/* TCP/IP Layer colors */
+.tcp-layer-4 {
+  border-left: 4px solid #ff4757;
+}
+.tcp-layer-3 {
+  border-left: 4px solid #2ed573;
+}
+.tcp-layer-2 {
+  border-left: 4px solid #3742fa;
+}
+.tcp-layer-1 {
+  border-left: 4px solid #a55eea;
+}
+
+/* Protocol comparison */
+.tcp-protocol {
+  background: rgba(46, 213, 115, 0.1);
+  border: 1px solid rgba(46, 213, 115, 0.3);
+}
+
+.udp-protocol {
+  background: rgba(255, 71, 87, 0.1);
+  border: 1px solid rgba(255, 71, 87, 0.3);
+}
+
+.back-btn:hover {
+  background: rgba(221, 160, 221, 0.2);
+  border-color: rgba(221, 160, 221, 0.5);
+}
+
+.course-progress .course-number {
+  color: #dda0dd;
+}
+
+/* Layer visualization effect */
+.course-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 15px,
+    rgba(221, 160, 221, 0.05) 15px,
+    rgba(221, 160, 221, 0.05) 30px
+  );
+  pointer-events: none;
+  animation: layerShift 12s ease-in-out infinite;
+}
+
+@keyframes layerShift {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(30px);
+  }
+}
+
+.course-header {
+  position: relative;
+  overflow: hidden;
+}
+
+.content-section::before {
+  content: "📡";
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  opacity: 0.3;
+  color: #dda0dd;
+}
+
+.content-section {
+  position: relative;
+}

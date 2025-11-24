@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Packet Analysis - Cyber Learner</title>
+    <link rel="stylesheet" href="course-styles.css">
+    <link rel="stylesheet" href="course-8.css">
+</head>
+<body>
+    <div class="course-container">
+        <header class="course-header">
+            <div class="nav-controls">
+                <a href="index.html" class="back-btn">← Back to Courses</a>
+                <div class="course-progress">
+                    <span class="course-number">Course 8</span>
+                    <span class="course-total">of 14</span>
+                </div>
+            </div>
+            <h1 class="course-title">Packet Analysis</h1>
+            <p class="course-subtitle">Learn to capture, analyze, and interpret network traffic</p>
+        </header>
+
+        <main class="course-content">
+            <section class="content-section">
+                <h2>Introduction to Packet Analysis</h2>
+                <p>Packet analysis is the process of capturing, examining, and interpreting network traffic. It's essential for network troubleshooting, security monitoring, and understanding network behavior.</p>
+                
+                <h3>Why Packet Analysis Matters</h3>
+                <ul>
+                    <li><strong>Network Troubleshooting:</strong> Identify connectivity issues</li>
+                    <li><strong>Security Monitoring:</strong> Detect malicious activity</li>
+                    <li><strong>Performance Analysis:</strong> Optimize network performance</li>
+                    <li><strong>Protocol Understanding:</strong> Learn how protocols work</li>
+                    <li><strong>Forensic Investigation:</strong> Analyze security incidents</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Packet Structure Overview</h2>
+                <p>Understanding packet structure is fundamental to effective analysis.</p>
+                
+                <div class="code-block">
+                    <pre><code># Typical Ethernet Frame Structure:
+┌─────────────────┬─────────────────┬─────────────────┬─────────────────┐
+│   Ethernet      │   IP Header     │  TCP/UDP Header │      Data       │
+│   Header        │   (20+ bytes)   │   (20/8 bytes)  │   (Variable)    │
+│  (14 bytes)     │                 │                 │                 │
+└─────────────────┴─────────────────┴─────────────────┴─────────────────┘
+
+# Ethernet Header (14 bytes):
+- Destination MAC (6 bytes)
+- Source MAC (6 bytes)  
+- EtherType (2 bytes)
+
+# IP Header (20+ bytes):
+- Version (4 bits)
+- Header Length (4 bits)
+- Type of Service (8 bits)
+- Total Length (16 bits)
+- Identification (16 bits)
+- Flags (3 bits)
+- Fragment Offset (13 bits)
+- TTL (8 bits)
+- Protocol (8 bits)
+- Header Checksum (16 bits)
+- Source IP (32 bits)
+- Destination IP (32 bits)
+- Options (variable)
+
+# TCP Header (20+ bytes):
+- Source Port (16 bits)
+- Destination Port (16 bits)
+- Sequence Number (32 bits)
+- Acknowledgment Number (32 bits)
+- Header Length (4 bits)
+- Reserved (6 bits)
+- Flags (6 bits)
+- Window Size (16 bits)
+- Checksum (16 bits)
+- Urgent Pointer (16 bits)
+- Options (variable)</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Packet Capture Methods</h2>
+                <p>There are several ways to capture network packets for analysis.</p>
+                
+                <h3>Capture Techniques</h3>
+                <div class="data-types-grid">
+                    <div class="data-type promiscuous-mode">
+                        <h4>Promiscuous Mode</h4>
+                        <ul>
+                            <li>Captures all packets on network segment</li>
+                            <li>Requires special network card configuration</li>
+                            <li>Works on hubs and some switches</li>
+                            <li>Limited by switch port mirroring</li>
+                        </ul>
+                    </div>
+                    <div class="data-type port-mirroring">
+                        <h4>Port Mirroring (SPAN)</h4>
+                        <ul>
+                            <li>Switch copies traffic to monitor port</li>
+                            <li>Can mirror specific ports or VLANs</li>
+                            <li>Requires switch configuration</li>
+                            <li>Most common in enterprise networks</li>
+                        </ul>
+                    </div>
+                    <div class="data-type network-tap">
+                        <h4>Network TAP</h4>
+                        <ul>
+                            <li>Physical device inserted in network path</li>
+                            <li>Copies all traffic without modification</li>
+                            <li>No impact on network performance</li>
+                            <li>Most reliable capture method</li>
+                        </ul>
+                    </div>
+                    <div class="data-type wireless-capture">
+                        <h4>Wireless Capture</h4>
+                        <ul>
+                            <li>Monitor mode on wireless adapters</li>
+                            <li>Captures all wireless frames</li>
+                            <li>Includes management and control frames</li>
+                            <li>Requires compatible hardware</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Common Analysis Tools</h2>
+                <p>Various tools are available for packet capture and analysis.</p>
+                
+                <h3>Wireshark</h3>
+                <div class="code-block">
+                    <pre><code># Wireshark Features:
+- Graphical packet analyzer
+- Supports 1000+ protocols
+- Real-time and offline analysis
+- Powerful filtering capabilities
+- Cross-platform (Windows, Linux, macOS)
+
+# Common Wireshark Filters:
+ip.addr == 192.168.1.1          # Specific IP address
+tcp.port == 80                  # HTTP traffic
+http.request.method == "GET"    # HTTP GET requests
+dns                             # DNS traffic only
+tcp.flags.syn == 1              # TCP SYN packets
+icmp                            # ICMP packets
+not arp                         # Exclude ARP traffic
+
+# Display Filter Examples:
+tcp.stream eq 0                 # Follow TCP stream
+frame.time >= "2023-01-01"      # Time-based filtering
+tcp.analysis.retransmission     # Show retransmissions
+http.response.code == 404       # HTTP 404 errors</code></pre>
+                </div>
+
+                <h3>Command Line Tools</h3>
+                <div class="code-block">
+                    <pre><code># tcpdump (Linux/Unix):
+tcpdump -i eth0                 # Capture on interface eth0
+tcpdump -i eth0 -w capture.pcap # Write to file
+tcpdump -r capture.pcap         # Read from file
+tcpdump host 192.168.1.1        # Specific host
+tcpdump port 80                 # Specific port
+tcpdump -n -c 100               # No DNS resolution, 100 packets
+
+# tshark (Wireshark command line):
+tshark -i eth0                  # Live capture
+tshark -r capture.pcap          # Read file
+tshark -Y "http"                # Display filter
+tshark -T fields -e ip.src      # Extract specific fields
+
+# netstat (Connection information):
+netstat -an                     # All connections
+netstat -rn                     # Routing table
+netstat -i                      # Interface statistics</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Protocol Analysis Techniques</h2>
+                
+                <h3>TCP Analysis</h3>
+                <div class="code-block">
+                    <pre><code># TCP Connection Analysis:
+1. Three-Way Handshake:
+   - SYN (Client → Server)
+   - SYN-ACK (Server → Client)  
+   - ACK (Client → Server)
+
+2. Data Transfer:
+   - PSH flag indicates data push
+   - ACK confirms receipt
+   - Sequence numbers track order
+
+3. Connection Termination:
+   - FIN (Initiator → Receiver)
+   - ACK (Receiver → Initiator)
+   - FIN (Receiver → Initiator)
+   - ACK (Initiator → Receiver)
+
+# TCP Flags:
+URG - Urgent pointer field significant
+ACK - Acknowledgment field significant  
+PSH - Push function
+RST - Reset connection
+SYN - Synchronize sequence numbers
+FIN - No more data from sender
+
+# TCP Issues to Look For:
+- Retransmissions (duplicate sequence numbers)
+- Out-of-order packets
+- Window size problems
+- Reset connections (RST flags)
+- Slow connection establishment</code></pre>
+                </div>
+
+                <h3>HTTP Analysis</h3>
+                <div class="code-block">
+                    <pre><code># HTTP Request Analysis:
+GET /index.html HTTP/1.1
+Host: www.example.com
+User-Agent: Mozilla/5.0
+Accept: text/html,application/xhtml+xml
+Connection: keep-alive
+
+# HTTP Response Analysis:
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 1234
+Server: Apache/2.4.41
+Set-Cookie: sessionid=abc123
+
+# Key HTTP Analysis Points:
+- Request methods (GET, POST, PUT, DELETE)
+- Response codes (200, 404, 500, etc.)
+- Headers (User-Agent, Referer, Cookies)
+- Content types and encoding
+- Authentication mechanisms
+- Session management</code></pre>
+                </div>
+
+                <h3>DNS Analysis</h3>
+                <div class="code-block">
+                    <pre><code># DNS Query Structure:
+┌─────────────────┬─────────────────┬─────────────────┬─────────────────┐
+│     Header      │    Question     │     Answer      │   Additional    │
+│   (12 bytes)    │   (Variable)    │   (Variable)    │   (Variable)    │
+└─────────────────┴─────────────────┴─────────────────┴─────────────────┘
+
+# DNS Header Fields:
+- Transaction ID (16 bits)
+- Flags (16 bits)
+- Questions count (16 bits)
+- Answer RRs count (16 bits)
+- Authority RRs count (16 bits)
+- Additional RRs count (16 bits)
+
+# DNS Analysis Points:
+- Query types (A, AAAA, MX, NS, PTR)
+- Response codes (NOERROR, NXDOMAIN, SERVFAIL)
+- TTL values
+- Authoritative vs non-authoritative responses
+- Recursive vs iterative queries</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Network Performance Analysis</h2>
+                
+                <h3>Key Performance Metrics</h3>
+                <ul>
+                    <li><strong>Latency:</strong> Round-trip time for packets</li>
+                    <li><strong>Throughput:</strong> Data transfer rate</li>
+                    <li><strong>Packet Loss:</strong> Percentage of lost packets</li>
+                    <li><strong>Jitter:</strong> Variation in packet delay</li>
+                    <li><strong>Bandwidth Utilization:</strong> Network capacity usage</li>
+                </ul>
+
+                <h3>Performance Analysis Techniques</h3>
+                <div class="code-block">
+                    <pre><code># Latency Analysis:
+- Measure time between request and response
+- Look for TCP handshake timing
+- Analyze ping/ICMP response times
+- Check for network congestion indicators
+
+# Throughput Analysis:
+- Calculate bytes per second
+- Identify bottlenecks
+- Analyze TCP window scaling
+- Monitor buffer utilization
+
+# Packet Loss Detection:
+- Missing sequence numbers
+- Duplicate ACKs
+- Retransmission patterns
+- TCP fast retransmit indicators
+
+# Quality of Service (QoS) Analysis:
+- DSCP markings in IP header
+- Traffic prioritization
+- Bandwidth allocation
+- Queue management</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Security Analysis</h2>
+                <p>Packet analysis is crucial for detecting security threats and incidents.</p>
+                
+                <h3>Common Security Indicators</h3>
+                <ul>
+                    <li><strong>Port Scanning:</strong> Sequential connection attempts</li>
+                    <li><strong>DDoS Attacks:</strong> High volume of similar packets</li>
+                    <li><strong>Malware Communication:</strong> Unusual traffic patterns</li>
+                    <li><strong>Data Exfiltration:</strong> Large outbound transfers</li>
+                    <li><strong>Protocol Anomalies:</strong> Malformed or suspicious packets</li>
+                </ul>
+
+                <h3>Security Analysis Techniques</h3>
+                <div class="code-block">
+                    <pre><code># Port Scan Detection:
+- Multiple SYN packets to different ports
+- Short time intervals between attempts
+- No corresponding application data
+- RST responses from closed ports
+
+# Suspicious Traffic Patterns:
+- Connections to known bad IPs
+- Unusual protocols or ports
+- Encrypted traffic to unexpected destinations
+- Beaconing behavior (regular intervals)
+
+# Malware Indicators:
+- DNS queries to suspicious domains
+- HTTP requests with unusual User-Agents
+- Binary data in unexpected protocols
+- Command and control communications
+
+# Data Exfiltration Signs:
+- Large file transfers
+- Compressed or encrypted payloads
+- Unusual upload patterns
+- Off-hours data transfers</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Practical Analysis Scenarios</h2>
+                
+                <h3>Scenario 1: Slow Web Performance</h3>
+                <div class="code-block">
+                    <pre><code># Investigation Steps:
+1. Capture HTTP traffic to slow website
+2. Analyze TCP handshake timing
+3. Check for retransmissions
+4. Examine HTTP response times
+5. Look for DNS resolution delays
+
+# Common Causes:
+- High network latency
+- Server processing delays
+- Large content downloads
+- DNS resolution issues
+- Network congestion</code></pre>
+                </div>
+
+                <h3>Scenario 2: Intermittent Connectivity</h3>
+                <div class="code-block">
+                    <pre><code># Investigation Steps:
+1. Monitor connection establishment
+2. Look for connection resets (RST)
+3. Check for duplicate IP addresses
+4. Analyze ARP traffic
+5. Examine DHCP lease renewals
+
+# Common Causes:
+- IP address conflicts
+- Faulty network hardware
+- Intermittent cable issues
+- DHCP server problems
+- Wireless interference</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Best Practices for Packet Analysis</h2>
+                
+                <h3>Capture Best Practices</h3>
+                <ul>
+                    <li><strong>Use appropriate filters:</strong> Capture only relevant traffic</li>
+                    <li><strong>Consider storage space:</strong> Large captures consume disk space</li>
+                    <li><strong>Time synchronization:</strong> Ensure accurate timestamps</li>
+                    <li><strong>Multiple capture points:</strong> Get complete picture</li>
+                    <li><strong>Document methodology:</strong> Record analysis procedures</li>
+                </ul>
+
+                <h3>Analysis Best Practices</h3>
+                <ul>
+                    <li><strong>Start with overview:</strong> Understand traffic patterns first</li>
+                    <li><strong>Use statistics:</strong> Leverage built-in analysis tools</li>
+                    <li><strong>Follow conversations:</strong> Track complete sessions</li>
+                    <li><strong>Correlate events:</strong> Look for related activities</li>
+                    <li><strong>Validate findings:</strong> Confirm analysis with additional data</li>
+                </ul>
+            </section>
+
+            <section class="video-section">
+                <h2>📺 Video Tutorial</h2>
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        <div class="video-icon">🎥</div>
+                        <p>YouTube video will be embedded here</p>
+                        <small>Video placeholder - Link to be added</small>
+                    </div>
+                </div>
+            </section>
+
+            <section class="test-section">
+                <h2>📝 Knowledge Test</h2>
+                <p class="test-instruction">Complete this test to unlock the next course. You need 18 out of 20 correct answers to pass.</p>
+                
+                <div class="test-container">
+                    <div class="question" data-question="1">
+                        <h3>Question 1</h3>
+                        <p>What is packet analysis primarily used for?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> Creating network packets</label>
+                            <label><input type="radio" name="q1" value="b"> Examining network traffic</label>
+                            <label><input type="radio" name="q1" value="c"> Generating network protocols</label>
+                            <label><input type="radio" name="q1" value="d"> Building network hardware</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="2">
+                        <h3>Question 2</h3>
+                        <p>Which tool is most commonly used for graphical packet analysis?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> tcpdump</label>
+                            <label><input type="radio" name="q2" value="b"> Wireshark</label>
+                            <label><input type="radio" name="q2" value="c"> netstat</label>
+                            <label><input type="radio" name="q2" value="d"> ping</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="3">
+                        <h3>Question 3</h3>
+                        <p>What does promiscuous mode allow a network interface to do?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="a"> Send packets faster</label>
+                            <label><input type="radio" name="q3" value="b"> Capture all packets on the network segment</label>
+                            <label><input type="radio" name="q3" value="c"> Encrypt network traffic</label>
+                            <label><input type="radio" name="q3" value="d"> Create virtual networks</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="4">
+                        <h3>Question 4</h3>
+                        <p>Which TCP flag indicates the start of a connection?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> ACK</label>
+                            <label><input type="radio" name="q4" value="b"> SYN</label>
+                            <label><input type="radio" name="q4" value="c"> FIN</label>
+                            <label><input type="radio" name="q4" value="d"> RST</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="5">
+                        <h3>Question 5</h3>
+                        <p>How many bytes is a standard Ethernet header?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="a"> 12</label>
+                            <label><input type="radio" name="q5" value="b"> 14</label>
+                            <label><input type="radio" name="q5" value="c"> 16</label>
+                            <label><input type="radio" name="q5" value="d"> 20</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="6">
+                        <h3>Question 6</h3>
+                        <p>What is port mirroring also known as?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q6" value="a"> SPAN</label>
+                            <label><input type="radio" name="q6" value="b"> TAP</label>
+                            <label><input type="radio" name="q6" value="c"> HUB</label>
+                            <label><input type="radio" name="q6" value="d"> VLAN</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="7">
+                        <h3>Question 7</h3>
+                        <p>Which command-line tool is commonly used for packet capture on Linux?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q7" value="a"> wireshark</label>
+                            <label><input type="radio" name="q7" value="b"> tcpdump</label>
+                            <label><input type="radio" name="q7" value="c"> netstat</label>
+                            <label><input type="radio" name="q7" value="d"> ifconfig</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="8">
+                        <h3>Question 8</h3>
+                        <p>What does the RST flag in TCP indicate?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q8" value="a"> Request to send</label>
+                            <label><input type="radio" name="q8" value="b"> Reset connection</label>
+                            <label><input type="radio" name="q8" value="c"> Restart transmission</label>
+                            <label><input type="radio" name="q8" value="d"> Ready to send</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="9">
+                        <h3>Question 9</h3>
+                        <p>Which metric measures the variation in packet delay?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q9" value="a"> Latency</label>
+                            <label><input type="radio" name="q9" value="b"> Throughput</label>
+                            <label><input type="radio" name="q9" value="c"> Jitter</label>
+                            <label><input type="radio" name="q9" value="d"> Bandwidth</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="10">
+                        <h3>Question 10</h3>
+                        <p>What is a network TAP?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q10" value="a"> A software tool</label>
+                            <label><input type="radio" name="q10" value="b"> A physical device for traffic copying</label>
+                            <label><input type="radio" name="q10" value="c"> A network protocol</label>
+                            <label><input type="radio" name="q10" value="d"> A type of cable</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="11">
+                        <h3>Question 11</h3>
+                        <p>Which Wireshark filter shows only HTTP traffic?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q11" value="a"> tcp.port == 80</label>
+                            <label><input type="radio" name="q11" value="b"> http</label>
+                            <label><input type="radio" name="q11" value="c"> Both A and B</label>
+                            <label><input type="radio" name="q11" value="d"> web</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="12">
+                        <h3>Question 12</h3>
+                        <p>What indicates a potential port scan in packet analysis?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q12" value="a"> Multiple SYN packets to different ports</label>
+                            <label><input type="radio" name="q12" value="b"> Large file transfers</label>
+                            <label><input type="radio" name="q12" value="c"> DNS queries</label>
+                            <label><input type="radio" name="q12" value="d"> ICMP packets</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="13">
+                        <h3>Question 13</h3>
+                        <p>How many steps are in a TCP three-way handshake?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q13" value="a"> 2</label>
+                            <label><input type="radio" name="q13" value="b"> 3</label>
+                            <label><input type="radio" name="q13" value="c"> 4</label>
+                            <label><input type="radio" name="q13" value="d"> 5</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="14">
+                        <h3>Question 14</h3>
+                        <p>What does the FIN flag indicate in TCP?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q14" value="a"> Start connection</label>
+                            <label><input type="radio" name="q14" value="b"> Finish connection</label>
+                            <label><input type="radio" name="q14" value="c"> Find destination</label>
+                            <label><input type="radio" name="q14" value="d"> Fix error</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="15">
+                        <h3>Question 15</h3>
+                        <p>Which protocol is commonly analyzed for domain name resolution?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q15" value="a"> HTTP</label>
+                            <label><input type="radio" name="q15" value="b"> FTP</label>
+                            <label><input type="radio" name="q15" value="c"> DNS</label>
+                            <label><input type="radio" name="q15" value="d"> SMTP</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="16">
+                        <h3>Question 16</h3>
+                        <p>What is the minimum size of an IP header?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q16" value="a"> 16 bytes</label>
+                            <label><input type="radio" name="q16" value="b"> 20 bytes</label>
+                            <label><input type="radio" name="q16" value="c"> 24 bytes</label>
+                            <label><input type="radio" name="q16" value="d"> 32 bytes</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="17">
+                        <h3>Question 17</h3>
+                        <p>Which analysis technique helps identify network bottlenecks?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q17" value="a"> Protocol analysis</label>
+                            <label><input type="radio" name="q17" value="b"> Performance analysis</label>
+                            <label><input type="radio" name="q17" value="c"> Security analysis</label>
+                            <label><input type="radio" name="q17" value="d"> Statistical analysis</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="18">
+                        <h3>Question 18</h3>
+                        <p>What does tshark provide that tcpdump doesn't?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q18" value="a"> Packet capture capability</label>
+                            <label><input type="radio" name="q18" value="b"> Wireshark's protocol dissectors</label>
+                            <label><input type="radio" name="q18" value="c"> Command-line interface</label>
+                            <label><input type="radio" name="q18" value="d"> File output capability</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="19">
+                        <h3>Question 19</h3>
+                        <p>Which field in the IP header prevents infinite routing loops?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q19" value="a"> Protocol</label>
+                            <label><input type="radio" name="q19" value="b"> TTL (Time To Live)</label>
+                            <label><input type="radio" name="q19" value="c"> Checksum</label>
+                            <label><input type="radio" name="q19" value="d"> Fragment Offset</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="20">
+                        <h3>Question 20</h3>
+                        <p>What is the best practice when starting packet analysis?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q20" value="a"> Analyze individual packets first</label>
+                            <label><input type="radio" name="q20" value="b"> Start with an overview of traffic patterns</label>
+                            <label><input type="radio" name="q20" value="c"> Focus on error packets only</label>
+                            <label><input type="radio" name="q20" value="d"> Examine headers in detail</label>
+                        </div>
+                    </div>
+
+                    <div class="test-actions">
+                        <button class="submit-test-btn">Submit Test</button>
+                        <div class="test-result" style="display: none;">
+                            <div class="score-display"></div>
+                            <div class="result-message"></div>
+                            <button class="next-course-btn" style="display: none;">Proceed to Next Course</button>
+                            <button class="retry-btn" style="display: none;">Retry Test</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="course-8.js"></script>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C Programming Basics - Cyber Learner</title>
+    <link rel="stylesheet" href="course-styles.css">
+    <link rel="stylesheet" href="course-1.css">
+</head>
+<body>
+    <div class="course-container">
+        <header class="course-header">
+            <div class="nav-controls">
+                <a href="index.html" class="back-btn">← Back to Courses</a>
+                <div class="course-progress">
+                    <span class="course-number">Course 1</span>
+                    <span class="course-total">of 14</span>
+                </div>
+            </div>
+            <h1 class="course-title">C Programming Basics</h1>
+            <p class="course-subtitle">Master the fundamentals of C programming language and memory management</p>
+        </header>
+
+        <main class="course-content">
+            <section class="content-section">
+                <h2>Introduction to C Programming</h2>
+                <p>C is a powerful, low-level programming language developed by Dennis Ritchie in 1972. It's the foundation of many modern programming languages and operating systems, including Unix and Linux.</p>
+                
+                <h3>Why Learn C?</h3>
+                <ul>
+                    <li><strong>Foundation Knowledge:</strong> Understanding C helps you learn other languages</li>
+                    <li><strong>System Programming:</strong> Essential for operating systems and embedded systems</li>
+                    <li><strong>Memory Management:</strong> Direct control over memory allocation</li>
+                    <li><strong>Performance:</strong> Compiled code runs efficiently</li>
+                    <li><strong>Portability:</strong> C code can run on different platforms</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Basic Syntax and Structure</h2>
+                <div class="code-block">
+                    <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    printf("Hello, World!\n");
+    return 0;
+}</code></pre>
+                </div>
+                
+                <h3>Key Components:</h3>
+                <ul>
+                    <li><strong>#include:</strong> Preprocessor directive to include libraries</li>
+                    <li><strong>stdio.h:</strong> Standard input/output library</li>
+                    <li><strong>main():</strong> Entry point of every C program</li>
+                    <li><strong>printf():</strong> Function to display output</li>
+                    <li><strong>return 0:</strong> Indicates successful program execution</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Data Types and Variables</h2>
+                <p>C provides several built-in data types:</p>
+                
+                <div class="data-types-grid">
+                    <div class="data-type">
+                        <h4>int</h4>
+                        <p>Integer numbers (-2,147,483,648 to 2,147,483,647)</p>
+                    </div>
+                    <div class="data-type">
+                        <h4>float</h4>
+                        <p>Floating-point numbers (6 decimal places)</p>
+                    </div>
+                    <div class="data-type">
+                        <h4>double</h4>
+                        <p>Double-precision floating-point (15 decimal places)</p>
+                    </div>
+                    <div class="data-type">
+                        <h4>char</h4>
+                        <p>Single characters or small integers</p>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <pre><code>int age = 25;
+float height = 5.9;
+double pi = 3.14159265359;
+char grade = 'A';</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Control Structures</h2>
+                
+                <h3>Conditional Statements</h3>
+                <div class="code-block">
+                    <pre><code>if (condition) {
+    // code block
+} else if (another_condition) {
+    // code block
+} else {
+    // code block
+}</code></pre>
+                </div>
+
+                <h3>Loops</h3>
+                <div class="code-block">
+                    <pre><code>// For loop
+for (int i = 0; i < 10; i++) {
+    printf("%d\n", i);
+}
+
+// While loop
+int count = 0;
+while (count < 5) {
+    printf("Count: %d\n", count);
+    count++;
+}</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Functions</h2>
+                <p>Functions are reusable blocks of code that perform specific tasks:</p>
+                
+                <div class="code-block">
+                    <pre><code>// Function declaration
+int add(int a, int b);
+
+// Function definition
+int add(int a, int b) {
+    return a + b;
+}
+
+// Function call
+int result = add(5, 3);</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Pointers and Memory Management</h2>
+                <p>Pointers are variables that store memory addresses:</p>
+                
+                <div class="code-block">
+                    <pre><code>int num = 42;
+int *ptr = &num;  // ptr stores the address of num
+
+printf("Value: %d\n", *ptr);  // Dereference to get value
+printf("Address: %p\n", ptr); // Print address</code></pre>
+                </div>
+
+                <h3>Dynamic Memory Allocation</h3>
+                <div class="code-block">
+                    <pre><code>#include &lt;stdlib.h&gt;
+
+int *arr = (int*)malloc(10 * sizeof(int));
+// Use the array...
+free(arr);  // Don't forget to free memory!</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Arrays and Strings</h2>
+                
+                <h3>Arrays</h3>
+                <div class="code-block">
+                    <pre><code>int numbers[5] = {1, 2, 3, 4, 5};
+char letters[] = {'a', 'b', 'c', 'd', 'e'};</code></pre>
+                </div>
+
+                <h3>Strings</h3>
+                <div class="code-block">
+                    <pre><code>#include &lt;string.h&gt;
+
+char str1[20] = "Hello";
+char str2[] = "World";
+strcat(str1, str2);  // Concatenate strings</code></pre>
+                </div>
+            </section>
+
+            <section class="video-section">
+                <h2>📺 Video Tutorial</h2>
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        <div class="video-icon">🎥</div>
+                        <p>YouTube video will be embedded here</p>
+                        <small>Video placeholder - Link to be added</small>
+                    </div>
+                </div>
+            </section>
+
+            <section class="test-section">
+                <h2>📝 Knowledge Test</h2>
+                <p class="test-instruction">Complete this test to unlock the next course. You need 18 out of 20 correct answers to pass.</p>
+                
+                <div class="test-container">
+                    <div class="question" data-question="1">
+                        <h3>Question 1</h3>
+                        <p>What is the correct syntax to include a header file in C?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> #include (stdio.h)</label>
+                            <label><input type="radio" name="q1" value="b"> #include &lt;stdio.h&gt;</label>
+                            <label><input type="radio" name="q1" value="c"> include stdio.h</label>
+                            <label><input type="radio" name="q1" value="d"> #include stdio.h</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="2">
+                        <h3>Question 2</h3>
+                        <p>Which data type is used to store a single character in C?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> int</label>
+                            <label><input type="radio" name="q2" value="b"> char</label>
+                            <label><input type="radio" name="q2" value="c"> string</label>
+                            <label><input type="radio" name="q2" value="d"> character</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="3">
+                        <h3>Question 3</h3>
+                        <p>What does the printf() function do?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="a"> Reads input from keyboard</label>
+                            <label><input type="radio" name="q3" value="b"> Prints output to screen</label>
+                            <label><input type="radio" name="q3" value="c"> Declares a variable</label>
+                            <label><input type="radio" name="q3" value="d"> Ends the program</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="4">
+                        <h3>Question 4</h3>
+                        <p>What is the correct way to declare an integer variable?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> integer x;</label>
+                            <label><input type="radio" name="q4" value="b"> int x;</label>
+                            <label><input type="radio" name="q4" value="c"> x int;</label>
+                            <label><input type="radio" name="q4" value="d"> declare int x;</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="5">
+                        <h3>Question 5</h3>
+                        <p>What is the entry point of a C program?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="a"> start()</label>
+                            <label><input type="radio" name="q5" value="b"> main()</label>
+                            <label><input type="radio" name="q5" value="c"> begin()</label>
+                            <label><input type="radio" name="q5" value="d"> init()</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="6">
+                        <h3>Question 6</h3>
+                        <p>Which operator is used to get the address of a variable?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q6" value="a"> *</label>
+                            <label><input type="radio" name="q6" value="b"> &</label>
+                            <label><input type="radio" name="q6" value="c"> %</label>
+                            <label><input type="radio" name="q6" value="d"> #</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="7">
+                        <h3>Question 7</h3>
+                        <p>What does the * operator do with pointers?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q7" value="a"> Gets the address</label>
+                            <label><input type="radio" name="q7" value="b"> Dereferences the pointer</label>
+                            <label><input type="radio" name="q7" value="c"> Multiplies values</label>
+                            <label><input type="radio" name="q7" value="d"> Declares a pointer</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="8">
+                        <h3>Question 8</h3>
+                        <p>Which function is used to allocate memory dynamically?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q8" value="a"> alloc()</label>
+                            <label><input type="radio" name="q8" value="b"> malloc()</label>
+                            <label><input type="radio" name="q8" value="c"> memory()</label>
+                            <label><input type="radio" name="q8" value="d"> new()</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="9">
+                        <h3>Question 9</h3>
+                        <p>What is the correct way to free dynamically allocated memory?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q9" value="a"> delete(ptr)</label>
+                            <label><input type="radio" name="q9" value="b"> free(ptr)</label>
+                            <label><input type="radio" name="q9" value="c"> remove(ptr)</label>
+                            <label><input type="radio" name="q9" value="d"> clear(ptr)</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="10">
+                        <h3>Question 10</h3>
+                        <p>Which loop is guaranteed to execute at least once?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q10" value="a"> for loop</label>
+                            <label><input type="radio" name="q10" value="b"> while loop</label>
+                            <label><input type="radio" name="q10" value="c"> do-while loop</label>
+                            <label><input type="radio" name="q10" value="d"> None of the above</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="11">
+                        <h3>Question 11</h3>
+                        <p>What is the size of int data type in most modern systems?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q11" value="a"> 2 bytes</label>
+                            <label><input type="radio" name="q11" value="b"> 4 bytes</label>
+                            <label><input type="radio" name="q11" value="c"> 8 bytes</label>
+                            <label><input type="radio" name="q11" value="d"> 1 byte</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="12">
+                        <h3>Question 12</h3>
+                        <p>Which header file is needed for string functions?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q12" value="a"> stdio.h</label>
+                            <label><input type="radio" name="q12" value="b"> string.h</label>
+                            <label><input type="radio" name="q12" value="c"> stdlib.h</label>
+                            <label><input type="radio" name="q12" value="d"> ctype.h</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="13">
+                        <h3>Question 13</h3>
+                        <p>What does the continue statement do in a loop?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q13" value="a"> Exits the loop</label>
+                            <label><input type="radio" name="q13" value="b"> Skips the rest of the current iteration</label>
+                            <label><input type="radio" name="q13" value="c"> Starts the loop over</label>
+                            <label><input type="radio" name="q13" value="d"> Pauses the loop</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="14">
+                        <h3>Question 14</h3>
+                        <p>What is the correct way to declare an array of 10 integers?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q14" value="a"> int arr[10];</label>
+                            <label><input type="radio" name="q14" value="b"> array int[10];</label>
+                            <label><input type="radio" name="q14" value="c"> int [10]arr;</label>
+                            <label><input type="radio" name="q14" value="d"> declare int arr[10];</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="15">
+                        <h3>Question 15</h3>
+                        <p>Which function is used to read input from the user?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q15" value="a"> printf()</label>
+                            <label><input type="radio" name="q15" value="b"> scanf()</label>
+                            <label><input type="radio" name="q15" value="c"> input()</label>
+                            <label><input type="radio" name="q15" value="d"> read()</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="16">
+                        <h3>Question 16</h3>
+                        <p>What is the correct format specifier for an integer in printf?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q16" value="a"> %s</label>
+                            <label><input type="radio" name="q16" value="b"> %d</label>
+                            <label><input type="radio" name="q16" value="c"> %f</label>
+                            <label><input type="radio" name="q16" value="d"> %c</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="17">
+                        <h3>Question 17</h3>
+                        <p>What does the break statement do in a loop?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q17" value="a"> Skips current iteration</label>
+                            <label><input type="radio" name="q17" value="b"> Exits the loop completely</label>
+                            <label><input type="radio" name="q17" value="c"> Pauses the loop</label>
+                            <label><input type="radio" name="q17" value="d"> Restarts the loop</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="18">
+                        <h3>Question 18</h3>
+                        <p>Which of the following is a valid comment in C?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q18" value="a"> // This is a comment</label>
+                            <label><input type="radio" name="q18" value="b"> /* This is a comment */</label>
+                            <label><input type="radio" name="q18" value="c"> Both a and b</label>
+                            <label><input type="radio" name="q18" value="d"> # This is a comment</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="19">
+                        <h3>Question 19</h3>
+                        <p>What is the return type of the main() function?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q19" value="a"> void</label>
+                            <label><input type="radio" name="q19" value="b"> int</label>
+                            <label><input type="radio" name="q19" value="c"> char</label>
+                            <label><input type="radio" name="q19" value="d"> float</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="20">
+                        <h3>Question 20</h3>
+                        <p>Which operator has the highest precedence in C?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q20" value="a"> +</label>
+                            <label><input type="radio" name="q20" value="b"> *</label>
+                            <label><input type="radio" name="q20" value="c"> ()</label>
+                            <label><input type="radio" name="q20" value="d"> =</label>
+                        </div>
+                    </div>
+
+                    <div class="test-actions">
+                        <button class="submit-test-btn">Submit Test</button>
+                        <div class="test-result" style="display: none;">
+                            <div class="score-display"></div>
+                            <div class="result-message"></div>
+                            <button class="next-course-btn" style="display: none;">Proceed to Next Course</button>
+                            <button class="retry-btn" style="display: none;">Retry Test</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="course-1.js"></script>
+</body>
+</html>

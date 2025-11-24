@@ -1,0 +1,94 @@
+/* Python Programming specific theme */
+.course-header {
+  background: linear-gradient(135deg, #4d1a1a, #2d0d0d);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+}
+
+.course-title {
+  background: linear-gradient(45deg, #ff6b6b, #ff4757);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(255, 107, 107, 0.3);
+}
+
+.content-section {
+  background: rgba(255, 107, 107, 0.05);
+  border: 1px solid rgba(255, 107, 107, 0.1);
+}
+
+.content-section h2 {
+  color: #ff6b6b;
+}
+
+.content-section h3 {
+  color: #ff4757;
+}
+
+.content-section strong {
+  color: #ff6b6b;
+}
+
+.code-block {
+  background: #2d0d0d;
+  border: 1px solid #ff4757;
+}
+
+.code-block pre {
+  color: #ff6b6b;
+}
+
+.data-type {
+  background: rgba(255, 107, 107, 0.1);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+}
+
+.data-type h4 {
+  color: #ff6b6b;
+}
+
+.back-btn:hover {
+  background: rgba(255, 107, 107, 0.2);
+  border-color: rgba(255, 107, 107, 0.5);
+}
+
+.course-progress .course-number {
+  color: #ff6b6b;
+}
+
+/* Python-specific decorative elements */
+.course-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(255, 107, 107, 0.05) 10px,
+    rgba(255, 107, 107, 0.05) 20px
+  );
+  pointer-events: none;
+}
+
+.course-header {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add Python logo-inspired styling */
+.content-section::before {
+  content: "🐍";
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  opacity: 0.3;
+}
+
+.content-section {
+  position: relative;
+}

@@ -1,0 +1,147 @@
+/* Nmap specific theme */
+.course-header {
+  background: linear-gradient(135deg, #0d4d4d, #0a3333);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.course-title {
+  background: linear-gradient(45deg, #00ffff, #00cccc);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+}
+
+.content-section {
+  background: rgba(0, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+.content-section h2 {
+  color: #00ffff;
+}
+
+.content-section h3 {
+  color: #00cccc;
+}
+
+.content-section strong {
+  color: #00ffff;
+}
+
+.code-block {
+  background: #0a3333;
+  border: 1px solid #00cccc;
+}
+
+.code-block pre {
+  color: #00ffff;
+}
+
+.data-type {
+  background: rgba(0, 255, 255, 0.1);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+.data-type h4 {
+  color: #00ffff;
+}
+
+/* Scan type specific styling */
+.single-host {
+  border-left: 4px solid #00ff00;
+}
+
+.ip-range {
+  border-left: 4px solid #ffff00;
+}
+
+.subnet {
+  border-left: 4px solid #ff8800;
+}
+
+.tcp-connect {
+  border-left: 4px solid #ff6b6b;
+}
+
+.syn-scan {
+  border-left: 4px solid #4ecdc4;
+}
+
+.udp-scan {
+  border-left: 4px solid #45b7d1;
+}
+
+.web-scripts {
+  border-left: 4px solid #96ceb4;
+}
+
+.vuln-scripts {
+  border-left: 4px solid #ffeaa7;
+}
+
+.brute-scripts {
+  border-left: 4px solid #fab1a0;
+}
+
+.back-btn:hover {
+  background: rgba(0, 255, 255, 0.2);
+  border-color: rgba(0, 255, 255, 0.5);
+}
+
+.course-progress .course-number {
+  color: #00ffff;
+}
+
+/* Terminal-like effect */
+.course-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(0deg, transparent 0px, rgba(0, 255, 255, 0.03) 2px, transparent 4px);
+  pointer-events: none;
+  animation: scanLines 2s linear infinite;
+}
+
+@keyframes scanLines {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.content-section::before {
+  content: "🔍";
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  opacity: 0.3;
+  color: #00ffff;
+}
+
+.content-section {
+  position: relative;
+}
+
+/* Scanning effect */
+.course-header {
+  animation: scannerPulse 3s ease-in-out infinite;
+}
+
+@keyframes scannerPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
+  }
+}

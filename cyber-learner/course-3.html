@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Hacking Modules - Cyber Learner</title>
+    <link rel="stylesheet" href="course-styles.css">
+    <link rel="stylesheet" href="course-3.css">
+</head>
+<body>
+    <div class="course-container">
+        <header class="course-header">
+            <div class="nav-controls">
+                <a href="index.html" class="back-btn">← Back to Courses</a>
+                <div class="course-progress">
+                    <span class="course-number">Course 3</span>
+                    <span class="course-total">of 14</span>
+                </div>
+            </div>
+            <h1 class="course-title">Python Hacking Modules</h1>
+            <p class="course-subtitle">Explore security-focused Python libraries and automation tools</p>
+        </header>
+
+        <main class="course-content">
+            <section class="content-section">
+                <h2>Introduction to Python for Security</h2>
+                <p>Python is the go-to language for cybersecurity professionals due to its extensive library ecosystem and ease of use. This course covers essential Python modules used in ethical hacking and security automation.</p>
+                
+                <h3>Why Python for Hacking?</h3>
+                <ul>
+                    <li><strong>Rapid Development:</strong> Quick prototyping of security tools</li>
+                    <li><strong>Rich Libraries:</strong> Extensive security-focused modules</li>
+                    <li><strong>Cross-Platform:</strong> Works on all major operating systems</li>
+                    <li><strong>Community Support:</strong> Large security community</li>
+                    <li><strong>Integration:</strong> Easy to integrate with existing tools</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Socket Programming</h2>
+                <p>Sockets are fundamental for network communication and essential for creating network tools.</p>
+                
+                <div class="code-block">
+                    <pre><code>import socket
+
+# Create a TCP socket
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# Connect to a server
+sock.connect(('example.com', 80))
+
+# Send HTTP request
+request = "GET / HTTP/1.1\r\nHost: example.com\r\n\r\n"
+sock.send(request.encode())
+
+# Receive response
+response = sock.recv(4096)
+print(response.decode())
+
+sock.close()</code></pre>
+                </div>
+
+                <h3>Socket Applications:</h3>
+                <ul>
+                    <li><strong>Port Scanners:</strong> Check open ports on targets</li>
+                    <li><strong>Banner Grabbing:</strong> Identify services and versions</li>
+                    <li><strong>Custom Clients:</strong> Interact with network services</li>
+                    <li><strong>Reverse Shells:</strong> Remote access tools</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Requests Library</h2>
+                <p>The requests library simplifies HTTP operations for web application testing.</p>
+                
+                <div class="code-block">
+                    <pre><code>import requests
+
+# Basic GET request
+response = requests.get('https://httpbin.org/get')
+print(response.status_code)
+print(response.json())
+
+# POST request with data
+data = {'username': 'admin', 'password': 'test'}
+response = requests.post('https://httpbin.org/post', data=data)
+
+# Custom headers
+headers = {'User-Agent': 'Custom Bot 1.0'}
+response = requests.get('https://httpbin.org/headers', headers=headers)
+
+# Session handling
+session = requests.Session()
+session.get('https://httpbin.org/cookies/set/sessioncookie/123456789')</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Scapy - Packet Manipulation</h2>
+                <p>Scapy is a powerful packet manipulation library for network analysis and testing.</p>
+                
+                <div class="code-block">
+                    <pre><code>from scapy.all import *
+
+# Create and send a ping packet
+packet = IP(dst="8.8.8.8")/ICMP()
+response = sr1(packet, timeout=2)
+
+if response:
+    print(f"Ping successful: {response.src}")
+
+# Port scan with SYN packets
+def syn_scan(target, port):
+    packet = IP(dst=target)/TCP(dport=port, flags="S")
+    response = sr1(packet, timeout=1, verbose=0)
+    
+    if response and response[TCP].flags == 18:  # SYN-ACK
+        return True
+    return False
+
+# Scan common ports
+target = "scanme.nmap.org"
+common_ports = [22, 23, 53, 80, 110, 443]
+
+for port in common_ports:
+    if syn_scan(target, port):
+        print(f"Port {port} is open")</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Paramiko - SSH Operations</h2>
+                <p>Paramiko enables SSH connections and operations for remote system access.</p>
+                
+                <div class="code-block">
+                    <pre><code>import paramiko
+
+# SSH connection
+ssh = paramiko.SSHClient()
+ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+
+try:
+    ssh.connect('target.com', username='user', password='pass')
+    
+    # Execute command
+    stdin, stdout, stderr = ssh.exec_command('ls -la')
+    print(stdout.read().decode())
+    
+    # File transfer
+    sftp = ssh.open_sftp()
+    sftp.get('/remote/file.txt', '/local/file.txt')
+    sftp.put('/local/upload.txt', '/remote/upload.txt')
+    
+except Exception as e:
+    print(f"Connection failed: {e}")
+finally:
+    ssh.close()</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>BeautifulSoup - Web Scraping</h2>
+                <p>BeautifulSoup is essential for parsing HTML and extracting information from web pages.</p>
+                
+                <div class="code-block">
+                    <pre><code>import requests
+from bs4 import BeautifulSoup
+
+# Fetch and parse webpage
+url = "https://example.com"
+response = requests.get(url)
+soup = BeautifulSoup(response.content, 'html.parser')
+
+# Extract information
+title = soup.find('title').text
+print(f"Page title: {title}")
+
+# Find all links
+links = soup.find_all('a', href=True)
+for link in links:
+    print(f"Link: {link['href']}")
+
+# Extract forms (useful for finding login pages)
+forms = soup.find_all('form')
+for form in forms:
+    action = form.get('action', '')
+    method = form.get('method', 'GET')
+    print(f"Form: {method} {action}")
+    
+    # Find input fields
+    inputs = form.find_all('input')
+    for inp in inputs:
+        name = inp.get('name', '')
+        input_type = inp.get('type', 'text')
+        print(f"  Input: {name} ({input_type})")</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Cryptography Module</h2>
+                <p>The cryptography library provides tools for encryption, decryption, and hashing.</p>
+                
+                <div class="code-block">
+                    <pre><code>from cryptography.fernet import Fernet
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+import base64
+import os
+
+# Generate encryption key
+key = Fernet.generate_key()
+cipher_suite = Fernet(key)
+
+# Encrypt data
+message = b"Secret message"
+encrypted_data = cipher_suite.encrypt(message)
+print(f"Encrypted: {encrypted_data}")
+
+# Decrypt data
+decrypted_data = cipher_suite.decrypt(encrypted_data)
+print(f"Decrypted: {decrypted_data}")
+
+# Password-based encryption
+password = b"mypassword"
+salt = os.urandom(16)
+kdf = PBKDF2HMAC(
+    algorithm=hashes.SHA256(),
+    length=32,
+    salt=salt,
+    iterations=100000,
+)
+key = base64.urlsafe_b64encode(kdf.derive(password))
+cipher = Fernet(key)</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Threading for Concurrent Operations</h2>
+                <p>Threading allows multiple operations to run simultaneously, essential for efficient scanning tools.</p>
+                
+                <div class="code-block">
+                    <pre><code>import threading
+import socket
+from concurrent.futures import ThreadPoolExecutor
+
+def port_scan(target, port):
+    try:
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.settimeout(1)
+        result = sock.connect_ex((target, port))
+        sock.close()
+        
+        if result == 0:
+            print(f"Port {port} is open")
+            return port
+    except:
+        pass
+    return None
+
+# Multi-threaded port scanner
+def threaded_scan(target, ports):
+    open_ports = []
+    
+    with ThreadPoolExecutor(max_workers=50) as executor:
+        futures = [executor.submit(port_scan, target, port) for port in ports]
+        
+        for future in futures:
+            result = future.result()
+            if result:
+                open_ports.append(result)
+    
+    return open_ports
+
+# Scan common ports
+target = "scanme.nmap.org"
+ports = range(1, 1001)
+open_ports = threaded_scan(target, ports)
+print(f"Open ports: {open_ports}")</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Building a Simple Port Scanner</h2>
+                <p>Let's combine the concepts to build a practical security tool.</p>
+                
+                <div class="code-block">
+                    <pre><code>#!/usr/bin/env python3
+import socket
+import threading
+import argparse
+from datetime import datetime
+
+class PortScanner:
+    def __init__(self, target, threads=50):
+        self.target = target
+        self.threads = threads
+        self.open_ports = []
+        self.lock = threading.Lock()
+    
+    def scan_port(self, port):
+        try:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.settimeout(1)
+            result = sock.connect_ex((self.target, port))
+            
+            if result == 0:
+                with self.lock:
+                    self.open_ports.append(port)
+                    print(f"Port {port}: Open")
+            
+            sock.close()
+        except:
+            pass
+    
+    def scan_range(self, start_port, end_port):
+        print(f"Scanning {self.target} from port {start_port} to {end_port}")
+        print(f"Starting scan at {datetime.now()}")
+        
+        threads = []
+        for port in range(start_port, end_port + 1):
+            thread = threading.Thread(target=self.scan_port, args=(port,))
+            threads.append(thread)
+            thread.start()
+            
+            # Limit concurrent threads
+            if len(threads) >= self.threads:
+                for t in threads:
+                    t.join()
+                threads = []
+        
+        # Wait for remaining threads
+        for thread in threads:
+            thread.join()
+        
+        print(f"Scan completed at {datetime.now()}")
+        print(f"Open ports: {sorted(self.open_ports)}")
+
+# Usage example
+if __name__ == "__main__":
+    scanner = PortScanner("scanme.nmap.org")
+    scanner.scan_range(1, 100)</code></pre>
+                </div>
+            </section>
+
+            <section class="video-section">
+                <h2>📺 Video Tutorial</h2>
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        <div class="video-icon">🎥</div>
+                        <p>YouTube video will be embedded here</p>
+                        <small>Video placeholder - Link to be added</small>
+                    </div>
+                </div>
+            </section>
+
+            <section class="test-section">
+                <h2>📝 Knowledge Test</h2>
+                <p class="test-instruction">Complete this test to unlock the next course. You need 18 out of 20 correct answers to pass.</p>
+                
+                <div class="test-container">
+                    <div class="question" data-question="1">
+                        <h3>Question 1</h3>
+                        <p>Which Python module is primarily used for network socket programming?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> socket</label>
+                            <label><input type="radio" name="q1" value="b"> network</label>
+                            <label><input type="radio" name="q1" value="c"> tcp</label>
+                            <label><input type="radio" name="q1" value="d"> connection</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="2">
+                        <h3>Question 2</h3>
+                        <p>What does the requests.get() function return?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> A string</label>
+                            <label><input type="radio" name="q2" value="b"> A Response object</label>
+                            <label><input type="radio" name="q2" value="c"> A dictionary</label>
+                            <label><input type="radio" name="q2" value="d"> A list</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="3">
+                        <h3>Question 3</h3>
+                        <p>Which library is used for packet manipulation in Python?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="a"> requests</label>
+                            <label><input type="radio" name="q3" value="b"> scapy</label>
+                            <label><input type="radio" name="q3" value="c"> socket</label>
+                            <label><input type="radio" name="q3" value="d"> paramiko</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="4">
+                        <h3>Question 4</h3>
+                        <p>What is Paramiko primarily used for?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> Web scraping</label>
+                            <label><input type="radio" name="q4" value="b"> SSH connections</label>
+                            <label><input type="radio" name="q4" value="c"> Packet analysis</label>
+                            <label><input type="radio" name="q4" value="d"> Encryption</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="5">
+                        <h3>Question 5</h3>
+                        <p>Which library is best for parsing HTML content?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="a"> requests</label>
+                            <label><input type="radio" name="q5" value="b"> BeautifulSoup</label>
+                            <label><input type="radio" name="q5" value="c"> scapy</label>
+                            <label><input type="radio" name="q5" value="d"> socket</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="6">
+                        <h3>Question 6</h3>
+                        <p>What does socket.SOCK_STREAM represent?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q6" value="a"> UDP protocol</label>
+                            <label><input type="radio" name="q6" value="b"> TCP protocol</label>
+                            <label><input type="radio" name="q6" value="c"> ICMP protocol</label>
+                            <label><input type="radio" name="q6" value="d"> HTTP protocol</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="7">
+                        <h3>Question 7</h3>
+                        <p>Which method is used to send data through a socket?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q7" value="a"> send()</label>
+                            <label><input type="radio" name="q7" value="b"> write()</label>
+                            <label><input type="radio" name="q7" value="c"> transmit()</label>
+                            <label><input type="radio" name="q7" value="d"> push()</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="8">
+                        <h3>Question 8</h3>
+                        <p>What is the purpose of threading in security tools?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q8" value="a"> To make code more secure</label>
+                            <label><input type="radio" name="q8" value="b"> To run multiple operations concurrently</label>
+                            <label><input type="radio" name="q8" value="c"> To encrypt data</label>
+                            <label><input type="radio" name="q8" value="d"> To parse HTML</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="9">
+                        <h3>Question 9</h3>
+                        <p>Which Scapy function is used to send and receive packets?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q9" value="a"> send()</label>
+                            <label><input type="radio" name="q9" value="b"> sr1()</label>
+                            <label><input type="radio" name="q9" value="c"> transmit()</label>
+                            <label><input type="radio" name="q9" value="d"> exchange()</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="10">
+                        <h3>Question 10</h3>
+                        <p>What does the cryptography.fernet module provide?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q10" value="a"> Hashing functions</label>
+                            <label><input type="radio" name="q10" value="b"> Symmetric encryption</label>
+                            <label><input type="radio" name="q10" value="c"> Network protocols</label>
+                            <label><input type="radio" name="q10" value="d"> Web scraping</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="11">
+                        <h3>Question 11</h3>
+                        <p>Which HTTP status code indicates a successful request?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q11" value="a"> 404</label>
+                            <label><input type="radio" name="q11" value="b"> 500</label>
+                            <label><input type="radio" name="q11" value="c"> 200</label>
+                            <label><input type="radio" name="q11" value="d"> 301</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="12">
+                        <h3>Question 12</h3>
+                        <p>What is banner grabbing used for?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q12" value="a"> Downloading files</label>
+                            <label><input type="radio" name="q12" value="b"> Identifying services and versions</label>
+                            <label><input type="radio" name="q12" value="c"> Encrypting data</label>
+                            <label><input type="radio" name="q12" value="d"> Parsing HTML</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="13">
+                        <h3>Question 13</h3>
+                        <p>Which TCP flag combination indicates a SYN-ACK response?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q13" value="a"> 2</label>
+                            <label><input type="radio" name="q13" value="b"> 18</label>
+                            <label><input type="radio" name="q13" value="c"> 4</label>
+                            <label><input type="radio" name="q13" value="d"> 16</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="14">
+                        <h3>Question 14</h3>
+                        <p>What is the purpose of socket.settimeout()?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q14" value="a"> To set connection speed</label>
+                            <label><input type="radio" name="q14" value="b"> To limit connection duration</label>
+                            <label><input type="radio" name="q14" value="c"> To encrypt the connection</label>
+                            <label><input type="radio" name="q14" value="d"> To set buffer size</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="15">
+                        <h3>Question 15</h3>
+                        <p>Which BeautifulSoup method finds all matching elements?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q15" value="a"> find()</label>
+                            <label><input type="radio" name="q15" value="b"> find_all()</label>
+                            <label><input type="radio" name="q15" value="c"> search()</label>
+                            <label><input type="radio" name="q15" value="d"> get_all()</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="16">
+                        <h3>Question 16</h3>
+                        <p>What does PBKDF2 stand for?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q16" value="a"> Password-Based Key Derivation Function 2</label>
+                            <label><input type="radio" name="q16" value="b"> Public-Based Key Distribution Function 2</label>
+                            <label><input type="radio" name="q16" value="c"> Protocol-Based Key Decryption Function 2</label>
+                            <label><input type="radio" name="q16" value="d"> Private-Based Key Development Function 2</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="17">
+                        <h3>Question 17</h3>
+                        <p>Which method is used to execute commands via SSH with Paramiko?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q17" value="a"> run_command()</label>
+                            <label><input type="radio" name="q17" value="b"> exec_command()</label>
+                            <label><input type="radio" name="q17" value="c"> execute()</label>
+                            <label><input type="radio" name="q17" value="d"> command()</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="18">
+                        <h3>Question 18</h3>
+                        <p>What is the advantage of using ThreadPoolExecutor?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q18" value="a"> It encrypts threads</label>
+                            <label><input type="radio" name="q18" value="b"> It manages thread lifecycle automatically</label>
+                            <label><input type="radio" name="q18" value="c"> It makes threads faster</label>
+                            <label><input type="radio" name="q18" value="d"> It reduces memory usage</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="19">
+                        <h3>Question 19</h3>
+                        <p>Which port is commonly used for HTTP traffic?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q19" value="a"> 22</label>
+                            <label><input type="radio" name="q19" value="b"> 443</label>
+                            <label><input type="radio" name="q19" value="c"> 80</label>
+                            <label><input type="radio" name="q19" value="d"> 21</label>
+                        </div>
+                    </div>
+
+                    <div class="question" data-question="20">
+                        <h3>Question 20</h3>
+                        <p>What does the connect_ex() method return when a connection is successful?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q20" value="a"> 1</label>
+                            <label><input type="radio" name="q20" value="b"> 0</label>
+                            <label><input type="radio" name="q20" value="c"> -1</label>
+                            <label><input type="radio" name="q20" value="d"> True</label>
+                        </div>
+                    </div>
+
+                    <div class="test-actions">
+                        <button class="submit-test-btn">Submit Test</button>
+                        <div class="test-result" style="display: none;">
+                            <div class="score-display"></div>
+                            <div class="result-message"></div>
+                            <button class="next-course-btn" style="display: none;">Proceed to Next Course</button>
+                            <button class="retry-btn" style="display: none;">Retry Test</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="course-3.js"></script>
+</body>
+</html>

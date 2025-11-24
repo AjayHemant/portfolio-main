@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nagineni Ajay Hemanth | Python Full Stack Developer</title>
+    <meta name="description" content="Portfolio of Nagineni Ajay Hemanth, a Python Full Stack Developer.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">Ajay.</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title">Hi, I'm <span class="highlight">Nagineni Ajay Hemanth</span></h1>
+            <p class="hero-subtitle">Python Full Stack Developer building scalable web solutions.</p>
+            <div class="hero-btns">
+                <a href="#projects" class="btn btn-primary">View Work</a>
+                <a href="#contact" class="btn btn-secondary">Contact Me</a>
+            </div>
+        </div>
+        <div class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="profile-img-container">
+                    <img src="profile.jpg" alt="Nagineni Ajay Hemanth" class="profile-img">
+                </div>
+                <div class="about-text">
+                    <p>Hello! I'm Nagineni Ajay Hemanth, a passionate Python Full Stack Developer. I specialize in
+                        building robust back-ends and dynamic front-ends, creating seamless user experiences.</p>
+                    <p>With a strong foundation in both web technologies and database management, I enjoy turning
+                        complex problems into elegant solutions.</p>
+                    <div class="skills">
+                        <span class="skill-tag">Python Full Stack</span>
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">MySQL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid" id="projects-grid">
+                <!-- Projects will be injected here by JS -->
+                <!-- Fallback content if JS fails -->
+                <article class="project-card">
+                    <div class="project-image">
+                        <div class="placeholder-img"></div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Cyber Learner</h3>
+                        <p>A cutting-edge web application built with modern technologies.</p>
+                        <div class="project-links">
+                            <a href="cyber-learner/index.html" class="btn-sm">Demo</a>
+                            <a href="https://github.com/AjayHemant/cyber-learner" class="btn-sm">Code</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="project-image">
+                        <div class="placeholder-img"></div>
+                    </div>
+                    <div class="project-info">
+                        <h3>CyberVault</h3>
+                        <p>A secure vault for your digital assets and sensitive data.</p>
+                        <div class="project-links">
+                            <a href="cybervault/index.html" class="btn-sm">Demo</a>
+                            <a href="https://github.com/AjayHemant/cybervault" class="btn-sm">Code</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="project-image">
+                        <div class="placeholder-img"></div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Dev Leveling</h3>
+                        <p>Gamify your coding journey and track your developer growth.</p>
+                        <div class="project-links">
+                            <a href="dev-leveling/index.html" class="btn-sm">Demo</a>
+                            <a href="https://github.com/AjayHemant/dev-leveling" class="btn-sm">Code</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="contact-text">Have a project in mind or just want to say hi? Feel free to drop me a message!</p>
+
+            <form class="contact-form" action="mailto:ajayhemanth90@gmail.com" method="post" enctype="text/plain">
+                <div class="form-group">
+                    <input type="text" placeholder="Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
