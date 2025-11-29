@@ -15,6 +15,35 @@
             <div class="subject-info">IME (ME-501)</div>
         </header>
 
+        <!-- Progress Dashboard -->
+        <div class="progress-dashboard glass-panel">
+            <div class="progress-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <h2>Your Progress</h2>
+            </div>
+            <div class="progress-stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="learnedCount">0</div>
+                    <div class="stat-label">Learned</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="totalCount">0</div>
+                    <div class="stat-label">Total Questions</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="percentComplete">0%</div>
+                    <div class="stat-label">Complete</div>
+                </div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+
         <div class="grid-container">
             <!-- Column 1: Recurring Topics -->
             <div class="column glass-panel">
