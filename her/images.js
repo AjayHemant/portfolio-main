@@ -9,5 +9,15 @@ const images = [
   'img8.png',
   'img9.png',
   'img10.png',
-  'img11.png'
+  'img11.png',
+  'img12.png',
+  'img13.png',
+  'img14.png',
+  'img15.png',
+  'img16.png',
+  'img17.png',
+  'img18.png',
+  'img19.png',
+  'img20.png',
+  'img21.png'
 ];
