@@ -1,0 +1,149 @@
+:root {
+    --bg-color: #050505;
+    --accent: #ffffff;
+    --glass: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.slider-container {
+    position: relative;
+    width: 95%;
+    max-width: 400px;
+    /* Slimmer for vertical focus */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.slider-frame {
+    width: 100%;
+    aspect-ratio: 1728 / 2464;
+    /* User's image ratio */
+    max-height: 85vh;
+    /* Increased for better visibility */
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+}
+
+#active-slide {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Shows complete image without cropping */
+    transition: transform var(--transition), opacity var(--transition);
+    touch-action: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    transform-origin: center;
+}
+
+/* Animations for slide change */
+.slide-in-right {
+    animation: slideInRight var(--transition);
+}
+
+.slide-in-left {
+    animation: slideInLeft var(--transition);
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px 20px;
+}
+
+.nav-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid var(--glass-border);
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    color: var(--accent);
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:active {
+    background: var(--accent);
+    color: var(--bg-color);
+    transform: scale(0.9);
+}
+
+/* Indicators */
+.indicators {
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--glass-border);
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: var(--accent);
+    width: 24px;
+    border-radius: 4px;
+}
+
+/* Hide controls on very small screens if needed, or keep for UX */
+@media (max-height: 600px) {
+    .slider-frame {
+        height: 70vh;
+    }
+}

@@ -1,1 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mobile Image Slider</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="slider-container">
+        <!-- Main Image -->
+        <div class="slider-frame">
+            <img id="active-slide" src="" alt="Slider Image">
+        </div>
+
+        <!-- Minimal Navigation -->
+        <div class="controls">
+            <button id="prevBtn" class="nav-btn" aria-label="Previous">❮</button>
+            <div class="indicators" id="indicators"></div>
+            <button id="nextBtn" class="nav-btn" aria-label="Next">❯</button>
+        </div>
+    </div>
+
+    <script src="images.js"></script>
+    <script src="slider.js"></script>
+</body>
+
+</html>
