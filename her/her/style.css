@@ -1,0 +1,313 @@
+:root {
+    --bg-color: #050505;
+    --accent: #ffffff;
+    --glass: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.slider-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    overflow: hidden;
+}
+
+.slider-frame {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 0;
+    background: #000;
+}
+
+#active-slide {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform var(--transition), opacity var(--transition);
+    touch-action: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    transform-origin: center;
+}
+
+/* Animations for slide change */
+.slide-in-right {
+    animation: slideInRight var(--transition);
+}
+
+.slide-in-left {
+    animation: slideInLeft var(--transition);
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Controls */
+.controls {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    align-items: center;
+    padding: 20px;
+    z-index: 10;
+    pointer-events: none;
+    /* Let clicks pass through around buttons */
+}
+
+.nav-btn {
+    pointer-events: auto;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    color: var(--accent);
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-btn:active {
+    background: var(--accent);
+    color: var(--bg-color);
+    transform: scale(0.95);
+}
+
+/* Indicators */
+.indicators {
+    display: flex;
+    gap: 8px;
+    pointer-events: auto;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.dot.active {
+    background: var(--accent);
+    width: 24px;
+    border-radius: 4px;
+}
+
+/* Security Wall */
+#security-gate {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.gate-content {
+    width: 90%;
+    max-width: 360px;
+    padding: 40px 30px;
+    background: rgba(20, 20, 20, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.8);
+    text-align: center;
+    animation: fadeIn 1s ease;
+}
+
+.security-icon {
+    font-size: 40px;
+    margin-bottom: 25px;
+    background: linear-gradient(135deg, #fff 0%, #666 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+}
+
+.security-title {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 35px;
+    opacity: 0.9;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.login-input {
+    width: 100%;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 1px;
+    outline: none;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.login-input:focus {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.login-input::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#login-btn {
+    width: 100%;
+    padding: 16px;
+    margin-top: 10px;
+    background: #fff;
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255, 255, 255, 0.2);
+}
+
+#login-btn:active {
+    transform: translateY(0);
+}
+
+.error-msg {
+    min-height: 20px;
+    margin-top: 20px;
+    color: #ff4444;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.shake {
+    animation: shake 0.4s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+.fade-out {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shake {
+
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}

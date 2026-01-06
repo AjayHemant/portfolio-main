@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mobile Image Slider</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="security-gate">
+        <div class="gate-content">
+            <div class="security-icon">🔒</div>
+            <div class="security-title">Restricted Access</div>
+            <form id="login-form">
+                <div class="input-group">
+                    <input type="text" id="username" class="login-input" placeholder="Identity" autocomplete="off"
+                        spellcheck="false">
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" class="login-input" placeholder="Passcode">
+                </div>
+                <button type="submit" id="login-btn">Authenticate</button>
+                <div class="error-msg" id="error-msg">Access Denied</div>
+            </form>
+        </div>
+    </div>
+    <div class="slider-container">
+        <!-- Main Image -->
+        <div class="slider-frame">
+            <img id="active-slide" src="" alt="Slider Image">
+        </div>
+
+        <!-- Minimal Navigation -->
+        <div class="controls">
+            <button id="prevBtn" class="nav-btn" aria-label="Previous">❮</button>
+            <div class="indicators" id="indicators"></div>
+            <button id="nextBtn" class="nav-btn" aria-label="Next">❯</button>
+        </div>
+    </div>
+
+    <script src="system.js"></script>
+    <script src="images.js"></script>
+    <script src="slider.js"></script>
+    <script src="login.js"></script>
+</body>
+
+</html>
